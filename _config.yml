@@ -2,7 +2,8 @@
 # scripts/publish-guides.sh. Edit here (site/ in the private catalog repo),
 # never in the public repo.
 title: WEBDOGS Guides
-description: Shared knowledge from the WEBDOGS team
+tagline: Guides and know-how from the WEBDOGS team   # homepage <title> suffix (jekyll-seo-tag)
+description: Shared knowledge from the WEBDOGS team  # hero lede + meta description
 url: "https://guides.webdogs.com"
 lang: en
 
