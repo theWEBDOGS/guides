@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="{{ site.lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% seo %}
+  <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ '/assets/css/guides.css' | relative_url }}">
+</head>
+<body class="{{ layout.body_class | default: page.layout }}">
+{{ content }}
+<footer class="site-footer">
+  <div class="footer-in">
+    {% include paw.svg class="paw" %}
+    <span>© {{ site.time | date: "%Y" }} WEBDOGS</span>
+  </div>
+</footer>
+</body>
+</html>

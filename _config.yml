@@ -1,0 +1,24 @@
+# guides.webdogs.com — synced verbatim into theWEBDOGS/guides by
+# scripts/publish-guides.sh. Edit here (site/ in the private catalog repo),
+# never in the public repo.
+title: WEBDOGS Guides
+description: Step-by-step setup guides from the WEBDOGS team — self-contained, jargon-free, and finished in minutes.
+url: "https://guides.webdogs.com"
+lang: en
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Every page is a guide unless its own front matter says otherwise
+# (the generated index.md sets layout: home). The default image feeds
+# og:image via jekyll-seo-tag for any page without its own.
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: guide
+      image: /assets/og-default.png
+
+kramdown:
+  auto_ids: true   # heading ids power the TOC and the guides' in-page anchors

@@ -1,0 +1,27 @@
+---
+layout: base
+---
+<div class="hero">
+  {% include paw.svg class="bigpaw" %}
+  <div class="hero-in">
+    <div class="brandrow">
+      {% include paw.svg class="paw" %}
+      <span class="wordmark">WEBDOGS</span>
+    </div>
+    <h1>Guides, <span class="u">done right.</span></h1>
+    <p class="lede">{{ site.description }}</p>
+  </div>
+</div>
+<main class="home-main">
+  <div class="cards">
+    {%- assign guides = site.pages | where: "public", true | sort: "title" -%}
+    {%- for g in guides %}
+    <a class="card" href="{{ g.url | relative_url }}">
+      <h2>{{ g.title }}</h2>
+      {%- if g.description %}<p>{{ g.description }}</p>{% endif %}
+      <span class="readmore">Read the guide →</span>
+    </a>
+    {%- endfor %}
+  </div>
+  {{ content }}
+</main>

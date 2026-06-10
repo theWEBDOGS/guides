@@ -1,0 +1,20 @@
+{%- comment -%}
+  Pure-Liquid table of contents over the page's h2 headings (kramdown
+  auto_ids gives each one an id). Pages-safe: no plugin, no JS. The guides
+  use h2 for every section, so one level is all the TOC needs.
+{%- endcomment -%}
+{%- assign sections = include.html | split: '</h2>' -%}
+{%- assign count = sections | size | minus: 1 -%}
+{%- if count > 0 -%}
+<nav class="toc">
+  <div class="label">On this page</div>
+  {%- for s in sections -%}
+    {%- if s contains '<h2' -%}
+      {%- assign h = s | split: '<h2' | last -%}
+      {%- assign id = h | split: 'id="' | last | split: '"' | first -%}
+      {%- assign text = h | split: '">' | last | strip_html -%}
+      <a href="#{{ id }}">{{ text }}</a>
+    {%- endif -%}
+  {%- endfor -%}
+</nav>
+{%- endif -%}

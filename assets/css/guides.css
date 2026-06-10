@@ -1,0 +1,190 @@
+/* guides.webdogs.com — "Bold & branded" theme (mockup 2, David-picked
+   2026-06-10). Colors/logo/fonts are placeholders until the WEBDOGS brand
+   assets land; swap the custom properties + paw.svg include, keep the rest. */
+
+:root {
+  --navy: #102a43;
+  --navy2: #1b3a5c;
+  --ink: #1f2933;
+  --muted: #52606d;
+  --accent: #f25c26;
+  --paper: #f5f7fa;
+  --line: #d9e2ec;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #fff;
+  color: var(--ink);
+  font: 17px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+body.home { background: var(--paper); }
+
+.paw { width: 26px; height: 26px; fill: var(--accent); flex: none; }
+
+/* ---------- home: hero + cards ---------- */
+
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.hero .bigpaw {
+  position: absolute; right: -40px; top: -50px;
+  width: 340px; height: 340px;
+  fill: rgba(255, 255, 255, .05);
+  transform: rotate(18deg);
+}
+.hero-in { max-width: 980px; margin: 0 auto; padding: 30px 32px 64px; position: relative; }
+.brandrow { display: flex; align-items: center; gap: 12px; }
+.hero .brandrow { margin-bottom: 54px; }
+.hero .paw { width: 30px; height: 30px; }
+.wordmark {
+  font-weight: 800; font-size: 19px; letter-spacing: .12em;
+  color: inherit; text-decoration: none;
+}
+.hero h1 {
+  font-size: 52px; line-height: 1.08; letter-spacing: -.02em;
+  font-weight: 800; max-width: 640px;
+}
+.hero h1 .u { box-shadow: inset 0 -14px 0 rgba(242, 92, 38, .45); }
+.hero .lede { color: #bcccdc; font-size: 20px; margin-top: 18px; max-width: 560px; }
+
+.home-main { max-width: 980px; margin: -26px auto 0; padding: 0 32px 90px; position: relative; }
+.cards { display: grid; gap: 22px; }
+.card {
+  display: block; text-decoration: none; color: inherit;
+  background: #fff; border-radius: 14px; padding: 30px 34px;
+  border: 1px solid var(--line); border-top: 5px solid var(--accent);
+  box-shadow: 0 10px 30px rgba(16, 42, 67, .10);
+  transition: transform .12s;
+}
+.card:hover { transform: translateY(-2px); }
+.card h2 { font-size: 24px; color: var(--navy); font-weight: 800; letter-spacing: -.01em; }
+.card p { color: var(--muted); margin-top: 10px; max-width: 700px; }
+.card .readmore { display: inline-block; margin-top: 14px; color: var(--accent); font-weight: 700; font-size: 14.5px; }
+
+/* ---------- guide: navy band ---------- */
+
+.band {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  color: #fff;
+}
+.band-in { max-width: 1100px; margin: 0 auto; padding: 24px 32px 44px; }
+.band .brandrow { margin-bottom: 34px; }
+.band .wordmark { font-size: 17px; }
+.crumb { font-size: 14.5px; margin-bottom: 16px; }
+.crumb a { color: #f8b193; text-decoration: none; font-weight: 700; }
+.crumb a:hover { text-decoration: underline; }
+.band h1 {
+  font-size: 36px; line-height: 1.2; letter-spacing: -.02em;
+  font-weight: 800; max-width: 760px;
+}
+.band .desc { color: #bcccdc; font-size: 17px; margin-top: 12px; max-width: 680px; }
+
+/* ---------- guide: content + sticky TOC ---------- */
+
+.layout {
+  max-width: 1100px; margin: 0 auto; padding: 46px 32px 96px;
+  display: grid; grid-template-columns: minmax(0, 720px) 240px; gap: 60px;
+}
+
+/* The guide markdown carries its own H1; the band already shows the title. */
+article > h1:first-child { display: none; }
+
+article p, article ul, article ol, article table, article figure { margin: 0 0 18px; }
+article ul, article ol { padding-left: 24px; }
+article li { margin-bottom: 8px; }
+article a { color: var(--accent); font-weight: 600; }
+article hr { border: 0; border-top: 1px solid var(--line); margin: 40px 0; }
+article h2 {
+  font-size: 24px; color: var(--navy); font-weight: 800;
+  letter-spacing: -.01em; margin: 42px 0 16px;
+}
+article h2::after {
+  content: ""; display: block; width: 46px; height: 4px;
+  background: var(--accent); border-radius: 2px; margin-top: 8px;
+}
+article h2:first-of-type { margin-top: 0; }
+
+article blockquote {
+  background: #fdf0ea; border: 1px solid #f8c9b2; border-radius: 10px;
+  padding: 14px 18px; color: #7a3416; font-size: 15.5px; margin: 0 0 18px;
+}
+article blockquote p { margin: 0 0 10px; }
+article blockquote p:last-child { margin: 0; }
+
+article table { border-collapse: collapse; width: 100%; font-size: 15.5px; }
+article th, article td { border: 1px solid var(--line); padding: 9px 14px; text-align: left; }
+article th { background: var(--paper); color: var(--navy); }
+
+article img {
+  max-width: 100%; border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(16, 42, 67, .16);
+}
+
+article code {
+  font: 14px/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: #eef2f6; border-radius: 5px; padding: 2px 6px;
+}
+
+/* fenced blocks (kramdown/rouge: div.highlighter-rouge > .highlight > pre) */
+div.highlighter-rouge { position: relative; margin: 0 0 18px; }
+div.highlighter-rouge pre {
+  background: var(--navy); border-radius: 12px; padding: 20px 22px;
+  overflow-x: auto;
+}
+div.highlighter-rouge code {
+  background: none; padding: 0; color: #d9e2ec;
+  font-size: 13.5px; line-height: 1.65;
+}
+.highlight .c, .highlight .c1, .highlight .cm { color: #627d98; }
+.highlight .s, .highlight .s1, .highlight .s2, .highlight .sh { color: #f8b193; }
+.highlight .nv, .highlight .nb { color: #9fb3c8; }
+
+button.copy {
+  position: absolute; top: 10px; right: 10px;
+  background: var(--accent); color: #fff; border: none; border-radius: 7px;
+  font: 700 12.5px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  padding: 8px 13px; cursor: pointer;
+}
+button.copy:hover { filter: brightness(1.08); }
+button.copy.copied { background: #2f9e44; }
+
+aside { font-size: 14px; }
+.toc {
+  position: sticky; top: 28px;
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: 12px; padding: 18px 20px;
+}
+.toc .label {
+  font-size: 11.5px; font-weight: 800; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--navy); margin-bottom: 10px;
+}
+.toc a { display: block; color: var(--muted); text-decoration: none; padding: 5px 0; }
+.toc a:hover { color: var(--navy); }
+
+/* ---------- footer (logo + colophon only — no CTA, by decision) ---------- */
+
+.site-footer { background: var(--navy); }
+.footer-in {
+  max-width: 1100px; margin: 0 auto; padding: 26px 32px;
+  display: flex; align-items: center; gap: 10px;
+  color: #829ab1; font-size: 13.5px;
+}
+.footer-in .paw { width: 16px; height: 16px; fill: #829ab1; }
+
+/* ---------- small screens ---------- */
+
+@media (max-width: 940px) {
+  .layout { grid-template-columns: 1fr; gap: 0; padding: 36px 22px 70px; }
+  aside { display: none; }
+  .hero h1 { font-size: 38px; }
+  .band h1 { font-size: 29px; }
+  .hero-in, .band-in, .home-main, .footer-in { padding-left: 22px; padding-right: 22px; }
+  .card { padding: 24px 22px; }
+}
