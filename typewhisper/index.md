@@ -2,7 +2,7 @@
 public: true
 title: "Private, On-Device Voice Dictation — TypeWhisper Setup for Mac"
 slug: typewhisper
-description: "Set up TypeWhisper for private, on-device voice dictation on your Mac — hotkeys, login item, and dictionary, step by step. About 10 minutes, free, and nothing leaves your machine."
+description: "Turn Caps Lock into a push-to-talk key and dictate into any app — about 10 minutes to set up, free, with nothing sent to the cloud."
 ---
 
 # Private, On-Device Voice Dictation — TypeWhisper Setup for Mac
