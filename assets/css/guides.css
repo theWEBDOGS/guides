@@ -1,15 +1,22 @@
 /* guides.webdogs.com — "Bold & branded" theme (mockup 2, David-picked
-   2026-06-10). Colors/logo/fonts are placeholders until the WEBDOGS brand
-   assets land; swap the custom properties + paw.svg include, keep the rest. */
+   2026-06-10). Branded 2026-06-10 from the WEBDOGS Brand Guide (Drive:
+   Marketing/WEBDOGS Brand Guide.md): Dark Blue #2f3e4e, Blue #0596d5,
+   Pink #ed008c, Green #09A100; Brandon Grotesque bold via the company's
+   Adobe Fonts kit (use.typekit.net/cmq1upi — same kit webdogs.com loads).
+   Note: brand Light Grey Blue #7b95a2 fails WCAG AA for body text on white,
+   so --muted stays neutral. */
 
 :root {
-  --navy: #102a43;
-  --navy2: #1b3a5c;
-  --ink: #1f2933;
+  --navy: #2f3e4e;   /* brand Dark Blue */
+  --navy2: #3d5166;  /* derived lighter shade of Dark Blue (gradient partner) */
+  --ink: #2f3e4e;    /* brand Dark Blue as text ink */
   --muted: #52606d;
-  --accent: #f25c26;
+  --accent: #0596d5; /* brand Blue */
+  --pink: #ed008c;   /* brand Pink — hero highlight */
   --paper: #f5f7fa;
   --line: #d9e2ec;
+  --brand-font: "brandon-grotesque", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -24,6 +31,7 @@ body {
 body.home { background: var(--paper); }
 
 .paw { width: 26px; height: 26px; fill: var(--accent); flex: none; }
+.logo { width: 26px; height: 26px; flex: none; }
 
 /* ---------- home: hero + cards ---------- */
 
@@ -42,16 +50,18 @@ body.home { background: var(--paper); }
 .hero-in { max-width: 980px; margin: 0 auto; padding: 30px 32px 64px; position: relative; }
 .brandrow { display: flex; align-items: center; gap: 12px; }
 .hero .brandrow { margin-bottom: 54px; }
-.hero .paw { width: 30px; height: 30px; }
+.hero .paw, .hero .logo { width: 30px; height: 30px; }
 .wordmark {
-  font-weight: 800; font-size: 19px; letter-spacing: .12em;
+  font-family: var(--brand-font); text-transform: uppercase;
+  font-weight: 700; font-size: 19px; letter-spacing: .12em;
   color: inherit; text-decoration: none;
 }
 .hero h1 {
+  font-family: var(--brand-font);
   font-size: 52px; line-height: 1.08; letter-spacing: -.02em;
-  font-weight: 800; max-width: 640px;
+  font-weight: 700; max-width: 640px;
 }
-.hero h1 .u { box-shadow: inset 0 -14px 0 rgba(242, 92, 38, .45); }
+.hero h1 .u { box-shadow: inset 0 -14px 0 rgba(237, 0, 140, .45); }
 .hero .lede { color: #bcccdc; font-size: 20px; margin-top: 18px; max-width: 560px; }
 
 .home-main { max-width: 980px; margin: -26px auto 0; padding: 0 32px 90px; position: relative; }
@@ -60,11 +70,11 @@ body.home { background: var(--paper); }
   display: block; text-decoration: none; color: inherit;
   background: #fff; border-radius: 14px; padding: 30px 34px;
   border: 1px solid var(--line); border-top: 5px solid var(--accent);
-  box-shadow: 0 10px 30px rgba(16, 42, 67, .10);
+  box-shadow: 0 10px 30px rgba(47, 62, 78, .10);
   transition: transform .12s;
 }
 .card:hover { transform: translateY(-2px); }
-.card h2 { font-size: 24px; color: var(--navy); font-weight: 800; letter-spacing: -.01em; }
+.card h2 { font-family: var(--brand-font); font-size: 24px; color: var(--navy); font-weight: 700; letter-spacing: -.01em; }
 .card p { color: var(--muted); margin-top: 10px; max-width: 700px; }
 .card .readmore { display: inline-block; margin-top: 14px; color: var(--accent); font-weight: 700; font-size: 14.5px; }
 
@@ -78,11 +88,12 @@ body.home { background: var(--paper); }
 .band .brandrow { margin-bottom: 34px; }
 .band .wordmark { font-size: 17px; }
 .crumb { font-size: 14.5px; margin-bottom: 16px; }
-.crumb a { color: #f8b193; text-decoration: none; font-weight: 700; }
+.crumb a { color: #8fd4f0; text-decoration: none; font-weight: 700; }
 .crumb a:hover { text-decoration: underline; }
 .band h1 {
+  font-family: var(--brand-font);
   font-size: 36px; line-height: 1.2; letter-spacing: -.02em;
-  font-weight: 800; max-width: 760px;
+  font-weight: 700; max-width: 760px;
 }
 .band .desc { color: #bcccdc; font-size: 17px; margin-top: 12px; max-width: 680px; }
 
@@ -102,7 +113,8 @@ article li { margin-bottom: 8px; }
 article a { color: var(--accent); font-weight: 600; }
 article hr { border: 0; border-top: 1px solid var(--line); margin: 40px 0; }
 article h2 {
-  font-size: 24px; color: var(--navy); font-weight: 800;
+  font-family: var(--brand-font);
+  font-size: 24px; color: var(--navy); font-weight: 700;
   letter-spacing: -.01em; margin: 42px 0 16px;
 }
 article h2::after {
@@ -112,8 +124,8 @@ article h2::after {
 article h2:first-of-type { margin-top: 0; }
 
 article blockquote {
-  background: #fdf0ea; border: 1px solid #f8c9b2; border-radius: 10px;
-  padding: 14px 18px; color: #7a3416; font-size: 15.5px; margin: 0 0 18px;
+  background: #e9f5fc; border: 1px solid #b5dff2; border-radius: 10px;
+  padding: 14px 18px; color: #19587a; font-size: 15.5px; margin: 0 0 18px;
 }
 article blockquote p { margin: 0 0 10px; }
 article blockquote p:last-child { margin: 0; }
@@ -124,7 +136,7 @@ article th { background: var(--paper); color: var(--navy); }
 
 article img {
   max-width: 100%; border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(16, 42, 67, .16);
+  box-shadow: 0 10px 30px rgba(47, 62, 78, .16);
 }
 
 article code {
@@ -143,7 +155,7 @@ div.highlighter-rouge code {
   font-size: 13.5px; line-height: 1.65;
 }
 .highlight .c, .highlight .c1, .highlight .cm { color: #627d98; }
-.highlight .s, .highlight .s1, .highlight .s2, .highlight .sh { color: #f8b193; }
+.highlight .s, .highlight .s1, .highlight .s2, .highlight .sh { color: #8fd4f0; }
 .highlight .nv, .highlight .nb { color: #9fb3c8; }
 
 button.copy {
@@ -153,7 +165,7 @@ button.copy {
   padding: 8px 13px; cursor: pointer;
 }
 button.copy:hover { filter: brightness(1.08); }
-button.copy.copied { background: #2f9e44; }
+button.copy.copied { background: #09A100; }
 
 aside { font-size: 14px; }
 .toc {
@@ -162,7 +174,8 @@ aside { font-size: 14px; }
   border-radius: 12px; padding: 18px 20px;
 }
 .toc .label {
-  font-size: 11.5px; font-weight: 800; letter-spacing: .12em;
+  font-family: var(--brand-font);
+  font-size: 11.5px; font-weight: 700; letter-spacing: .12em;
   text-transform: uppercase; color: var(--navy); margin-bottom: 10px;
 }
 .toc a { display: block; color: var(--muted); text-decoration: none; padding: 5px 0; }
