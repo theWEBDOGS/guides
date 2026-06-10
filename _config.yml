@@ -2,7 +2,7 @@
 # scripts/publish-guides.sh. Edit here (site/ in the private catalog repo),
 # never in the public repo.
 title: WEBDOGS Guides
-description: Step-by-step setup guides from the WEBDOGS team — self-contained, jargon-free, and finished in minutes.
+description: Shared knowledge from the WEBDOGS team
 url: "https://guides.webdogs.com"
 lang: en
 
