@@ -1,8 +1,15 @@
 {%- comment -%}
   Progress-trail table of contents over the page's h2 headings (kramdown
   auto_ids gives each one an id). A vertical rail connects one node per
-  section; assets/js/toc-progress.js fills the rail to the reading position,
+  section, plus a synthesized "Intro" node for the content above the first
+  heading; assets/js/toc-progress.js fills the rail to the reading position,
   checks off finished sections, rings the current one, and ticks the counter.
+
+  Appendix sections (reference material that isn't part of the journey, e.g.
+  an uninstall block) are listed in the guide's front matter as id fragments:
+      toc_appendix: [uninstall]
+  Matching sections render as plain links below the trail instead of nodes.
+
   Degrades to a plain anchor list with no JS.
 {%- endcomment -%}
 {%- assign sections = include.html | split: '</h2>' -%}
@@ -13,14 +20,36 @@
   <div class="trail">
     <span class="rail" aria-hidden="true"></span>
     <span class="rail-fill" id="rail-fill" aria-hidden="true"></span>
+    <a class="toc-item" data-intro href="#top"><span class="node" aria-hidden="true"></span><span class="t">Intro</span></a>
     {%- for s in sections -%}
       {%- if s contains '<h2' -%}
         {%- assign h = s | split: '<h2' | last -%}
         {%- assign id = h | split: 'id="' | last | split: '"' | first -%}
         {%- assign text = h | split: '">' | last | strip_html -%}
+        {%- assign is_appendix = false -%}
+        {%- for frag in page.toc_appendix -%}
+          {%- if id contains frag -%}{%- assign is_appendix = true -%}{%- endif -%}
+        {%- endfor -%}
+        {%- unless is_appendix -%}
         <a class="toc-item" href="#{{ id }}"><span class="node" aria-hidden="true"></span><span class="t">{{ text }}</span></a>
+        {%- endunless -%}
       {%- endif -%}
     {%- endfor -%}
   </div>
+  {%- assign has_appendix = false -%}
+  {%- for s in sections -%}
+    {%- if s contains '<h2' -%}
+      {%- assign h = s | split: '<h2' | last -%}
+      {%- assign id = h | split: 'id="' | last | split: '"' | first -%}
+      {%- for frag in page.toc_appendix -%}
+        {%- if id contains frag -%}
+          {%- unless has_appendix -%}<div class="toc-appendix">{%- assign has_appendix = true -%}{%- endunless -%}
+          {%- assign text = h | split: '">' | last | strip_html -%}
+          <a href="#{{ id }}">{{ text }} ↩</a>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- if has_appendix -%}</div>{%- endif -%}
 </nav>
 {%- endif -%}

@@ -263,6 +263,19 @@ aside { font-size: 14px; }
   50%      { box-shadow: 0 0 0 7px rgba(237, 0, 140, .07); }
 }
 
+/* appendix links: reference sections kept off the trail (page front matter
+   lists them via toc_appendix) */
+.toc-appendix {
+  margin-top: 14px; padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+.toc-appendix a {
+  display: block; padding: 3px 0;
+  color: #9aa8b5; text-decoration: none; font-size: 13px;
+  transition: color .2s;
+}
+.toc-appendix a:hover { color: var(--navy); }
+
 html { scroll-behavior: smooth; }
 article h2 { scroll-margin-top: 26px; }
 @media (prefers-reduced-motion: reduce) {
