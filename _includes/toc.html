@@ -1,20 +1,26 @@
 {%- comment -%}
-  Pure-Liquid table of contents over the page's h2 headings (kramdown
-  auto_ids gives each one an id). Pages-safe: no plugin, no JS. The guides
-  use h2 for every section, so one level is all the TOC needs.
+  Progress-trail table of contents over the page's h2 headings (kramdown
+  auto_ids gives each one an id). A vertical rail connects one node per
+  section; assets/js/toc-progress.js fills the rail to the reading position,
+  checks off finished sections, rings the current one, and ticks the counter.
+  Degrades to a plain anchor list with no JS.
 {%- endcomment -%}
 {%- assign sections = include.html | split: '</h2>' -%}
 {%- assign count = sections | size | minus: 1 -%}
 {%- if count > 0 -%}
-<nav class="toc">
-  <div class="label">On this page</div>
-  {%- for s in sections -%}
-    {%- if s contains '<h2' -%}
-      {%- assign h = s | split: '<h2' | last -%}
-      {%- assign id = h | split: 'id="' | last | split: '"' | first -%}
-      {%- assign text = h | split: '">' | last | strip_html -%}
-      <a href="#{{ id }}">{{ text }}</a>
-    {%- endif -%}
-  {%- endfor -%}
+<nav class="toc" id="toc" aria-label="On this page">
+  <div class="label">On this page <span class="toc-count" id="toc-count"></span></div>
+  <div class="trail">
+    <span class="rail" aria-hidden="true"></span>
+    <span class="rail-fill" id="rail-fill" aria-hidden="true"></span>
+    {%- for s in sections -%}
+      {%- if s contains '<h2' -%}
+        {%- assign h = s | split: '<h2' | last -%}
+        {%- assign id = h | split: 'id="' | last | split: '"' | first -%}
+        {%- assign text = h | split: '">' | last | strip_html -%}
+        <a class="toc-item" href="#{{ id }}"><span class="node" aria-hidden="true"></span><span class="t">{{ text }}</span></a>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
 </nav>
 {%- endif -%}
