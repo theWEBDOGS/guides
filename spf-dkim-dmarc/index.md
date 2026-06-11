@@ -140,26 +140,43 @@ and DKIM, and sends you reports about who's sending as your domain.
 **Prerequisite:** SPF and DKIM must be live for at least 48 hours first.
 
 Start in monitoring mode — Google's current recommendation — so you can see
-what would be affected before you enforce anything:
+what would be affected before you enforce anything. This minimal record is
+safe to paste exactly as written:
 
 ```
 Type:  TXT
 Name:  _dmarc
-Value: v=DMARC1; p=none; rua=mailto:dmarc-reports@your-domain.com
+Value: v=DMARC1; p=none
 ```
 
-**Make the `rua=` address real before you publish the record.** Reports sent
-to a mailbox that doesn't exist simply bounce — the record looks configured,
-but you're monitoring nothing, and you'll never gather the evidence to ramp
-the policy up. Create a dedicated mailbox or group (in Google Workspace, a
-group is free). Better still, point it at a free DMARC report service
-(Cloudflare DMARC Management and Postmark's DMARC digests both are) — the
-raw reports are gzipped XML from every major receiver, daily, and a service
-turns them into something a human can read. One subtlety: if the reports go
-to a *different domain* than the one you're monitoring, that domain has to
-publish a small authorization record — report services set this up for you.
+It blocks nothing and satisfies receivers that check for a DMARC record —
+but it's blind. The whole point of monitoring mode is the *reports*, which
+you turn on next.
 
-The tags:
+### Turn on reporting — once the address is real
+
+Reports sent to a mailbox that doesn't exist simply bounce: the record looks
+configured, but you're monitoring nothing. So set up the destination
+**first** — one of:
+
+- a **free DMARC report service** (Cloudflare DMARC Management and
+  Postmark's DMARC digests both are) — recommended, because the raw reports
+  are gzipped XML from every major receiver, daily, and a service turns them
+  into something a human can read; or
+- a **dedicated mailbox or group** on your domain (in Google Workspace, a
+  group is free) if you'd rather collect them yourself.
+
+Then update the record's value, substituting the address that now exists:
+
+```
+v=DMARC1; p=none; rua=mailto:<the-address-you-just-set-up>
+```
+
+One subtlety: if reports go to a *different domain* than the one you're
+monitoring, that domain has to publish a small authorization record — report
+services set this up for you.
+
+The full tag set:
 
 | Tag | Required | Purpose | Sample |
 |---|---|---|---|
@@ -170,9 +187,9 @@ The tags:
 | `sp` | optional | Policy for subdomains | `sp=reject` |
 | `aspf` | optional | SPF alignment mode (relaxed/strict) | `aspf=r` |
 
-Always include `rua=` — the reports are how you learn what's sending as your
-domain (use a dedicated mailbox or group; the volume adds up). Then ramp up
-as the reports come back clean:
+### Ramp up the policy
+
+As the reports come back clean, tighten the policy:
 
 1. **`p=none`** — nothing is blocked; you just get reports. *(start here)*
 2. **`p=quarantine; pct=5`** — 5% of failing mail goes to spam; raise `pct`
