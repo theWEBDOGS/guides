@@ -145,8 +145,19 @@ what would be affected before you enforce anything:
 ```
 Type:  TXT
 Name:  _dmarc
-Value: v=DMARC1; p=none; rua=mailto:postmaster@your-domain.com
+Value: v=DMARC1; p=none; rua=mailto:dmarc-reports@your-domain.com
 ```
+
+**Make the `rua=` address real before you publish the record.** Reports sent
+to a mailbox that doesn't exist simply bounce — the record looks configured,
+but you're monitoring nothing, and you'll never gather the evidence to ramp
+the policy up. Create a dedicated mailbox or group (in Google Workspace, a
+group is free). Better still, point it at a free DMARC report service
+(Cloudflare DMARC Management and Postmark's DMARC digests both are) — the
+raw reports are gzipped XML from every major receiver, daily, and a service
+turns them into something a human can read. One subtlety: if the reports go
+to a *different domain* than the one you're monitoring, that domain has to
+publish a small authorization record — report services set this up for you.
 
 The tags:
 
