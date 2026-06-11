@@ -38,11 +38,36 @@ key your "talk" button. About 10 minutes.
 
 ## Step 1 — TypeWhisper: install + permissions
 
-1. Download TypeWhisper from https://www.typewhisper.com/ and open it.
-2. Grant the two permissions it asks for (System Settings → Privacy &
+You can install it from Terminal — **copy the block below, paste it into
+Terminal, and press Return.** It fetches the latest official version from
+TypeWhisper's own update feed (the same source the app's updater uses),
+installs it, and opens it:
+
+```bash
+# 1) Look up the latest stable version from TypeWhisper's update feed
+URL=$(curl -s https://typewhisper.github.io/typewhisper-mac/appcast.xml \
+  | xmllint --xpath 'string(//item[not(*[local-name()="channel"])]/enclosure/@url)' -)
+
+# 2) Download and install it into Applications (replacing any old copy)
+curl -L -o /tmp/TypeWhisper.zip "$URL"
+rm -rf /Applications/TypeWhisper.app
+ditto -x -k /tmp/TypeWhisper.zip /Applications/
+rm /tmp/TypeWhisper.zip
+
+# 3) Open it
+open -a TypeWhisper
+echo "TypeWhisper installed."
+```
+
+(Prefer clicking? Downloading it from https://www.typewhisper.com/ and
+dragging it to Applications gets you the exact same app.)
+
+Then two things only you can click:
+
+1. Grant the two permissions it asks for (System Settings → Privacy &
    Security): **Microphone** (so it can hear you) and **Accessibility** (so it
    can type the words into other apps).
-3. Enable **launch at login** here too.
+2. Enable **launch at login** in its settings.
 
 ## Step 2 — Integrations: the transcription engine
 
@@ -106,7 +131,7 @@ launchctl load  "$HOME/Library/LaunchAgents/local.capslock-to-f18.plist"
 echo "Done. Caps Lock now sends F18."
 ```
 
-That's the only command-line you'll touch. Two small notes:
+That's the last command-line you'll touch. Two small notes:
 
 - In **System Settings → General → Login Items** you'll see a new item called
   **Caps Lock Dictation** — that's this (see below). It will also say
