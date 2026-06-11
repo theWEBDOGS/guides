@@ -1,0 +1,11 @@
+# WEBDOGS Guides
+
+> Shared knowledge from the WEBDOGS team — step-by-step setup guides,
+> self-contained and safe to follow exactly as written. Each link below
+> is the guide as plain Markdown (the HTML version lives at the same
+> path without /guide.md).
+
+## Guides
+
+- [Stop Email Spoofing — SPF, DKIM, and DMARC for Google Workspace](https://guides.webdogs.com/spf-dkim-dmarc/guide.md): The three DNS records that prove your email is really yours — authorize your senders, sign your mail, set the policy. Required for bulk senders since 2024.
+- [Private, On-Device Voice Dictation — TypeWhisper Setup for Mac](https://guides.webdogs.com/typewhisper/guide.md): Turn Caps Lock into a push-to-talk key and dictate into any app — about 10 minutes to set up, free, with nothing sent to the cloud.

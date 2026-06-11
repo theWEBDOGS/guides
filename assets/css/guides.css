@@ -31,7 +31,7 @@ body {
 body.home { background: var(--paper); }
 
 .paw { width: 26px; height: 26px; fill: var(--accent); flex: none; }
-.logo { width: 26px; height: 26px; flex: none; }
+.logo { width: 26px; height: 26px; flex: none; fill: #fff; } /* inverse mark on the navy bands */
 
 /* ---------- home: hero + cards ---------- */
 
@@ -102,6 +102,11 @@ body.home { background: var(--paper); }
   font-family: var(--brand-font); font-weight: 700; font-size: 12px;
   letter-spacing: .1em; text-transform: uppercase;
 }
+.band .mdlink {
+  display: inline-block; margin: 14px 0 0 10px;
+  color: #8fa6b8; font-size: 12.5px; text-decoration: none;
+}
+.band .mdlink:hover { color: #fff; text-decoration: underline; }
 
 /* ---------- guide: content + sticky TOC ---------- */
 

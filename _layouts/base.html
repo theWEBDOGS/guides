@@ -9,6 +9,10 @@
   <link rel="preconnect" href="https://use.typekit.net" crossorigin>
   <link rel="stylesheet" href="https://use.typekit.net/cmq1upi.css">
   <link rel="stylesheet" href="{{ '/assets/css/guides.css' | relative_url }}">
+  {%- if page.slug %}
+  {%- comment -%} machine-readable twin of this guide (also indexed in /llms.txt) {%- endcomment %}
+  <link rel="alternate" type="text/markdown" href="guide.md" title="{{ page.title }} (Markdown)">
+  {%- endif %}
 </head>
 <body class="{{ layout.body_class | default: page.layout }}">
 {{ content }}
