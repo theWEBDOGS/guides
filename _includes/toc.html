@@ -16,6 +16,12 @@
 {%- assign count = sections | size | minus: 1 -%}
 {%- if count > 0 -%}
 <nav class="toc" id="toc" aria-label="On this page">
+  <button class="toc-bar" id="toc-bar" type="button" aria-expanded="false" aria-controls="toc">
+    <span class="bar-fill" id="toc-bar-fill" aria-hidden="true"></span>
+    <span class="bar-now" id="toc-bar-now">Intro</span>
+    <span class="bar-count" id="toc-bar-count"></span>
+    <span class="bar-caret" aria-hidden="true"></span>
+  </button>
   <div class="label">On this page <span class="toc-count" id="toc-count"></span></div>
   <div class="trail">
     <span class="rail" aria-hidden="true"></span>

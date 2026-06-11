@@ -276,6 +276,8 @@ aside { font-size: 14px; }
 }
 .toc-appendix a:hover { color: var(--navy); }
 
+.toc-bar { display: none; } /* mobile-only strip; styled in the media query */
+
 html { scroll-behavior: smooth; }
 article h2 { scroll-margin-top: 26px; }
 @media (prefers-reduced-motion: reduce) {
@@ -298,7 +300,55 @@ article h2 { scroll-margin-top: 26px; }
 
 @media (max-width: 940px) {
   .layout { grid-template-columns: 1fr; gap: 0; padding: 36px 22px 70px; }
-  aside { display: none; }
+
+  /* ----- mobile progress strip: the same TOC, re-presented ----- */
+  aside {
+    display: block; position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+    transform: translateY(-100%); transition: transform .25s ease;
+  }
+  aside.visible { transform: none; }
+  .toc {
+    position: static; padding: 0; border: 0; border-radius: 0 0 14px 14px;
+    background: #fff; border-bottom: 1px solid var(--line);
+    box-shadow: 0 10px 28px rgba(47, 62, 78, .14);
+  }
+  .toc .label, .trail, .toc-appendix { display: none; }
+  .toc.open .trail {
+    display: block; margin: 0 18px; padding: 6px 0 14px;
+    max-height: 55vh; overflow: auto;
+  }
+  .toc.open .toc-appendix { display: block; margin: 0 18px 14px; }
+  .toc-bar {
+    display: flex; align-items: center; gap: 10px; width: 100%;
+    padding: 13px 16px 15px; position: relative;
+    background: none; border: 0; cursor: pointer; text-align: left;
+  }
+  .bar-now {
+    flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis;
+    white-space: nowrap; font-family: var(--brand-font); font-weight: 700;
+    font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--navy);
+  }
+  .bar-count {
+    font-family: var(--brand-font); font-weight: 700; font-size: 12px;
+    color: var(--accent); font-variant-numeric: tabular-nums;
+  }
+  .bar-caret {
+    width: 8px; height: 8px; flex: none; margin-top: -4px;
+    border: solid var(--muted); border-width: 0 2px 2px 0;
+    transform: rotate(45deg); transition: transform .2s;
+  }
+  .toc.open .bar-caret { transform: rotate(225deg); margin-top: 4px; }
+  .bar-fill {
+    position: absolute; left: 0; bottom: 0; height: 3px; width: 0;
+    background: linear-gradient(90deg, var(--blue), var(--accent));
+    box-shadow: 0 0 6px rgba(237, 0, 140, .35);
+    transition: width .18s ease-out;
+  }
+  article h2 { scroll-margin-top: 64px; }
+  @media (prefers-reduced-motion: reduce) {
+    aside, .bar-fill, .bar-caret { transition: none; }
+  }
   .hero h1 { font-size: 38px; }
   .band h1 { font-size: 29px; }
   .hero-in, .band-in, .home-main, .footer-in { padding-left: 22px; padding-right: 22px; }
