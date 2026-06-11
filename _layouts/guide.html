@@ -20,5 +20,25 @@ layout: base
     {% include toc.html html=content %}
   </aside>
 </div>
+{%- assign others = site.pages | where: "public", true | where_exp: "g", "g.url != page.url" | sort: "title" %}
+<section class="more">
+  <div class="more-in">
+    <div class="more-head">
+      <h2>More guides &amp; know-how</h2>
+      <a class="allguides" href="{{ '/' | relative_url }}">All guides →</a>
+    </div>
+    {%- if others.size > 0 %}
+    <div class="cards more-cards">
+      {%- for g in others limit: 3 %}
+      <a class="card" href="{{ g.url | relative_url }}">
+        <h2>{{ g.title }}</h2>
+        {%- if g.description %}<p>{{ g.description }}</p>{% endif %}
+        <span class="readmore">Read the guide →</span>
+      </a>
+      {%- endfor %}
+    </div>
+    {%- endif %}
+  </div>
+</section>
 <script src="{{ '/assets/js/copy-code.js' | relative_url }}"></script>
 <script src="{{ '/assets/js/toc-progress.js' | relative_url }}"></script>
