@@ -2,7 +2,6 @@
 public: true
 title: "Stop Email Spoofing — SPF, DKIM, and DMARC for Google Workspace"
 slug: spf-dkim-dmarc
-time: "About 30 minutes"
 description: "The three DNS records that prove your email is really yours — authorize your senders, sign your mail, set the policy. Required for bulk senders since 2024."
 ---
 
