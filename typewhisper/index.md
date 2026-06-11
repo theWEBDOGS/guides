@@ -174,7 +174,7 @@ Examples from my own list:
 |---|---|
 | Webdogs / web dogs | WEBDOGS |
 | Y three K | Y3K |
-| Sergei | Sergey |
+| Tuesday drocket | two-stage rocket |
 
 Add corrections as you go — every time dictation flubs a name, take ten
 seconds to add the fix.
