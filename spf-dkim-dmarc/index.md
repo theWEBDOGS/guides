@@ -139,9 +139,31 @@ ties it together: it tells receivers what to *do* with mail that fails SPF
 and DKIM, and sends you reports about who's sending as your domain.
 **Prerequisite:** SPF and DKIM must be live for at least 48 hours first.
 
-Start in monitoring mode — Google's current recommendation — so you can see
-what would be affected before you enforce anything. This minimal record is
-safe to paste exactly as written:
+There are two routes, depending on the domain:
+
+### Route A — you control every sender (fresh or fully-managed setup)
+
+If you just completed the SPF and DKIM steps above and **all** of this
+domain's mail goes through Google Workspace (no forgotten CRM, billing
+system, or website form sending as the domain), you can enforce immediately
+— anything failing the checks *is* spoofed. This is the record WEBDOGS
+publishes on the domains it manages:
+
+```
+Type:  TXT
+Name:  _dmarc
+Value: v=DMARC1; p=reject; pct=100
+```
+
+(`pct=100` is technically the default, but stating it makes the intent
+unambiguous.)
+
+### Route B — the domain has history
+
+If the domain has years of accumulated services that might send as it,
+enforcing immediately can bounce legitimate mail. Start in monitoring mode —
+Google's recommendation — and ramp up. This minimal record is safe to paste
+exactly as written:
 
 ```
 Type:  TXT
@@ -155,9 +177,11 @@ you turn on next.
 
 ### Turn on reporting — once the address is real
 
-Reports sent to a mailbox that doesn't exist simply bounce: the record looks
-configured, but you're monitoring nothing. So set up the destination
-**first** — one of:
+Reporting is what makes Route B's monitoring mode mean anything — and it's
+worth adding on Route A too (even at `p=reject`, reports are how you'd spot
+a false positive). But reports sent to a mailbox that doesn't exist simply
+bounce: the record looks configured, and you're monitoring nothing. So set
+up the destination **first** — one of:
 
 - a **free DMARC report service** (Cloudflare DMARC Management and
   Postmark's DMARC digests both are) — recommended, because the raw reports
@@ -187,9 +211,10 @@ The full tag set:
 | `sp` | optional | Policy for subdomains | `sp=reject` |
 | `aspf` | optional | SPF alignment mode (relaxed/strict) | `aspf=r` |
 
-### Ramp up the policy
+### Ramp up the policy (Route B)
 
-As the reports come back clean, tighten the policy:
+As the reports come back clean, tighten the policy until you arrive at
+Route A's destination:
 
 1. **`p=none`** — nothing is blocked; you just get reports. *(start here)*
 2. **`p=quarantine; pct=5`** — 5% of failing mail goes to spam; raise `pct`
