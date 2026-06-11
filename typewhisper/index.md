@@ -2,6 +2,7 @@
 public: true
 title: "Private, On-Device Voice Dictation — TypeWhisper Setup for Mac"
 slug: typewhisper
+time: "About 10 minutes"
 description: "Turn Caps Lock into a push-to-talk key and dictate into any app — about 10 minutes to set up, free, with nothing sent to the cloud."
 ---
 

@@ -95,7 +95,13 @@ body.home { background: var(--paper); }
   font-size: 36px; line-height: 1.2; letter-spacing: -.02em;
   font-weight: 700; max-width: 760px;
 }
-.band .desc { color: #bcccdc; font-size: 17px; margin-top: 12px; max-width: 680px; }
+.band .time {
+  display: inline-block; margin-top: 14px;
+  border: 1px solid rgba(255, 255, 255, .3); border-radius: 999px;
+  padding: 6px 14px; color: #bcccdc;
+  font-family: var(--brand-font); font-weight: 700; font-size: 12px;
+  letter-spacing: .1em; text-transform: uppercase;
+}
 
 /* ---------- guide: content + sticky TOC ---------- */
 
