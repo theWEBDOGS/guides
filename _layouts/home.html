@@ -15,7 +15,8 @@ layout: base
   <div class="cards">
     {%- assign guides = site.pages | where: "public", true | sort: "title" -%}
     {%- for g in guides %}
-    <a class="card" href="{{ g.url | relative_url }}">
+    <a class="card" href="{{ g.url | relative_url }}" {% if forloop.index <= 9 %}aria-keyshortcuts="{{ forloop.index }}"{% endif %}>
+      <span class="kbd" aria-hidden="true">{{ forloop.index }}</span>
       <h2>{{ g.title }}</h2>
       <span class="readmore">Read the guide →</span>
     </a>
@@ -23,3 +24,4 @@ layout: base
   </div>
   {{ content }}
 </main>
+<script src="{{ '/assets/js/guide-jump.js' | relative_url }}"></script>
