@@ -4,7 +4,7 @@ title: "Set Up Private Voice Dictation on Your Mac"
 slug: typewhisper
 verified: 2026-06-10
 toc_appendix: [uninstall]
-description: "TypeWhisper on macOS. Free, fully on-device. About 10 minutes."
+description: "TypeWhisper · 10 minutes"
 ---
 
 # Set Up Private Voice Dictation on Your Mac

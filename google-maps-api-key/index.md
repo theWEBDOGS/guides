@@ -3,7 +3,7 @@ public: true
 title: "Create a Google Maps API Key"
 slug: google-maps-api-key
 verified: 2026-06-11
-description: "For website owners. About 15 minutes; free for typical traffic."
+description: "15 minutes"
 ---
 
 # Create a Google Maps API Key

@@ -3,7 +3,7 @@ public: true
 title: "Set Up SPF, DKIM, and DMARC for Google Workspace"
 slug: spf-dkim-dmarc
 verified: 2026-06-11
-description: "Current record values and a staged DMARC rollout. About 30 minutes."
+description: "30 minutes"
 ---
 
 # Set Up SPF, DKIM, and DMARC for Google Workspace

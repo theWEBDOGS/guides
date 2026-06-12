@@ -7,7 +7,7 @@
 
 ## Guides
 
-- [Create a Google Maps API Key](https://guides.webdogs.com/google-maps-api-key/google-maps-api-key.md): For website owners. About 15 minutes; free for typical traffic. (last verified 2026-06-11)
-- [Set Up Google Workspace MX Records](https://guides.webdogs.com/workspace-mx-records/workspace-mx-records.md): The current single-record setup, plus the legacy five-record set. (last verified 2026-06-11)
-- [Set Up SPF, DKIM, and DMARC for Google Workspace](https://guides.webdogs.com/spf-dkim-dmarc/spf-dkim-dmarc.md): Current record values and a staged DMARC rollout. About 30 minutes. (last verified 2026-06-11)
-- [Set Up Private Voice Dictation on Your Mac](https://guides.webdogs.com/typewhisper/typewhisper.md): TypeWhisper on macOS. Free, fully on-device. About 10 minutes. (last verified 2026-06-10)
+- [Create a Google Maps API Key](https://guides.webdogs.com/google-maps-api-key/google-maps-api-key.md): 15 minutes (last verified 2026-06-11)
+- [Set Up Google Workspace MX Records](https://guides.webdogs.com/workspace-mx-records/workspace-mx-records.md): 5 minutes (last verified 2026-06-11)
+- [Set Up SPF, DKIM, and DMARC for Google Workspace](https://guides.webdogs.com/spf-dkim-dmarc/spf-dkim-dmarc.md): 30 minutes (last verified 2026-06-11)
+- [Set Up Private Voice Dictation on Your Mac](https://guides.webdogs.com/typewhisper/typewhisper.md): TypeWhisper · 10 minutes (last verified 2026-06-10)
