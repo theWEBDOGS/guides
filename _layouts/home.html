@@ -16,9 +16,8 @@ layout: base
     {%- assign guides = site.pages | where: "public", true | sort: "title" -%}
     {%- for g in guides %}
     <a class="card" href="{{ g.url | relative_url }}" {% if forloop.index <= 9 %}aria-keyshortcuts="{{ forloop.index }}"{% endif %}>
-      <span class="kbd" aria-hidden="true">{{ forloop.index }}</span>
       <h2>{{ g.title }}</h2>
-      <span class="readmore">Read the guide →</span>
+      <span class="readmore"><span class="kbd" aria-hidden="true">{{ forloop.index }}</span>Read the guide →</span>
     </a>
     {%- endfor %}
   </div>

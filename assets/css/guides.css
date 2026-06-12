@@ -85,15 +85,16 @@ body.home { background: var(--paper); }
 .card:hover .readmore { transform: translateX(3px); }
 .card .kbd {
   display: inline-flex; align-items: center; justify-content: center;
-  width: 30px; height: 30px; margin-bottom: 14px; flex: none; align-self: flex-start;
+  width: 26px; height: 26px; flex: none;
   border: 2px solid var(--line); border-radius: 7px;
-  font: 700 15px/1 var(--brand-font); color: var(--muted);
+  font: 700 14px/1 var(--brand-font); color: var(--muted);
   transition: border-color .18s ease, color .18s ease;
 }
 .card:hover .kbd { border-color: var(--accent); color: var(--accent-ink); }
 .card h2 { font-family: var(--brand-font); font-size: 24px; line-height: 1.25; color: var(--navy); font-weight: 700; letter-spacing: -.01em; }
 .card .readmore {
-  display: inline-block; margin-top: auto; padding-top: 16px;
+  display: flex; align-items: center; gap: 10px;
+  margin-top: auto; padding-top: 16px;
   color: var(--accent-ink); font-weight: 700; font-size: 14.5px;
   transition: transform .18s ease;
 }
