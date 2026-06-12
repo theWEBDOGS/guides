@@ -2,6 +2,7 @@
 public: true
 title: "Set Up Google Workspace MX Records"
 slug: workspace-mx-records
+toc_appendix: [while-youre-in-dns]
 verified: 2026-06-11
 description: "The current single-record setup, plus the legacy five-record set. About 5 minutes."
 ---
