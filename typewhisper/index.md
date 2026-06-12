@@ -9,31 +9,14 @@ description: "TypeWhisper on macOS: free, fully on-device dictation. About 10 mi
 
 # Set Up Private Voice Dictation on Your Mac
 
-**Your voice is never sent to the cloud, never uploaded to a company, never
-used to train anything.** Press one key, talk, and clean text appears wherever
-your cursor is — email, docs, chat, the terminal, anywhere. It's **free**, it's
-**one app**, and the part that matters most is the simplest: **everything
-happens on your computer.**
+**Press one key, talk, and clean text appears wherever your cursor is** —
+email, docs, chat, the terminal, anywhere. It's free, and unlike Apple's
+dictation or most "free" transcription tools, **everything happens on your
+computer** — your voice is never sent to anyone's servers. (Don't take that
+on faith: after setup, turn off WiFi and it works exactly the same.)
 
-That's the real reason to use this instead of the alternatives. Apple's own
-dictation sends your audio to Apple; most "free" transcription tools upload
-everything you say to their servers. This one doesn't — the speech engine runs
-locally, right on your machine. **Here's the proof:** finish the setup, then
-turn off WiFi and use it — it works exactly the same. Nothing is leaving,
-because nothing needs to.
-
-The plan: install TypeWhisper, then make the otherwise-useless **Caps Lock**
-key your "talk" button. About 10 minutes.
-
-- **TypeWhisper** — the dictation app (https://www.typewhisper.com/)
-
-> **Why we touch Caps Lock at all:** TypeWhisper's most comfortable hotkey
-> needs a key you can hold down to talk. Caps Lock is perfectly placed and
-> nobody uses it, so we point it at "F18" — a key your keyboard doesn't
-> physically have, so nothing else ever conflicts with it. We do this with
-> `hidutil`, a tool **built into macOS** (Apple's own). No extra app, no
-> driver, nothing sent anywhere — and it's reversible in one command (see
-> [Uninstall](#uninstall--restore-normal-caps-lock) at the bottom).
+The plan: install **TypeWhisper** (https://www.typewhisper.com/), then make
+the otherwise-useless **Caps Lock** key your "talk" button. About 10 minutes.
 
 ---
 
@@ -89,9 +72,16 @@ installed all three) — that's how you know nothing leaves the machine.
 
 ## Step 3 — Turn Caps Lock into your "talk" key
 
-This is the one Terminal step, and it's reversible. It does two things: remaps
-Caps Lock to F18 right now, and drops a small file in your account so the remap
-comes back automatically every time you log in.
+Why Caps Lock? TypeWhisper's most comfortable hotkey needs a key you can hold
+down to talk, and Caps Lock is perfectly placed and nobody uses it. We point
+it at "F18" — a key your keyboard doesn't physically have, so nothing else
+ever conflicts with it — using `hidutil`, a tool **built into macOS** (Apple's
+own; no extra app, no driver, nothing sent anywhere). It's reversible in one
+command (see [Uninstall](#uninstall--restore-normal-caps-lock) at the bottom).
+
+The block below does two things: remaps Caps Lock to F18 right now, and drops
+a small file in your account so the remap comes back automatically every time
+you log in.
 
 **Copy the whole block below and paste it into Terminal, then press Return:**
 
