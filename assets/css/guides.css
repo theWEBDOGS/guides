@@ -320,14 +320,7 @@ article h2 { scroll-margin-top: 26px; }
 
 .more { background: var(--paper); border-top: 1px solid var(--line); }
 .more-in { max-width: 1100px; margin: 0 auto; padding: 38px 32px 56px; }
-.more-head {
-  display: flex; align-items: baseline; justify-content: space-between;
-  gap: 16px; margin-bottom: 20px;
-}
-.more-head h2 {
-  font-family: var(--brand-font); font-weight: 700; font-size: 20px;
-  color: var(--navy); letter-spacing: -.01em;
-}
+.more-head { margin-bottom: 18px; }
 .allguides {
   color: var(--accent-ink); font-weight: 700; font-size: 14.5px;
   text-decoration: none; white-space: nowrap;
