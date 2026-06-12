@@ -180,7 +180,7 @@ Examples from my own list:
 Add corrections as you go — every time dictation flubs a name, take ten
 seconds to add the fix.
 
-> **WEBDOGS team:** add all four brand corrections — `Webdogs`, `web dogs`,
+> **WEBDOGS:** add all four brand corrections — `Webdogs`, `web dogs`,
 > `web dog's`, and `WebDog's`, each → **WEBDOGS** — so the company name always
 > lands right. It looks like this:
 >
