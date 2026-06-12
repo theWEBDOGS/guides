@@ -37,13 +37,13 @@ body {
 }
 body.home { background: var(--paper); }
 
-.blocklogo { height: 28px; width: auto; flex: none; fill: #fff; } /* WEBDOGS text-block logo — same size on every page */
+.blocklogo { height: 34px; width: auto; flex: none; fill: #fff; } /* WEBDOGS text-block logo — same size on every page */
 .brandlink { display: flex; align-items: center; color: inherit; text-decoration: none; }
 .guides-tag {
-  display: inline-flex; align-items: center; height: 28px;
-  margin-left: 8px; padding: 0 11px;
+  display: inline-flex; align-items: center; height: 34px;
+  margin-left: 8px; padding: 0 13px;
   background: var(--accent); color: #fff;
-  font: 700 13px/1 var(--brand-font); letter-spacing: .16em;
+  font: 700 14px/1 var(--brand-font); letter-spacing: .16em;
 }
 
 /* ---------- home: hero + cards ---------- */
