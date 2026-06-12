@@ -7,6 +7,7 @@
 
 ## Guides
 
+- [Put a Map on Your Website — Create a Google Maps API Key](https://guides.webdogs.com/google-maps-api-key/google-maps-api-key.md): The map on your site runs on your own Google account — create the key, lock it to your domain, hand it to your web team. About 15 minutes; free for normal traffic. (last verified 2026-06-11)
 - [Route Your Email to Google Workspace — the MX Records](https://guides.webdogs.com/workspace-mx-records/workspace-mx-records.md): It's one record now: smtp.google.com. The current MX value, the legacy five-record set you might still have, and how to check yours is right. (last verified 2026-06-11)
 - [Stop Email Spoofing — SPF, DKIM, and DMARC for Google Workspace](https://guides.webdogs.com/spf-dkim-dmarc/spf-dkim-dmarc.md): The three DNS records that prove your email is really yours — authorize your senders, sign your mail, set the policy. Required for bulk senders since 2024. (last verified 2026-06-11)
 - [Private, On-Device Voice Dictation — TypeWhisper Setup for Mac](https://guides.webdogs.com/typewhisper/typewhisper.md): Turn Caps Lock into a push-to-talk key and dictate into any app — about 10 minutes to set up, free, with nothing sent to the cloud. (last verified 2026-06-10)
