@@ -15,12 +15,32 @@
   var smooth = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     ? 'auto' : 'smooth';
 
-  function currentSection() {
-    var probe = window.innerHeight * 0.35, idx = -1;
+  /* Position-based jumping (NOT the trail's 35% reading-line — with short
+     sections the next heading is already past that line after a jump, which
+     made arrows skip sections). "Next" = first heading meaningfully below
+     the viewport top (70px clears both scroll-margins: 26 desktop / 64
+     mobile); "previous" = last heading scrolled above it, falling back to
+     page top. Returns true when it navigated (callers preventDefault then). */
+  function jumpNext() {
     for (var i = 0; i < heads.length; i++) {
-      if (heads[i].getBoundingClientRect().top <= probe) idx = i;
+      if (heads[i].getBoundingClientRect().top > 70) {
+        heads[i].scrollIntoView({ behavior: smooth });
+        return true;
+      }
     }
-    return idx;
+    return false; /* nothing below — let native scrolling take over */
+  }
+  function jumpPrev() {
+    var target = null;
+    for (var i = 0; i < heads.length; i++) {
+      if (heads[i].getBoundingClientRect().top < -5) target = heads[i];
+    }
+    if (target) { target.scrollIntoView({ behavior: smooth }); return true; }
+    if (window.scrollY > 0) {
+      window.scrollTo({ top: 0, behavior: smooth });
+      return true;
+    }
+    return false; /* already at the top — native behavior */
   }
 
   document.addEventListener('keydown', function (e) {
@@ -36,21 +56,10 @@
       if (location.pathname !== home) window.location = home;
 
     } else if ((e.key === 'ArrowDown' || e.key === 'j') && heads.length) {
-      var next = heads[currentSection() + 1];
-      if (next) {
-        if (e.key === 'ArrowDown') e.preventDefault();
-        next.scrollIntoView({ behavior: smooth });
-      } /* at the last section, ArrowDown scrolls normally */
+      if (jumpNext() && e.key === 'ArrowDown') e.preventDefault();
 
     } else if ((e.key === 'ArrowUp' || e.key === 'k') && heads.length) {
-      var idx = currentSection();
-      if (idx === 0 && window.scrollY > 0) {
-        if (e.key === 'ArrowUp') e.preventDefault();
-        window.scrollTo({ top: 0, behavior: smooth });
-      } else if (idx > 0) {
-        if (e.key === 'ArrowUp') e.preventDefault();
-        heads[idx - 1].scrollIntoView({ behavior: smooth });
-      } /* already at the top, ArrowUp scrolls normally (no-op) */
+      if (jumpPrev() && e.key === 'ArrowUp') e.preventDefault();
     }
   });
 })();
