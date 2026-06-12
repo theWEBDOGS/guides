@@ -95,7 +95,15 @@ body.home { background: var(--paper); }
 .band {
   background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
   color: #fff;
+  position: relative; overflow: hidden;
 }
+.band .bigpaw {
+  position: absolute; right: -50px; top: -55px;
+  width: 260px; height: 260px;
+  fill: rgba(255, 255, 255, .05);
+  transform: rotate(18deg);
+}
+.band-in { position: relative; }
 .band-in { max-width: 1100px; margin: 0 auto; padding: 30px 32px 44px; }
 .band .brandrow { margin-bottom: 34px; }
 .crumb { font-size: 14.5px; margin-bottom: 16px; }
