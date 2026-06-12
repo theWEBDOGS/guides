@@ -68,7 +68,7 @@ Click **Save**.
 Send the key to your web team — with the restrictions on, it only works on
 your website, so sharing it is safe.
 
-> **WEBDOGS clients:** two extras — add your staging domain to the
+> **WEBDOGS sites:** two extras — add your staging domain to the
 > Websites list as well, `https://<your-site>.wpenginepowered.com/*`,
 > so the map works while we build and test; then just reply to our
 > request email with the key. We'll take it from there.
