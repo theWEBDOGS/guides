@@ -113,7 +113,7 @@ body.home { background: var(--paper); }
 }
 .band-in { position: relative; }
 .band-in { max-width: 1100px; margin: 0 auto; padding: 30px 32px 44px; }
-.band .brandrow { margin-bottom: 75px; } /* absorbs the removed breadcrumb's space — band height stays matched to the hero */
+.band .brandrow { margin-bottom: 49px; } /* band renders 26px shorter than the hero — the exact card-overlap on the hub — so the VISIBLE navy edge lands at the same spot on both pages */
 .band h1 {
   font-family: var(--brand-font);
   font-size: 36px; line-height: 1.2; letter-spacing: -.02em;
