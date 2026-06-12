@@ -32,7 +32,6 @@ layout: base
       {%- for g in others limit: 3 %}
       <a class="card" href="{{ g.url | relative_url }}">
         <h2>{{ g.title }}</h2>
-        {%- if g.description %}<p>{{ g.description }}</p>{% endif %}
         <span class="readmore">Read the guide →</span>
       </a>
       {%- endfor %}

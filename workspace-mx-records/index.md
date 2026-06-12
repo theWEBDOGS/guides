@@ -3,7 +3,7 @@ public: true
 title: "Set Up Google Workspace MX Records"
 slug: workspace-mx-records
 verified: 2026-06-11
-description: "5 minutes"
+description: "The current single-record setup, plus the legacy five-record set. About 5 minutes."
 ---
 
 # Set Up Google Workspace MX Records
