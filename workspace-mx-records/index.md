@@ -3,7 +3,7 @@ public: true
 title: "Set Up Google Workspace MX Records"
 slug: workspace-mx-records
 verified: 2026-06-11
-description: "It's one record now: smtp.google.com. The current MX value, the legacy five-record set you might still have, and how to check yours is right."
+description: "The current single-record setup, plus the legacy five-record set."
 ---
 
 # Set Up Google Workspace MX Records

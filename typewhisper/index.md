@@ -4,7 +4,7 @@ title: "Set Up Private Voice Dictation on Your Mac"
 slug: typewhisper
 verified: 2026-06-10
 toc_appendix: [uninstall]
-description: "TypeWhisper turns Caps Lock into a push-to-talk key and types into any app — about 10 minutes to set up, free, with nothing sent to the cloud."
+description: "TypeWhisper on macOS. Free, fully on-device. About 10 minutes."
 ---
 
 # Set Up Private Voice Dictation on Your Mac

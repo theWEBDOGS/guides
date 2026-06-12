@@ -3,7 +3,7 @@ public: true
 title: "Create a Google Maps API Key"
 slug: google-maps-api-key
 verified: 2026-06-11
-description: "The map on your site runs on your own Google account — create the key, lock it to your domain, hand it to your web team. About 15 minutes; free for normal traffic."
+description: "For website owners. About 15 minutes; free for typical traffic."
 ---
 
 # Create a Google Maps API Key

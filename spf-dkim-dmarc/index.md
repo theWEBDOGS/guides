@@ -3,7 +3,7 @@ public: true
 title: "Set Up SPF, DKIM, and DMARC for Google Workspace"
 slug: spf-dkim-dmarc
 verified: 2026-06-11
-description: "The three DNS records that prove your email is really yours — authorize your senders, sign your mail, set the policy. Required for bulk senders since 2024."
+description: "Current record values and a staged DMARC rollout. About 30 minutes."
 ---
 
 # Set Up SPF, DKIM, and DMARC for Google Workspace
