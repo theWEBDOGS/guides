@@ -113,10 +113,7 @@ body.home { background: var(--paper); }
 }
 .band-in { position: relative; }
 .band-in { max-width: 1100px; margin: 0 auto; padding: 30px 32px 44px; }
-.band .brandrow { margin-bottom: 34px; }
-.crumb { font-size: 14.5px; margin-bottom: 16px; }
-.crumb a { color: #8fd4f0; text-decoration: none; font-weight: 700; }
-.crumb a:hover { text-decoration: underline; }
+.band .brandrow { margin-bottom: 75px; } /* absorbs the removed breadcrumb's space — band height stays matched to the hero */
 .band h1 {
   font-family: var(--brand-font);
   font-size: 36px; line-height: 1.2; letter-spacing: -.02em;

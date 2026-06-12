@@ -10,7 +10,6 @@ layout: base
         <span class="guides-tag">GUIDES</span>
       </a>
     </div>
-    <nav class="crumb"><a href="{{ '/' | relative_url }}">← All guides</a></nav>
     <h1>{{ page.title }}</h1>
     <p class="bandmeta">{%- if page.verified %}Last verified {{ page.verified | date: "%B %-d, %Y" }} &nbsp;·&nbsp; {% endif -%}<a class="mdlink" href="{{ page.slug }}.md" title="This guide as plain Markdown — ideal for pasting to an AI assistant">View as Markdown</a></p>
   </div>
@@ -27,7 +26,7 @@ layout: base
 <section class="more">
   <div class="more-in">
     <div class="more-head">
-      <a class="allguides" href="{{ '/' | relative_url }}">All guides →</a>
+      <a class="allguides" href="{{ '/' | relative_url }}">← All guides</a>
     </div>
     {%- if others.size > 0 %}
     <div class="cards more-cards">
