@@ -97,8 +97,16 @@ _dmarc 1 IN TXT "v=DMARC1; p=none"
 ;; google._domainkey 1 IN TXT "<your-DKIM-record-value>"
 ```
 
-After importing, delete any leftover MX records from a previous provider,
-and finish DKIM per the [SPF, DKIM, and DMARC guide](/spf-dkim-dmarc/).
+Three follow-ups after importing:
+
+1. **Delete any leftover MX records** from a previous provider.
+2. **Check for a pre-existing SPF record** — a domain may have only one
+   (two SPF records make SPF fail outright). If one exists, merge instead
+   of importing a duplicate.
+3. The imported DMARC record starts in **monitoring mode (`p=none`)**, which
+   is safe to publish immediately — it enforces nothing. Before tightening
+   the policy, finish DKIM and give the records ~48 hours, per the
+   [SPF, DKIM, and DMARC guide](/spf-dkim-dmarc/).
 
 ## While you're in DNS
 
