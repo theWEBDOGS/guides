@@ -4,8 +4,7 @@
 **Press one key, talk, and clean text appears wherever your cursor is** —
 email, docs, chat, the terminal, anywhere. It's free, and unlike Apple's
 dictation or most "free" transcription tools, **everything happens on your
-computer** — your voice is never sent to anyone's servers. (Don't take that
-on faith: after setup, turn off WiFi and it works exactly the same.)
+computer** — your voice is never sent to anyone's servers.
 
 The plan: install **TypeWhisper** (https://www.typewhisper.com/), then make
 the otherwise-useless **Caps Lock** key your "talk" button. About 10 minutes.
