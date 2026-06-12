@@ -109,7 +109,7 @@ body.home { background: var(--paper); }
               color .32s cubic-bezier(.22, .8, .26, 1),
               transform .32s cubic-bezier(.22, .8, .26, 1);
 }
-.card:hover .kbd { border-color: var(--accent); color: var(--accent-ink); }
+.card:hover .kbd { border-color: var(--navy); color: var(--navy); } /* engages, never shouts — the bar owns the color moment */
 .card h2 { font-family: var(--brand-font); font-size: 24px; line-height: 1.25; color: var(--navy); font-weight: 700; letter-spacing: -.01em; }
 .card .readmore {
   display: flex; align-items: center;
