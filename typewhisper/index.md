@@ -1,13 +1,13 @@
 ---
 public: true
-title: "Private, On-Device Voice Dictation — TypeWhisper Setup for Mac"
+title: "Set Up Private Voice Dictation on Your Mac"
 slug: typewhisper
 verified: 2026-06-10
 toc_appendix: [uninstall]
-description: "Turn Caps Lock into a push-to-talk key and dictate into any app — about 10 minutes to set up, free, with nothing sent to the cloud."
+description: "TypeWhisper turns Caps Lock into a push-to-talk key and types into any app — about 10 minutes to set up, free, with nothing sent to the cloud."
 ---
 
-# Private, On-Device Voice Dictation — TypeWhisper Setup for Mac
+# Set Up Private Voice Dictation on Your Mac
 
 **Your voice is never sent to the cloud, never uploaded to a company, never
 used to train anything.** Press one key, talk, and clean text appears wherever

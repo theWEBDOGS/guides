@@ -1,12 +1,12 @@
 ---
 public: true
-title: "Route Your Email to Google Workspace — the MX Records"
+title: "Set Up Google Workspace MX Records"
 slug: workspace-mx-records
 verified: 2026-06-11
 description: "It's one record now: smtp.google.com. The current MX value, the legacy five-record set you might still have, and how to check yours is right."
 ---
 
-# Route Your Email to Google Workspace — the MX Records
+# Set Up Google Workspace MX Records
 
 MX records are the DNS entries that tell the world's mail servers where to
 deliver your domain's email. For Google Workspace this used to take five

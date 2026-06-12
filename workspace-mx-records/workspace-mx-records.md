@@ -1,5 +1,5 @@
 
-# Route Your Email to Google Workspace — the MX Records
+# Set Up Google Workspace MX Records
 
 MX records are the DNS entries that tell the world's mail servers where to
 deliver your domain's email. For Google Workspace this used to take five

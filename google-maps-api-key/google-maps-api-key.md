@@ -1,5 +1,5 @@
 
-# Put a Map on Your Website — Create a Google Maps API Key
+# Create a Google Maps API Key
 
 The interactive map on your website runs on Google's engine, and Google
 wants to know whose website is asking — that's the **API key**. It has to be

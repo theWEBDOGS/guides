@@ -1,5 +1,5 @@
 
-# Stop Email Spoofing — SPF, DKIM, and DMARC for Google Workspace
+# Set Up SPF, DKIM, and DMARC for Google Workspace
 
 Anyone can put your domain in an email's From: line — unless you tell the
 world's mail servers how to check. That's what these three DNS records do:

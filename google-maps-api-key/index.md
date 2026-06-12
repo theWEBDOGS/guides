@@ -1,12 +1,12 @@
 ---
 public: true
-title: "Put a Map on Your Website — Create a Google Maps API Key"
+title: "Create a Google Maps API Key"
 slug: google-maps-api-key
 verified: 2026-06-11
 description: "The map on your site runs on your own Google account — create the key, lock it to your domain, hand it to your web team. About 15 minutes; free for normal traffic."
 ---
 
-# Put a Map on Your Website — Create a Google Maps API Key
+# Create a Google Maps API Key
 
 The interactive map on your website runs on Google's engine, and Google
 wants to know whose website is asking — that's the **API key**. It has to be

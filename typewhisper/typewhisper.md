@@ -1,5 +1,5 @@
 
-# Private, On-Device Voice Dictation — TypeWhisper Setup for Mac
+# Set Up Private Voice Dictation on Your Mac
 
 **Your voice is never sent to the cloud, never uploaded to a company, never
 used to train anything.** Press one key, talk, and clean text appears wherever
