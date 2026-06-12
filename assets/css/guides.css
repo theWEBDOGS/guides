@@ -60,7 +60,7 @@ body.home { background: var(--paper); }
   fill: rgba(255, 255, 255, .05);
   transform: rotate(18deg);
 }
-.hero-in { max-width: 980px; margin: 0 auto; padding: 30px 32px 64px; position: relative; }
+.hero-in { max-width: 1100px; margin: 0 auto; padding: 30px 32px 64px; position: relative; }
 .brandrow { display: flex; align-items: center; gap: 12px; }
 .hero .brandrow { margin-bottom: 54px; }
 
@@ -72,8 +72,8 @@ body.home { background: var(--paper); }
 .hero h1 .u { box-shadow: inset 0 -14px 0 rgba(5, 150, 213, .55); }
 .hero .lede { color: #bcccdc; font-size: 20px; margin-top: 18px; max-width: 560px; }
 
-.home-main { max-width: 980px; margin: -26px auto 0; padding: 0 32px 90px; position: relative; }
-.cards { display: grid; gap: 22px; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+.home-main { max-width: 1100px; margin: -26px auto 0; padding: 0 32px 90px; position: relative; }
+.cards { display: grid; gap: 22px; grid-template-columns: repeat(auto-fill, minmax(440px, 1fr)); }
 .card {
   display: flex; flex-direction: column; text-decoration: none; color: inherit;
   background: #fff; border-radius: 14px; padding: 26px 28px 24px;
@@ -96,7 +96,7 @@ body.home { background: var(--paper); }
   background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
   color: #fff;
 }
-.band-in { max-width: 980px; margin: 0 auto; padding: 30px 32px 44px; }
+.band-in { max-width: 1100px; margin: 0 auto; padding: 30px 32px 44px; }
 .band .brandrow { margin-bottom: 34px; }
 .crumb { font-size: 14.5px; margin-bottom: 16px; }
 .crumb a { color: #8fd4f0; text-decoration: none; font-weight: 700; }
@@ -113,7 +113,7 @@ body.home { background: var(--paper); }
 /* ---------- guide: content + sticky TOC ---------- */
 
 .layout {
-  max-width: 980px; margin: 0 auto; padding: 46px 32px 96px;
+  max-width: 1100px; margin: 0 auto; padding: 46px 32px 96px;
   display: grid; grid-template-columns: minmax(0, 680px) 240px; gap: 60px;
 }
 
@@ -297,7 +297,7 @@ article h2 { scroll-margin-top: 26px; }
 /* ---------- end-of-guide: more guides band ---------- */
 
 .more { background: var(--paper); border-top: 1px solid var(--line); }
-.more-in { max-width: 980px; margin: 0 auto; padding: 38px 32px 56px; }
+.more-in { max-width: 1100px; margin: 0 auto; padding: 38px 32px 56px; }
 .more-head {
   display: flex; align-items: baseline; justify-content: space-between;
   gap: 16px; margin-bottom: 20px;
@@ -319,7 +319,7 @@ article h2 { scroll-margin-top: 26px; }
 
 .site-footer { background: var(--navy); }
 .footer-in {
-  max-width: 980px; margin: 0 auto; padding: 26px 32px;
+  max-width: 1100px; margin: 0 auto; padding: 26px 32px;
   text-align: center; color: #9fb3c8; font-size: 13px;
 }
 .footer-in a { color: inherit; text-decoration: none; }
