@@ -62,6 +62,37 @@ dig MX <your-domain> +short
 You should see either `1 smtp.google.com.` or the five `aspmx` records — and
 nothing else.
 
+## Fast path: on Cloudflare, import everything at once
+
+If the domain's DNS is on Cloudflare, you can skip adding records one by one:
+**DNS → Records → Import and Export → Import DNS records** accepts a BIND
+zone file. The snippet below sets up the complete Google Workspace email DNS
+— routing *and* authentication — in one paste. **Replace both
+`<placeholders>` first** (and note TTL `1` means "Auto" to Cloudflare):
+
+```
+;; Google Workspace email DNS — Cloudflare import (TTL 1 = Auto)
+
+;; MX — mail routing (current single-record setup)
+@ 1 IN MX 1 smtp.google.com.
+
+;; SPF — authorized senders
+@ 1 IN TXT "v=spf1 include:_spf.google.com ~all"
+
+;; Domain verification — string from the Workspace setup wizard
+@ 1 IN TXT "google-site-verification=<your-verification-string>"
+
+;; DMARC — monitoring mode to start (see the SPF/DKIM/DMARC guide)
+_dmarc 1 IN TXT "v=DMARC1; p=none"
+
+;; DKIM can't be templated — generate your per-domain key in the Admin
+;; console first, then add it as its own record:
+;; google._domainkey 1 IN TXT "<your-DKIM-record-value>"
+```
+
+After importing, delete any leftover MX records from a previous provider,
+and finish DKIM per the [SPF, DKIM, and DMARC guide](/spf-dkim-dmarc/).
+
 ## While you're in DNS
 
 Email that *routes* correctly still needs to *authenticate* to stay out of
