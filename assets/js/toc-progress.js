@@ -4,7 +4,7 @@
    Mobile (<940px, styled in CSS): the same nav renders as a fixed top strip
    that slides in after the header band — current section + counter + a
    horizontal gradient progress bar — and expands to the full trail on tap.
-   The first item may be a synthesized Intro node (data-intro, href="#top").
+   Above the first section, node one shows as where you're headed.
    Reading line = 35% down the viewport. No deps. */
 (function () {
   var toc = document.getElementById('toc');
@@ -18,10 +18,8 @@
   var barCount = document.getElementById('toc-bar-count');
   var aside = toc.closest('aside');
   var band = document.querySelector('.band');
-  var all = Array.prototype.slice.call(trail.querySelectorAll('.toc-item'));
-  if (!all.length) return;
-  var intro = all[0].hasAttribute('data-intro') ? all[0] : null;
-  var items = intro ? all.slice(1) : all;
+  var items = Array.prototype.slice.call(trail.querySelectorAll('.toc-item'));
+  if (!items.length) return;
   var heads = items.map(function (a) {
     return document.getElementById(decodeURIComponent(a.hash.slice(1)));
   });
@@ -44,13 +42,11 @@
     var last = idx === heads.length - 1;
     var finished = last && atEnd;
 
-    if (intro) {
-      intro.classList.toggle('active', idx === -1);
-      intro.classList.toggle('done', idx > -1);
-    }
+    /* above the first section, section one is where you're headed */
+    var activeIdx = idx === -1 ? 0 : idx;
     items.forEach(function (a, i) {
       a.classList.toggle('done', i < idx || (i === idx && finished));
-      a.classList.toggle('active', i === idx && !finished);
+      a.classList.toggle('active', i === activeIdx && !finished);
     });
 
     /* fractional progress inside the current stretch */
@@ -65,31 +61,24 @@
       frac = Math.min(1, Math.max(0, (probe - a1) / (a2 - a1)));
     }
 
-    /* one scalar 0..N-1 across all nodes drives both presentations */
-    var offset = intro ? 1 : 0;
-    var cur;
-    if (idx === -1) cur = intro ? frac : 0;
-    else cur = offset + idx + frac;
-    if (finished) cur = all.length - 1;
+    /* one scalar 0..N-1 across the nodes drives both presentations */
+    var cur = idx === -1 ? 0 : idx + frac;
+    if (finished) cur = items.length - 1;
 
-    var total = all.length;
-    var pos = idx === -1 ? (intro ? 1 : 0) : offset + idx + 1;
+    var total = items.length;
+    var pos = (idx === -1 ? 0 : idx) + 1;
     if (finished) pos = total;
-    var counterText = (pos > 0 ? pos : '–') + ' / ' + total;
+    var counterText = pos + ' / ' + total;
     if (count) count.textContent = counterText;
     if (barCount) barCount.textContent = counterText;
-    if (barNow) {
-      barNow.textContent = idx === -1
-        ? (intro ? labelOf(intro) : labelOf(items[0]))
-        : labelOf(items[idx]);
-    }
+    if (barNow) barNow.textContent = labelOf(items[idx === -1 ? 0 : idx]);
     if (barFill) barFill.style.width = (cur / (total - 1) * 100) + '%';
 
     /* vertical rail fill — only when the trail is actually rendered */
     if (fill && trail.getBoundingClientRect().height > 0) {
       var h;
       if (idx === -1) {
-        h = intro ? nodeMid(intro) + frac * (nodeMid(items[0]) - nodeMid(intro)) : 0;
+        h = frac * nodeMid(items[0]); /* rail grows from the top toward node one */
       } else {
         h = nodeMid(items[idx]);
         if (idx < heads.length - 1) {

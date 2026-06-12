@@ -26,7 +26,6 @@
   <div class="trail">
     <span class="rail" aria-hidden="true"></span>
     <span class="rail-fill" id="rail-fill" aria-hidden="true"></span>
-    <a class="toc-item" data-intro href="#top"><span class="node" aria-hidden="true"></span><span class="t" data-t="Intro">Intro</span></a>
     {%- for s in sections -%}
       {%- if s contains '<h2' -%}
         {%- assign h = s | split: '<h2' | last -%}
