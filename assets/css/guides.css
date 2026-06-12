@@ -73,7 +73,7 @@ body.home { background: var(--paper); }
 .hero .lede { color: #bcccdc; font-size: 20px; margin-top: 18px; max-width: 560px; }
 
 .home-main { max-width: 1100px; margin: -26px auto 0; padding: 0 32px 90px; position: relative; }
-.cards { display: grid; gap: 22px; grid-template-columns: repeat(auto-fill, minmax(440px, 1fr)); }
+.cards { display: grid; gap: 22px; grid-template-columns: repeat(auto-fill, minmax(min(440px, 100%), 1fr)); } /* min(,100%) — the floor can never overflow a phone */
 .card {
   display: flex; flex-direction: column; text-decoration: none; color: inherit;
   background: #fff; border-radius: 14px; padding: 26px 28px 24px;
@@ -120,7 +120,7 @@ body.home { background: var(--paper); }
   font-weight: 700; max-width: 900px;
 }
 .band .bandmeta { margin-top: 14px; font-size: 13.5px; color: #9fb3c8; }
-.band .mdlink { color: inherit; text-decoration: none; }
+.band .mdlink { color: inherit; text-decoration: none; display: inline-block; padding: 10px 0; margin: -10px 0; } /* ~40px tap height, zero visual change */
 .band .mdlink:hover { color: #fff; text-decoration: underline; }
 
 /* ---------- guide: content + sticky TOC ---------- */
@@ -305,7 +305,7 @@ aside { font-size: 14px; }
 
 .toc-bar { display: none; } /* mobile-only strip; styled in the media query */
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 article h2 { scroll-margin-top: 26px; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -323,7 +323,7 @@ article h2 { scroll-margin-top: 26px; }
   text-decoration: none; white-space: nowrap;
 }
 .allguides:hover { text-decoration: underline; }
-.more-cards { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.more-cards { grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); }
 .more .card { padding: 22px 24px 20px; }
 .more .card h2 { font-size: 18px; }
 
@@ -340,7 +340,13 @@ article h2 { scroll-margin-top: 26px; }
 /* ---------- small screens ---------- */
 
 @media (max-width: 940px) {
-  .layout { grid-template-columns: 1fr; gap: 0; padding: 36px 22px 70px; }
+  .layout { grid-template-columns: minmax(0, 1fr); gap: 0; padding: 36px 22px 70px; } /* minmax(0,) stops wide tables propagating min-content into the track */
+  article table { display: block; overflow-x: auto; max-width: 100%; font-size: 14px; } /* wide tables scroll inside themselves instead of blowing out the page */
+  article th, article td { padding: 8px 10px; }
+  div.highlighter-rouge pre { padding: 44px 16px 16px; } /* clear strip under the copy button */
+  button.copy { padding: 10px 14px; }
+  .toc.open .toc-item { padding: 11px 0; }      /* touch-height rows in the open panel */
+  .toc.open .toc-appendix a { padding: 9px 0; }
 
   /* ----- mobile progress strip: the same TOC, re-presented ----- */
   aside {
@@ -357,7 +363,7 @@ article h2 { scroll-margin-top: 26px; }
   .toc .label, .trail, .toc-appendix { display: none; }
   .toc.open .trail {
     display: block; margin: 0 18px; padding: 6px 0 14px;
-    max-height: 55vh; overflow: auto;
+    max-height: 55vh; max-height: 55dvh; overflow: auto;
   }
   .toc.open .toc-appendix { display: block; margin: 0 18px 14px; }
   .toc-bar {
