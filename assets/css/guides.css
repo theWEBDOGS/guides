@@ -53,6 +53,7 @@ body.home { background: var(--paper); }
   color: #fff;
   position: relative;
   overflow: hidden;
+  min-height: 300px; /* matched with .band so hub<->guide jumps don't resize the navy area */
 }
 .hero .bigpaw {
   position: absolute; right: -40px; top: -50px;
@@ -104,6 +105,7 @@ body.home { background: var(--paper); }
   background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
   color: #fff;
   position: relative; overflow: hidden;
+  min-height: 300px; /* matched with .hero — see above */
 }
 .band .bigpaw {
   position: absolute; right: -45px; top: 50%;
@@ -343,6 +345,7 @@ article h2 { scroll-margin-top: 26px; }
 /* ---------- small screens ---------- */
 
 @media (max-width: 940px) {
+  .hero, .band { min-height: 0; } /* natural heights on small screens */
   .layout { grid-template-columns: 1fr; gap: 0; padding: 36px 22px 70px; }
 
   /* ----- mobile progress strip: the same TOC, re-presented ----- */
