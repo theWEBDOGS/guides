@@ -78,13 +78,26 @@ body.home { background: var(--paper); }
 .cards { display: grid; gap: 22px; grid-template-columns: repeat(auto-fill, minmax(min(440px, 100%), 1fr)); } /* min(,100%) — the floor can never overflow a phone */
 .card {
   display: flex; flex-direction: column; text-decoration: none; color: inherit;
-  background: #fff; border-radius: 14px; padding: 22px 28px 26px; /* optical: 22+Brandon's air ≈ 28 sides; hard keycap edge needs the full 26 below */
-  border: 1px solid var(--line); border-top: 5px solid var(--accent);
+  background: #fff; border-radius: 14px; padding: 27px 28px 26px; /* 22 optical + the 5px bar now inside the padding box */
+  border: 1px solid var(--line); border-top: 0;
   box-shadow: 0 10px 30px rgba(47, 62, 78, .10);
-  transition: transform .18s ease, box-shadow .18s ease;
+  position: relative; overflow: hidden;
+  transition: transform .32s cubic-bezier(.22, .8, .26, 1);
 }
-.card:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(47, 62, 78, .16); }
-.card:hover .readmore { transform: translateX(3px); }
+/* the brand bar: solid pink at rest; the trail's blue-to-pink gradient surfaces on hover */
+.card::before, .card::after {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+}
+.card::before { background: var(--accent); }
+.card::after {
+  background: linear-gradient(90deg, var(--blue), var(--accent));
+  opacity: 0; transition: opacity .32s cubic-bezier(.22, .8, .26, 1);
+}
+/* materials respond — nothing jumps: a 1.2% breath, constant shadow */
+.card:hover { transform: scale(1.012); }
+.card:hover::after { opacity: 1; }
+.card:active { transform: scale(1.005); }
+.card:hover .kbd { transform: translateY(1px); } /* the key depresses */
 .card .kbd {
   display: inline-flex; align-items: center; justify-content: center;
   width: 26px; height: 26px; flex: none;
@@ -92,7 +105,9 @@ body.home { background: var(--paper); }
   padding-top: 2px;   /* Brandon digits sit high; recenters optically */
   border: 2px solid #c3d2e0; border-radius: 7px; /* var(--line) was ~1.2:1 on white — invisible affordance */
   font: 700 14px/1 var(--brand-font); color: var(--muted);
-  transition: border-color .18s ease, color .18s ease;
+  transition: border-color .32s cubic-bezier(.22, .8, .26, 1),
+              color .32s cubic-bezier(.22, .8, .26, 1),
+              transform .32s cubic-bezier(.22, .8, .26, 1);
 }
 .card:hover .kbd { border-color: var(--accent); color: var(--accent-ink); }
 .card h2 { font-family: var(--brand-font); font-size: 24px; line-height: 1.25; color: var(--navy); font-weight: 700; letter-spacing: -.01em; }
@@ -100,7 +115,6 @@ body.home { background: var(--paper); }
   display: flex; align-items: center;
   margin-top: auto; padding-top: 18px;
   color: var(--accent-ink); font-weight: 700; font-size: 14.5px;
-  transition: transform .18s ease;
 }
 
 /* ---------- guide: navy band ---------- */
@@ -314,7 +328,7 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust
 article h2 { scroll-margin-top: 26px; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .card, .card .readmore, .card .kbd { transition: none; }
+  .card, .card::after, .card .kbd { transition: none; }
   .toc-item, .toc-item.active .node { animation: none; }
   .trail .rail-fill { transition: none; }
 }
