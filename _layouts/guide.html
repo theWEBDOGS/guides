@@ -33,7 +33,7 @@ layout: base
       {%- for g in others limit: 3 %}
       <a class="card" href="{{ g.url | relative_url }}">
         <h2>{{ g.title }}</h2>
-        <span class="readmore">Read the guide →</span>
+        <span class="readmore">Read the guide<span class="arr" aria-hidden="true">→</span></span>
       </a>
       {%- endfor %}
     </div>
