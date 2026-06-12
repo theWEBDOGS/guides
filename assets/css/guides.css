@@ -109,13 +109,18 @@ body.home { background: var(--paper); }
               color .32s cubic-bezier(.22, .8, .26, 1),
               transform .32s cubic-bezier(.22, .8, .26, 1);
 }
-.card:hover .kbd { border-color: var(--navy); color: var(--navy); } /* engages, never shouts — the bar owns the color moment */
+.card:hover .kbd { border-color: #9fb0c0; color: #3b4a59; } /* a half-step darker — engaged, never shouting */
 .card h2 { font-family: var(--brand-font); font-size: 24px; line-height: 1.25; color: var(--navy); font-weight: 700; letter-spacing: -.01em; }
 .card .readmore {
   display: flex; align-items: center;
   margin-top: auto; padding-top: 18px;
   color: var(--accent-ink); font-weight: 700; font-size: 14.5px;
 }
+.card .arr {
+  display: inline-block; margin-left: 6px;
+  transition: transform .4s cubic-bezier(.34, 1.56, .64, 1); /* back-out: overshoots and settles — the spring */
+}
+.card:hover .arr { transform: translateX(4px); }
 
 /* ---------- guide: navy band ---------- */
 
@@ -328,7 +333,7 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust
 article h2 { scroll-margin-top: 26px; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .card, .card::after, .card .kbd { transition: none; }
+  .card, .card::after, .card .kbd, .card .arr { transition: none; }
   .toc-item, .toc-item.active .node { animation: none; }
   .trail .rail-fill { transition: none; }
 }
