@@ -16,7 +16,7 @@
 </head>
 <body class="{{ layout.body_class | default: page.layout }}">
 {{ content }}
-{%- assign nav_guides = site.pages | where: "public", true | sort: "title" %}
+{%- assign nav_guides = site.pages | where: "public", true | sort: "verified" | reverse %}
 <script>window.GUIDES = [{% for g in nav_guides %}"{{ g.url | relative_url }}"{% unless forloop.last %},{% endunless %}{% endfor %}];</script>
 <script src="{{ '/assets/js/guide-jump.js' | relative_url }}"></script>
 <footer class="site-footer">

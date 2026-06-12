@@ -1,5 +1,5 @@
 /* Site-wide keyboard navigation, the complete loop:
-     1-9            -> open that guide (hub order: title sort)
+     1-9            -> open that guide (hub order: most recently verified first)
      0 / Left       -> back to the guides hub
      Down / j       -> next section on a guide page
      Up / k         -> previous section (or page top)

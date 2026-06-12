@@ -11,4 +11,4 @@
 - [Grant Access to Your Google Tag Manager](https://guides.webdogs.com/google-tag-manager-access/google-tag-manager-access.md): Add your web team as a Tag Manager user — account Admin plus container Publish — instead of sharing a password. About 5 minutes. (last verified 2026-06-11)
 - [Set Up Google Workspace MX Records](https://guides.webdogs.com/workspace-mx-records/workspace-mx-records.md): The current single-record setup, plus the legacy five-record set. About 5 minutes. (last verified 2026-06-11)
 - [Set Up SPF, DKIM, and DMARC for Google Workspace](https://guides.webdogs.com/spf-dkim-dmarc/spf-dkim-dmarc.md): Current record values and a staged DMARC rollout for Google Workspace domains. About 30 minutes. (last verified 2026-06-11)
-- [Set Up Private Voice Dictation on Your Mac](https://guides.webdogs.com/typewhisper/typewhisper.md): TypeWhisper on macOS: free, fully on-device dictation. About 10 minutes to set up. (last verified 2026-06-10)
+- [Set Up Private Voice Dictation on Your Mac](https://guides.webdogs.com/typewhisper/typewhisper.md): TypeWhisper on macOS: free, fully on-device dictation. About 10 minutes to set up. (last verified 2026-06-12)

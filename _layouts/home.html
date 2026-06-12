@@ -13,7 +13,7 @@ layout: base
 </div>
 <main class="home-main">
   <div class="cards">
-    {%- assign guides = site.pages | where: "public", true | sort: "title" -%}
+    {%- assign guides = site.pages | where: "public", true | sort: "verified" | reverse -%}
     {%- for g in guides %}
     <a class="card" href="{{ g.url | relative_url }}" {% if forloop.index <= 9 %}aria-keyshortcuts="{{ forloop.index }}"{% endif %}>
       <h2>{{ g.title }}</h2>
