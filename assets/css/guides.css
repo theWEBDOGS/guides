@@ -256,6 +256,12 @@ aside { font-size: 14px; }
   transition: border-color .2s, background .2s, box-shadow .2s, transform .2s;
 }
 .toc-item .t { transition: color .2s, transform .2s; min-width: 0; }
+/* reserve each label's BOLD width up front (invisible bold twin) so the
+   active state's font-weight change never rewraps the line */
+.toc-item .t::after {
+  content: attr(data-t); display: block; height: 0;
+  visibility: hidden; overflow: hidden; font-weight: 700;
+}
 .toc-item:hover .node { transform: scale(1.2); border-color: var(--navy); }
 .toc-item:hover .t { color: var(--navy); }
 
