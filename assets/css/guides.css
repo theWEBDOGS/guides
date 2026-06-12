@@ -82,7 +82,6 @@ body.home { background: var(--paper); }
   border: 1px solid var(--line); border-top: 0;
   box-shadow: 0 10px 30px rgba(47, 62, 78, .10);
   position: relative; overflow: hidden;
-  transition: transform .32s cubic-bezier(.22, .8, .26, 1);
 }
 /* the brand bar: solid pink at rest; the trail's blue-to-pink gradient surfaces on hover */
 .card::before, .card::after {
@@ -93,11 +92,8 @@ body.home { background: var(--paper); }
   background: linear-gradient(90deg, var(--blue), var(--accent));
   opacity: 0; transition: opacity .32s cubic-bezier(.22, .8, .26, 1);
 }
-/* materials respond — nothing jumps: a 1.2% breath, constant shadow */
-.card:hover { transform: scale(1.012); }
+/* hover response is the gradient bar + arrow only — the card itself holds still */
 .card:hover::after { opacity: 1; }
-.card:active { transform: scale(1.005); }
-.card:hover .kbd { transform: translateY(1px); } /* the key depresses */
 .card .kbd {
   display: inline-flex; align-items: center; justify-content: center;
   width: 26px; height: 26px; flex: none;
@@ -105,11 +101,7 @@ body.home { background: var(--paper); }
   padding-top: 2px;   /* Brandon digits sit high; recenters optically */
   border: 2px solid #c3d2e0; border-radius: 7px; /* var(--line) was ~1.2:1 on white — invisible affordance */
   font: 700 14px/1 var(--brand-font); color: var(--muted);
-  transition: border-color .32s cubic-bezier(.22, .8, .26, 1),
-              color .32s cubic-bezier(.22, .8, .26, 1),
-              transform .32s cubic-bezier(.22, .8, .26, 1);
 }
-.card:hover .kbd { border-color: #9fb0c0; color: #3b4a59; } /* a half-step darker — engaged, never shouting */
 .card h2 { font-family: var(--brand-font); font-size: 24px; line-height: 1.25; color: var(--navy); font-weight: 700; letter-spacing: -.01em; }
 .card .readmore {
   display: flex; align-items: center;
@@ -333,7 +325,7 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust
 article h2 { scroll-margin-top: 26px; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .card, .card::after, .card .kbd, .card .arr { transition: none; }
+  .card::after, .card .arr { transition: none; }
   .toc-item, .toc-item.active .node { animation: none; }
   .trail .rail-fill { transition: none; }
 }
