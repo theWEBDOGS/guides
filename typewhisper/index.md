@@ -60,7 +60,13 @@ Integrations → Marketplace** and install:
 - **Parakeet** — the speech-to-text engine (NVIDIA Parakeet TDT). Fast,
   accurate, 25 languages, runs entirely on your Mac. Make it the **selected
   engine**, and turn on **vocabulary boosting** in its settings (this lets
-  your dictionary entries from Step 5 steer the engine).
+  your dictionary entries from Step 5 steer the engine). **Then let it download
+  its speech model** — a one-time download of roughly half a gigabyte. It
+  should start on its own once Parakeet is installed; if it doesn't, open
+  Parakeet's settings and click **Download**. Wait for it to finish (a few
+  minutes on normal Wi-Fi). **Until the model is downloaded, dictation
+  silently types nothing** — if TypeWhisper seems installed-but-dead, this is
+  almost always why.
 - **Filler Words** — automatically strips "um," "uh," and friends from the
   transcript. Install it and you'll sound articulate forever.
 - *(Optional)* **Apple Speech** — a second on-device engine (needs macOS 26+).
