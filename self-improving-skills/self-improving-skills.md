@@ -1,12 +1,13 @@
 
-# Self-Improving Claude Code Skills with Gotchas
+# Add a ## Gotchas Section to Every Skill
 
 [Claude Code](https://claude.ai/code) skills tend to make the *same mistake
 twice* — each run starts fresh, with no memory of last time's dead-ends. This
 convention fixes that: give every skill a **`## Gotchas` section** — a running
 log of what went wrong — and add to it the moment something does. The next run
-reads those notes and steps around the trap instead of into it. Just a heading
-and a habit, no tooling. **About 5 minutes to set up.**
+reads those notes and steps around the trap instead of into it: a skill that
+*improves itself* every time it stumbles. Just a heading and a habit, no
+tooling. **About 5 minutes to set up.**
 
 ---
 
