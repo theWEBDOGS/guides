@@ -7,6 +7,7 @@
 
 ## Guides
 
+- [Self-Improving Claude Code Skills with Gotchas](https://guides.webdogs.com/self-improving-skills/self-improving-skills.md): Give every Claude Code skill a running log of its own mistakes, so the next run doesn't repeat them. About 5 minutes to set up. (last verified 2026-06-18)
 - [Create a Google Maps API Key](https://guides.webdogs.com/google-maps-api-key/google-maps-api-key.md): Create, restrict, and share a Maps key under your own Google account. About 15 minutes. (last verified 2026-06-11)
 - [Set Up Google Workspace MX Records](https://guides.webdogs.com/workspace-mx-records/workspace-mx-records.md): The current single-record setup, plus the legacy five-record set. About 5 minutes. (last verified 2026-06-11)
 - [Set Up SPF, DKIM, and DMARC for Google Workspace](https://guides.webdogs.com/spf-dkim-dmarc/spf-dkim-dmarc.md): Current record values and a staged DMARC rollout for Google Workspace domains. About 30 minutes. (last verified 2026-06-11)
