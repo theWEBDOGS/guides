@@ -11,9 +11,20 @@
   --navy2: #3d5166;  /* derived lighter shade of Dark Blue (gradient partner) */
   --ink: #2f3e4e;    /* brand Dark Blue as text ink */
   --muted: #52606d;
-  --accent: #ed008c;     /* brand Pink — graphics: borders, bars, rail (pink-forward, 2026-06-10) */
-  --accent-ink: #d6007e; /* same hue for TEXT on white — 5.0:1 AA (critique 2026-06-11) */
-  --blue: #0596d5;   /* brand Blue — hero highlight + info tints */
+  /* COLOR ROLES (blue-forward reskin, 2026-06-19):
+     - Pink (--accent / --accent-ink) = INTERACTIVE ONLY — text links and genuine
+       clickable affordances (article links, read-more, copy button, all-guides).
+       --accent-ink is the AA-safe text tint (5.0:1 on white); --accent is the
+       full-saturation hue reserved for clickable fills (buttons, chips).
+     - Blue (--blue) = the DECORATIVE BRAND ACCENT — every non-text graphic accent:
+       H2 underline bar, H3 tick, card top-bars, TOC rail/nodes/active ring,
+       selection, focus rings. NEVER used for text: #0596d5 is only ~3:1 on white
+       (fails WCAG AA), so it stays on bars, ticks, rails, and fills only.
+     - Navy (--navy / --ink) = all heading and body text. */
+  --accent: #ed008c;     /* brand Pink — interactive fills (buttons, the guides chip) */
+  --accent-ink: #d6007e; /* brand Pink for TEXT on white — 5.0:1 AA — links only */
+  --blue: #0596d5;       /* brand Blue — the decorative graphic accent (non-text) */
+  --blue-deep: #0479ad;  /* derived darker Blue — heavier accent partner for gradients/glow */
   --paper: #f5f7fa;
   --line: #d9e2ec;
   --brand-font: "brandon-grotesque", -apple-system, BlinkMacSystemFont,
@@ -26,7 +37,7 @@
 :focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
 .hero a:focus-visible, .band a:focus-visible, .site-footer a:focus-visible,
 button.copy:focus-visible, .toc-bar:focus-visible { outline-color: #8fd4f0; }
-.card:focus-visible { outline-color: var(--accent); }
+.card:focus-visible { outline-color: var(--blue); }
 
 body {
   background: #fff;
@@ -42,7 +53,7 @@ body.home { background: var(--paper); }
 .guides-tag {
   display: inline-flex; align-items: center; height: 34px;
   margin-left: 8px; padding: 0 13px;
-  background: var(--accent); color: #fff;
+  background: var(--blue); color: #fff;
   font: 700 14px/1 var(--brand-font); letter-spacing: .16em;
 }
 
@@ -83,13 +94,13 @@ body.home { background: var(--paper); }
   box-shadow: 0 10px 30px rgba(47, 62, 78, .10);
   position: relative; overflow: hidden;
 }
-/* the brand bar: solid pink at rest; the trail's blue-to-pink gradient surfaces on hover */
+/* the brand bar: solid blue at rest; a deepening two-tone-blue gradient surfaces on hover */
 .card::before, .card::after {
   content: ""; position: absolute; top: 0; left: 0; right: 0; height: 5px;
 }
-.card::before { background: var(--accent); }
+.card::before { background: var(--blue); }
 .card::after {
-  background: linear-gradient(90deg, var(--blue), var(--accent));
+  background: linear-gradient(90deg, var(--blue), var(--blue-deep));
   opacity: 0; transition: opacity .32s cubic-bezier(.22, .8, .26, 1);
 }
 /* hover response is the gradient bar + arrow only — the card itself holds still */
@@ -161,7 +172,7 @@ article h2 {
 }
 article h2::after {
   content: ""; display: block; width: 46px; height: 4px;
-  background: var(--accent); border-radius: 2px; margin-top: 8px;
+  background: var(--blue); border-radius: 2px; margin-top: 8px;
 }
 article h2:first-of-type { margin-top: 0; }
 article h3 {
@@ -174,7 +185,7 @@ article h3 {
 article h3::before {
   content: ""; flex: none; align-self: stretch;
   width: 3px; margin: .15em 0; border-radius: 2px;
-  background: var(--accent);
+  background: var(--blue-deep); /* deeper blue: a 3px tick needs the extra weight to stay visible vs. pink */
 }
 
 article blockquote {
@@ -237,7 +248,7 @@ aside { font-size: 14px; }
   text-transform: uppercase; color: var(--navy); margin-bottom: 12px;
 }
 .toc-count {
-  font-size: 11px; letter-spacing: .06em; color: var(--accent-ink);
+  font-size: 11px; letter-spacing: .06em; color: var(--navy); /* a counter, not a link: neutral navy text (blue would fail AA) */
   font-variant-numeric: tabular-nums;
 }
 
@@ -249,8 +260,8 @@ aside { font-size: 14px; }
 .trail .rail { background: #ccd7e2; }
 .trail .rail-fill {
   bottom: auto; height: 0;
-  background: linear-gradient(180deg, var(--blue), var(--accent));
-  box-shadow: 0 0 8px rgba(237, 0, 140, .35);
+  background: linear-gradient(180deg, var(--blue), var(--blue-deep));
+  box-shadow: 0 0 8px rgba(5, 150, 213, .45); /* blue glow (was pink); +.10 alpha so the softer hue still reads */
   transition: height .18s ease-out;
 }
 
@@ -300,22 +311,22 @@ aside { font-size: 14px; }
 }
 .toc-item.done .t { color: #5f6b77; }
 
-/* current section: pink ring, glowing pulse, bold label */
+/* current section: blue ring, glowing pulse, bold label */
 .toc-item.active .node {
-  border-color: var(--accent); background: #fff;
-  box-shadow: 0 0 0 4px rgba(237, 0, 140, .16);
+  border-color: var(--blue); background: #fff;
+  box-shadow: 0 0 0 4px rgba(5, 150, 213, .22); /* blue ring (was pink); +alpha so the softer hue still defines the active node */
   animation: toc-pulse 2.2s ease-in-out infinite;
 }
 .toc-item.active .node::after {
   content: ""; position: absolute; inset: 2px;
-  border-radius: 50%; background: var(--accent);
+  border-radius: 50%; background: var(--blue);
 }
 .toc-item.active .t {
   color: var(--navy); font-weight: 700; transform: translateX(2px);
 }
 @keyframes toc-pulse {
-  0%, 100% { box-shadow: 0 0 0 4px rgba(237, 0, 140, .16); }
-  50%      { box-shadow: 0 0 0 7px rgba(237, 0, 140, .07); }
+  0%, 100% { box-shadow: 0 0 0 4px rgba(5, 150, 213, .22); }
+  50%      { box-shadow: 0 0 0 7px rgba(5, 150, 213, .10); }
 }
 
 /* appendix links: reference sections kept off the trail (page front matter
@@ -408,7 +419,7 @@ article h2 { scroll-margin-top: 26px; }
   }
   .bar-count {
     font-family: var(--brand-font); font-weight: 700; font-size: 12px;
-    color: var(--accent-ink); font-variant-numeric: tabular-nums;
+    color: var(--navy); font-variant-numeric: tabular-nums; /* a counter, not a link: neutral navy (matches .toc-count) */
   }
   .bar-caret {
     width: 8px; height: 8px; flex: none; margin-top: -4px;
@@ -418,8 +429,8 @@ article h2 { scroll-margin-top: 26px; }
   .toc.open .bar-caret { transform: rotate(225deg); margin-top: 4px; }
   .bar-fill {
     position: absolute; left: 0; bottom: 0; height: 3px; width: 0;
-    background: linear-gradient(90deg, var(--blue), var(--accent));
-    box-shadow: 0 0 6px rgba(237, 0, 140, .35);
+    background: linear-gradient(90deg, var(--blue), var(--blue-deep));
+    box-shadow: 0 0 6px rgba(5, 150, 213, .45); /* blue glow (was pink), matches the desktop rail-fill */
     transition: width .18s ease-out;
   }
   article h2 { scroll-margin-top: 64px; }
@@ -440,8 +451,8 @@ article h2 { scroll-margin-top: 26px; }
   font-size: 26px; line-height: 1.2;
 }
 .collection-head h2 a { color: var(--navy); text-decoration: none; }
-.collection-head h2 a:hover { color: var(--accent-ink); }
-.collection-head h2 .arr { color: var(--accent); margin-left: 8px; display: inline-block; transition: transform .2s; }
+.collection-head h2 a:hover { color: var(--accent-ink); } /* link hover = interactive: stays pink */
+.collection-head h2 .arr { color: var(--blue-deep); margin-left: 8px; display: inline-block; transition: transform .2s; } /* decorative chevron → deeper blue (legible at glyph weight) */
 .collection-head h2 a:hover .arr { transform: translateX(4px); }
 .collection-tagline { color: var(--muted); font-size: 16px; margin-top: 6px; max-width: 620px; }
 .collection-intro { color: var(--muted); font-size: 18px; line-height: 1.5; max-width: 620px; margin: 0 0 30px; }
