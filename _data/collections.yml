@@ -1,0 +1,12 @@
+# Collections on guides.webdogs.com — named groups of related guides.
+# A guide joins a collection by carrying `collection: <slug>` front matter
+# (in its stack/<tool>/*-GUIDE.md source). Guides with no `collection` stay
+# flat at the site root. The publish script reads `name`/`description` here for
+# the collection landing + llms.txt; the theme reads it for the home-page group.
+# Add a collection = add a block here + set `collection:` on its guides.
+
+claude-code:
+  name: "Claude Code"
+  tagline: "How we configure and work with Claude Code"
+  description: "Craft notes distilled from our own CLAUDE.md — the conventions, verification habits, and workflows we use to get the most out of Claude Code."
+  order: 1

@@ -418,3 +418,19 @@ article h2 { scroll-margin-top: 26px; }
   .hero-in, .band-in, .home-main, .footer-in, .more-in { padding-left: 22px; padding-right: 22px; }
   .card { padding: 20px 22px 24px; }
 }
+
+/* collections — a named group of guides on the home page + its own landing.
+   Reuses .band (landing header), .cards/.card (grid), .more (back link). */
+.collection-group { margin-top: 54px; }
+.collection-head { margin-bottom: 22px; }
+.collection-head h2 {
+  font-family: var(--brand-font); font-weight: 700; letter-spacing: -.01em;
+  font-size: 26px; line-height: 1.2;
+}
+.collection-head h2 a { color: var(--navy); text-decoration: none; }
+.collection-head h2 a:hover { color: var(--accent-ink); }
+.collection-head h2 .arr { color: var(--accent); margin-left: 8px; display: inline-block; transition: transform .2s; }
+.collection-head h2 a:hover .arr { transform: translateX(4px); }
+.collection-tagline { color: var(--muted); font-size: 16px; margin-top: 6px; max-width: 620px; }
+.collection-intro { color: var(--muted); font-size: 18px; line-height: 1.5; max-width: 620px; margin: 0 0 30px; }
+@media (prefers-reduced-motion: reduce) { .collection-head h2 .arr { transition: none; } }

@@ -12,14 +12,41 @@ layout: base
   </div>
 </div>
 <main class="home-main">
+  {%- comment -%} flat root guides (no collection) — client how-tos {%- endcomment -%}
+  {%- assign root = site.pages | where: "public", true | where_exp: "g", "g.collection == nil" | sort: "verified" | reverse -%}
   <div class="cards">
-    {%- assign guides = site.pages | where: "public", true | sort: "verified" | reverse -%}
-    {%- for g in guides %}
+    {%- for g in root %}
     <a class="card" href="{{ g.url | relative_url }}" {% if forloop.index <= 9 %}aria-keyshortcuts="{{ forloop.index }}"{% endif %}>
       <h2>{{ g.title }}</h2>
       <span class="readmore"><span class="kbd" aria-hidden="true">{{ forloop.index }}</span><span class="t">Read the guide</span><span class="arr" aria-hidden="true">→</span></span>
     </a>
     {%- endfor %}
   </div>
+
+  {%- comment -%} one section per collection; numbering continues from root so 1-9 stays unique {%- endcomment -%}
+  {%- assign offset = root.size -%}
+  {%- for c in site.data.collections %}
+    {%- assign cslug = c[0] -%}
+    {%- assign cmeta = c[1] -%}
+    {%- assign cguides = site.pages | where: "public", true | where: "collection", cslug | sort: "verified" | reverse -%}
+    {%- if cguides.size > 0 %}
+    <section class="collection-group">
+      <div class="collection-head">
+        <h2><a href="{{ cslug | prepend: '/' | append: '/' | relative_url }}">{{ cmeta.name }}<span class="arr" aria-hidden="true">→</span></a></h2>
+        {%- if cmeta.tagline %}<p class="collection-tagline">{{ cmeta.tagline }}</p>{% endif %}
+      </div>
+      <div class="cards">
+        {%- for g in cguides %}
+        {%- assign num = forloop.index | plus: offset -%}
+        <a class="card" href="{{ g.url | relative_url }}" {% if num <= 9 %}aria-keyshortcuts="{{ num }}"{% endif %}>
+          <h2>{{ g.title }}</h2>
+          <span class="readmore">{% if num <= 9 %}<span class="kbd" aria-hidden="true">{{ num }}</span>{% endif %}<span class="t">Read the guide</span><span class="arr" aria-hidden="true">→</span></span>
+        </a>
+        {%- endfor %}
+      </div>
+    </section>
+    {%- assign offset = offset | plus: cguides.size -%}
+    {%- endif %}
+  {%- endfor %}
   {{ content }}
 </main>

@@ -2,6 +2,7 @@
 public: true
 title: "Add a ## Gotchas Section to Every Skill"
 slug: skill-gotchas
+collection: claude-code
 verified: 2026-06-18
 description: "Give every Claude Code skill a running log of its own mistakes, so the next run doesn't repeat them. About 5 minutes to set up."
 ---
