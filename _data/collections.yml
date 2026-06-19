@@ -4,6 +4,11 @@
 # flat at the site root. The publish script reads `name`/`description` here for
 # the collection landing + llms.txt; the theme reads it for the home-page group.
 # Add a collection = add a block here + set `collection:` on its guides.
+#
+# STATUS: dormant. Guides ship flat at the site root until a collection earns its
+# second node (DECISIONS 2026-06-19) — a collection of one is premature structure.
+# The machinery (pipeline + theme) and the claude-code block below are built and
+# ready: the collection activates the moment ≥2 guides set `collection: claude-code`.
 
 claude-code:
   name: "Claude Code"
