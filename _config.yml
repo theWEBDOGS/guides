@@ -11,6 +11,17 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
+# GitHub Pages enables these two by default, and both misfire on our raw .md
+# assets — the published guide twins (<slug>/<slug>.md) and the starter CLAUDE.md,
+# which are meant to be served verbatim, not rendered:
+#   - optional-front-matter would render each into a titleless pseudo-guide page;
+#   - relative-links would rewrite a [text](file.md) link to point at that .html.
+# Keep .md files static and .md links literal.
+relative_links:
+  enabled: false
+optional_front_matter:
+  enabled: false
+
 # Every page is a guide unless its own front matter says otherwise
 # (the generated index.md sets layout: home). The default image feeds
 # og:image via jekyll-seo-tag for any page without its own.
