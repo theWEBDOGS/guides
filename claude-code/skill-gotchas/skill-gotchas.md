@@ -22,9 +22,9 @@ applies to every skill you'll ever run.
 
 ```markdown
 ## Skills
-- **Every skill carries a `## Gotchas` section.** Author each new skill with one (empty — "none yet" — is fine; it's a standing invitation). It's where that skill's accumulated mistakes, dead-ends, and corrections live so a future run doesn't repeat them. The most robust enforcement is structural: if you keep a skill template or scaffold, bake the heading into it so every new skill is born with the section.
-- **Capture gotchas in-flight.** While running a skill, the moment you hit a dead-end or take a correction that will recur, append a dated bullet to its `## Gotchas` before you finish — that's when the detail is freshest and most accurate.
-- **(Optional) Backstop at session's end.** If you run an end-of-session review, use it to sweep up any gotcha that in-flight capture missed.
+- **Every skill carries a `## Gotchas` section.** Start it empty ("none yet") — it's where that skill's accumulated mistakes, dead-ends, and corrections live so the next run steps around them instead of into them. The most robust enforcement is structural: if you scaffold skills from a template, bake the heading in.
+- **Capture gotchas in the moment.** The instant a skill hits a dead-end or takes a correction that will recur, append a dated line to its `## Gotchas` before moving on — that's when the detail is freshest.
+- **Graduate recurring gotchas into a `## Principles` block** above the gotchas, once several share a root cause: state the rule that predicts the mistake. Promote only a real pattern — a principle drawn from one gotcha is overfitting.
 ```
 
 That's the whole policy. Everything below is just putting it into practice.
@@ -87,3 +87,6 @@ next run will read it.
   use it to sweep up the gotchas you missed in the moment.
 - Let the log grow, then weed it. A skill that's failed ten interesting ways
   has a `## Gotchas` section worth its weight in saved reruns.
+- When several gotchas turn out to share one root cause, **graduate them into a
+  `## Principles` block** above the gotchas — the predictive rule stated once, so
+  the next run meets it *before* the symptoms instead of after.
