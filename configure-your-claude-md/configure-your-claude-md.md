@@ -5,7 +5,7 @@
 session: `CLAUDE.md`, its standing instructions. A thoughtful one is the
 difference between an assistant that's *generically* helpful and one that works
 the way you do — verifying before it claims something's done, naming things
-consistently, handling git without hand-holding. Below is a starter distilled
+consistently, handling Git without hand-holding. Below is a starter distilled
 from heavy daily use, trimmed to rules that **earn their place by countering a
 real failure** rather than restating what a capable model already does. Install
 it, then adapt. **About 5 minutes.**
@@ -24,7 +24,7 @@ curl -fsSL https://guides.webdogs.com/configure-your-claude-md/starter-CLAUDE.md
 That's the whole setup — there's nothing else to install. (Prefer to read it
 first, or already have a `CLAUDE.md`? Open the [starter file](starter-CLAUDE.md)
 and copy in the parts you want — don't blindly overwrite one you've already got.)
-For a single project instead of your whole account, put the same content in a
+For a single project instead of globally, put the same content in a
 `CLAUDE.md` at that project's root.
 
 ## What's in it — and why
@@ -41,7 +41,7 @@ is the classic agent failure.
 ### Verification — the heart of the file
 Three habits that kill "it looks done" bugs: (1) **name the check before you start**
 — say *how* you'll verify, as a specific falsifiable test, so you can't later slide
-the goalpost to whatever happened to pass; (2) **run it and report honestly** —
+the goalposts to whatever happened to pass; (2) **run it and report honestly** —
 never imply a check passed that you didn't run; (3) **verify the content, not the
 surface** — that the thing actually works, not just that a file exists. Two more:
 point deterministic checks (tests, lint, type-check) at a **hook** so they run
@@ -52,8 +52,7 @@ in docs and config that refactoring tools miss.
 Give every skill a `## Gotchas` section — a running log of its own dead-ends, so the
 next run steps around them instead of into them. **Capture each one in the moment**
 — append the dated line the instant you hit the dead-end, while it's fresh — and
-**graduate** recurring ones into a `## Principles` block. (Self-contained in the
-file — no separate setup.)
+**graduate** recurring ones into a `## Principles` block.
 
 ### Naming
 A folder's primary document carries the folder's name (`accordion/accordion.md`,
