@@ -29,36 +29,51 @@ For a single project instead of your whole account, put the same content in a
 
 ## What's in it — and why
 
-Skim these so you can keep what fits and cut what doesn't. Each maps to a section
+Skim these so you can keep what fits and cut what doesn't — each maps to a section
 of the file.
 
-**Golden rules.** *Brand fidelity* — render product names with their real
-spelling (`GitHub`, `npm`, `macOS`); it's basic credibility. *Stop and replan* —
-blocked twice on the same thing, surface it instead of trying a third variation;
-looping on a broken approach is the classic agent failure.
+### Golden rules
+*Brand fidelity* — render product names with their real spelling (`GitHub`, `npm`,
+`macOS`); it's basic credibility. *Stop and replan* — blocked twice on the same
+thing, surface it instead of trying a third variation; looping on a broken approach
+is the classic agent failure.
 
-**Verification — the heart of the file.** Three habits that kill "it looks done"
-bugs: (1) **name the check before you start** — say *how* you'll verify, as a
-specific falsifiable test, so you can't later slide the goalpost to whatever
-happened to pass; (2) **run it and report honestly** — never imply a check passed
-that you didn't run; (3) **verify the content, not the surface** — that the thing
-actually works, not just that a file exists. Two more: point deterministic checks
-(tests, lint, type-check) at a **hook** so they run automatically, and on any
-**rename, `grep` the old term** and fix every straggler in docs and config that
-refactoring tools miss.
+### Verification — the heart of the file
+Three habits that kill "it looks done" bugs: (1) **name the check before you start**
+— say *how* you'll verify, as a specific falsifiable test, so you can't later slide
+the goalpost to whatever happened to pass; (2) **run it and report honestly** —
+never imply a check passed that you didn't run; (3) **verify the content, not the
+surface** — that the thing actually works, not just that a file exists. Two more:
+point deterministic checks (tests, lint, type-check) at a **hook** so they run
+automatically, and on any **rename, `grep` the old term** and fix every straggler
+in docs and config that refactoring tools miss.
 
-**Skills.** Give every skill a `## Gotchas` section — a running log of its own
-dead-ends, so the next run steps around them instead of into them; graduate
-recurring ones into a `## Principles` block. (Self-contained in the file — no
-separate setup.)
+### Skills
+Give every skill a `## Gotchas` section — a running log of its own dead-ends, so the
+next run steps around them instead of into them. **Capture each one in the moment**
+— append the dated line the instant you hit the dead-end, while it's fresh — and
+**graduate** recurring ones into a `## Principles` block. (Self-contained in the
+file — no separate setup.)
 
-**Naming.** A folder's primary document carries the folder's name
-(`accordion/accordion.md`, not a generic `index.md`), so the filesystem tells you
-what's what at a glance.
+### Naming
+A folder's primary document carries the folder's name (`accordion/accordion.md`,
+not a generic `index.md`), so the filesystem tells you what's what at a glance.
 
-**Git.** Commit finished work without asking (it's reversible); push to private
-remotes silently but **confirm before a public push**; glance for secrets first;
-and ask before anything irreversible — force-push, history rewrite, hard reset.
+### Git
+Commit finished work without asking (it's reversible); push to private remotes
+silently but **confirm before a public push**; glance for secrets first; and ask
+before anything irreversible — force-push, history rewrite, hard reset.
 
-**Session wrap-up.** When you're done, check the file still matches the project,
-capture any durable lesson, and commit the leftovers.
+### Session wrap-up
+When you're done, check the file still matches the project, capture any durable
+lesson, and commit the leftovers.
+
+## Then make it yours
+
+This starter is the *generic* baseline — the craft that applies to any project. The
+highest-value lines in a real `CLAUDE.md` are the ones only **you** can write: your
+build and test commands, your project's conventions, the architecture a newcomer
+needs, the gotcha that bit you last week. A capable model already knows general good
+practice; what it *can't* know is your project. So treat this as the floor, not the
+ceiling — drop it in, then add the project-specific rules that make it genuinely
+yours.
