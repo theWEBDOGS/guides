@@ -54,7 +54,7 @@ body.home { background: var(--paper); }
   display: inline-flex; align-items: center; height: 34px;
   margin-left: 8px; padding: 0 13px;
   background: var(--blue); color: #fff;
-  font: 900 26px/1 var(--brand-font); letter-spacing: .1em;
+  font: 900 20px/1 var(--brand-font); letter-spacing: .13em;
 }
 
 /* ---------- home: hero + cards ---------- */
