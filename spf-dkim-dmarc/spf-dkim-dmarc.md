@@ -1,16 +1,15 @@
 
 # Set Up SPF, DKIM, and DMARC for Google Workspace
 
-Anyone can put your domain in an email's From: line — unless you tell the
-world's mail servers how to check. That's what these three DNS records do:
-**SPF** says which servers may send as your domain, **DKIM** cryptographically
-signs each message, and **DMARC** tells receivers what to do when a message
-fails those checks. Together they protect your domain from spoofing *and*
-your legitimate mail from the spam folder.
+**SPF, DKIM, and DMARC** are three DNS records that prove your mail is really
+yours. SPF lists which servers may send as your domain, DKIM signs each message
+cryptographically, and DMARC tells receivers what to do when a message fails
+those checks. Together they stop spoofing and keep your legitimate mail out of
+the spam folder.
 
-And this stopped being optional: since 2024, **Gmail requires SPF, DKIM, and
-DMARC from anyone sending 5,000+ messages a day** — and authenticated mail
-gets better deliverability at any volume.
+They're no longer optional: since 2024, **Gmail requires all three from anyone
+sending 5,000+ messages a day** — and authenticated mail lands better at any
+volume.
 
 What you'll need: access to your domain's **DNS settings**, and **super
 administrator** access to the Google Admin console. Each record is a TXT
@@ -30,9 +29,8 @@ last).
 ## SPF — authorize your senders
 
 [SPF (Sender Policy Framework)](https://knowledge.workspace.google.com/admin/security/set-up-spf)
-is a TXT record listing the mail servers allowed to send email for your
-domain. Receivers check it to decide whether a message claiming to be from
-you came from somewhere you actually authorized.
+is a TXT record listing which mail servers may send as your domain. Receivers
+check it to spot mail from servers you never authorized.
 
 The standard record for Google Workspace:
 
@@ -170,11 +168,11 @@ you turn on next.
 
 ### Turn on reporting — once the address is real
 
-Reporting is what makes Route B's monitoring mode mean anything — and it's
-worth adding on Route A too (even at `p=reject`, reports are how you'd spot
-a false positive). But reports sent to a mailbox that doesn't exist simply
-bounce: the record looks configured, and you're monitoring nothing. So set
-up the destination **first** — one of:
+Reporting is what makes monitoring mode mean anything — and it's worth adding
+on Route A too (even at `p=reject`, reports are how you catch a false
+positive). Reports sent to a mailbox that doesn't exist just bounce: the record
+looks configured, but you're monitoring nothing. Set up the destination
+**first** — one of:
 
 - a **free DMARC report service** (Cloudflare DMARC Management and
   Postmark's DMARC digests both are) — recommended, because the raw reports

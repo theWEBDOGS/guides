@@ -7,7 +7,7 @@ layout: base
     <div class="brandrow">
       {% include logo.svg class="blocklogo" %}
     </div>
-    <h1>Guides &amp; <span class="u">Know-How</span></h1>
+    <h1>{%- if site.internal -%}<span class="u-internal">Internal Guides</span> &amp; Know-How{%- else -%}Guides &amp; <span class="u">Know-How</span>{%- endif -%}</h1>
     <p class="lede">{{ site.description }}</p>
   </div>
 </div>

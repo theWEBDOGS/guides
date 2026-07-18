@@ -3,8 +3,7 @@
 
 MX records are the DNS entries that tell the world's mail servers where to
 deliver your domain's email. For Google Workspace this used to take five
-records — **since 2023 it takes one.** This page has the current value, the
-legacy set you might still be running, and how to verify yours.
+records — **since 2023 it takes one.**
 
 What you'll need: access to your domain's DNS settings (your registrar or
 DNS host).

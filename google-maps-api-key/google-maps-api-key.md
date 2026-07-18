@@ -1,12 +1,11 @@
 
 # Create a Google Maps API Key
 
-The interactive map on your website runs on Google's engine, and Google
-wants to know whose website is asking — that's the **API key**. It has to be
-created under *your* Google account (it's tied to your billing and your
-business), which is why your web team asks you to make it rather than making
-it for you. The whole thing takes about 15 minutes, and the key you hand
-back will be locked so it only works on your own site.
+A **Google Maps API key** lets the interactive map on your site talk to
+Google's map engine. It's created under *your* Google account — it's tied to
+your billing and your business — which is why your web team asks you to make it
+rather than making it for you. The whole thing takes about 15 minutes, and the
+key you hand back is locked so it only works on your own site.
 
 You'll need: a Google account for the business, and a credit card (Google
 requires one on file — see the next section before that worries you).

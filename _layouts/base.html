@@ -4,6 +4,36 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {% seo %}
+  {%- if site.internal %}
+  {%- comment -%}
+    Internal tier (team.webdogs.com) only — everything in this block is gated on
+    site.internal, which is unset on guides.webdogs.com, so guides renders
+    byte-identically. Keep the internal twin out of search indexes, and mark it.
+  {%- endcomment %}
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    /* WEBDOGS brand Yellow (#f1bd1e, per the Brand Guide) — sized to mirror the
+       WEBDOGS logo / GUIDES chip (34px tall, 20px/900) and right-aligned to the
+       1100px content column, so it bookends the logo (logo left, status chip
+       right). Navy text clears AA contrast (~6:1) on the yellow. */
+    .internal-flag {
+      position: absolute; top: 30px; z-index: 5;
+      right: max(32px, calc((100vw - 1100px) / 2 + 32px));
+      display: inline-flex; align-items: center; height: 34px; padding: 0 13px;
+      background: #f1bd1e; color: #2f3e4e;
+      font: 900 20px/1 var(--brand-font); letter-spacing: .08em; text-transform: uppercase;
+    }
+    @media (max-width: 640px) {
+      .internal-flag { top: 24px; right: 22px; height: 26px; padding: 0 10px;
+        font-size: 13px; letter-spacing: .12em; }
+    }
+    /* Home hero (team only): the decorative accent goes brand-yellow under
+       "Internal Guides" — the one place we swap blue for yellow, to spotlight the
+       internal framing and echo the chip. guides.webdogs.com keeps its blue .u on
+       "Know-How" (this .u-internal class exists only on the team home page). */
+    .hero h1 .u-internal { text-decoration: underline #f1bd1e 4px; text-underline-offset: 7px; }
+  </style>
+  {%- endif %}
   <link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
   {%- comment -%} Brandon Grotesque via the WEBDOGS Adobe Fonts kit (same kit webdogs.com loads) {%- endcomment %}
   <link rel="preconnect" href="https://use.typekit.net" crossorigin>
@@ -15,6 +45,9 @@
   {%- endif %}
 </head>
 <body class="{{ layout.body_class | default: page.layout }}">
+{%- if site.internal %}
+<div class="internal-flag" role="note" aria-label="Internal site — WEBDOGS team only">Internal</div>
+{%- endif %}
 {{ content }}
 {%- comment -%} number-key order must match the home page: root guides first, then each collection {%- endcomment -%}
 {%- assign nav_guides = site.pages | where: "public", true | where_exp: "g", "g.collection == nil" | sort: "verified" | reverse -%}
