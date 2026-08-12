@@ -9,6 +9,7 @@
 :root {
   --navy: #2f3e4e;   /* brand Dark Blue */
   --navy2: #3d5166;  /* derived lighter shade of Dark Blue (gradient partner) */
+  --navy-deep: #253241;  /* derived deeper Dark Blue - the fastpath card ground */
   --ink: #2f3e4e;    /* brand Dark Blue as text ink */
   --muted: #52606d;
   /* COLOR ROLES (blue-forward reskin, 2026-06-19):
@@ -457,3 +458,80 @@ article h2 { scroll-margin-top: 26px; }
 .collection-tagline { color: var(--muted); font-size: 16px; margin-top: 6px; max-width: 620px; }
 .collection-intro { color: var(--muted); font-size: 18px; line-height: 1.5; max-width: 620px; margin: 0 0 30px; }
 @media (prefers-reduced-motion: reduce) { .collection-head h2 .arr { transition: none; } }
+
+/* ---------- fastpath: "paste this into Claude Code" bootstrap callout ---------- */
+/* One dark card drawn across three fixed siblings, so the guide source stays
+   plain markdown (heading + sentence + fence); only the heading carries
+   {: .fastpath }. Contract: h2.fastpath is immediately followed by ONE <p>
+   and ONE fenced block - insert nothing between them. */
+
+article h2.fastpath {
+  margin: 42px 0 0;
+  padding: 22px 26px 0;
+  background: var(--navy-deep);
+  border-radius: 14px 14px 0 0;
+  color: #fff;
+  font-size: 15px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  position: relative;
+  overflow: hidden;
+}
+/* the TOC's "you are here" pulse, borrowed: this is the live path */
+article h2.fastpath::before {
+  content: "";
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 0 4px rgba(5, 150, 213, .22);
+  animation: toc-pulse 2.2s ease-in-out infinite;
+}
+/* replaces the h2 underline bar: the card hover gradient, at rest - already on */
+article h2.fastpath::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  width: auto;
+  height: 5px;
+  margin: 0;
+  border-radius: 0;
+  background: linear-gradient(90deg, var(--blue), var(--blue-deep));
+}
+article h2.fastpath + p {
+  margin: 0;
+  padding: 10px 26px 16px;
+  background: var(--navy-deep);
+  color: #bcccdc; /* the hero-lede tint */
+  font-size: 15.5px;
+}
+article h2.fastpath + p a { color: #8fd4f0; } /* if a link ever lands here: AA on the dark ground */
+article h2.fastpath + p + div.highlighter-rouge {
+  margin: 0 0 40px;
+  padding: 0 20px 20px;
+  background: var(--navy-deep);
+  border-radius: 0 0 14px 14px;
+}
+article h2.fastpath + p + div.highlighter-rouge pre {
+  padding: 44px 22px 20px; /* clear strip for the COPY button (the mobile treatment, promoted) */
+  border: 1px solid rgba(143, 212, 240, .18);
+  box-shadow: 0 0 16px rgba(5, 150, 213, .22); /* soft blue halo - matches the rail-fill glow */
+  white-space: pre-wrap;   /* show the whole prompt - no tail hidden behind a scrollbar */
+  overflow-wrap: anywhere; /* the long API path must break on phones */
+}
+article h2.fastpath + p + div.highlighter-rouge button.copy { top: 10px; right: 30px; }
+
+@media (max-width: 940px) {
+  article h2.fastpath { padding: 18px 20px 0; font-size: 13.5px; letter-spacing: .08em; }
+  article h2.fastpath + p { padding: 8px 20px 14px; font-size: 14.5px; }
+  article h2.fastpath + p + div.highlighter-rouge { padding: 0 14px 14px; }
+  article h2.fastpath + p + div.highlighter-rouge pre { padding: 44px 16px 16px; }
+  article h2.fastpath + p + div.highlighter-rouge button.copy { right: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  article h2.fastpath::before { animation: none; }
+}
