@@ -483,7 +483,7 @@ article h2 { scroll-margin-top: 26px; }
 
 article h2.fastpath {
   margin: 42px 0 0;
-  padding: 28px 26px 0; /* 22 optical + the 6px bar - the home-card recipe */
+  padding: 27px 26px 0; /* 22 optical + the 5px bar - the home-card recipe */
   background: #fff;
   border: solid var(--line);
   border-width: 0 1px; /* NO top hairline - the bar itself is the top edge */
@@ -504,9 +504,9 @@ article h2.fastpath::after { /* the home cards' 5px bar, verbatim - but full-ble
   content: "";
   position: absolute;
   top: 0; left: -1px; right: -1px;
-  width: auto; height: 6px; /* round 9: +1px - at 5px, half the bar's rows are
-  edge blends at screenshot scale and the blue read dull next to the GUIDES
-  chip; one extra row of solid #0596d5 restores the punch (thickness, not color) */
+  width: auto; height: 5px; /* the home cards' 5px bar, quoted verbatim - round 9
+  briefly ran 6px against a screenshot-dullness read; reverted 2026-08-13 (David:
+  6 too heavy live) restoring the exact card quotation */
   margin: 0;
   border-radius: 2px 2px 0 0; /* the sheet's own cut */
   background: var(--blue);
@@ -641,7 +641,7 @@ article h2.fastpath + p + div.highlighter-rouge:not(:has(+ h2.byhand))::before,
 article h2.fastpath + p + div.highlighter-rouge:not(:has(+ h2.byhand))::after { content: none; }
 
 @media (max-width: 940px) {
-  article h2.fastpath { padding: 24px 20px 0; }
+  article h2.fastpath { padding: 23px 20px 0; }
   article h2.fastpath,
   article h2.byhand { font-size: 14px; letter-spacing: .06em; }
   article h2.byhand { padding: 16px 20px 0; }
