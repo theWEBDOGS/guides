@@ -775,4 +775,15 @@ article h2.forclaude ~ div.highlighter-rouge {
    matches nothing (verified by rendering with the buttons injected). */
 article h2.forclaude ~ * button.copy { display: none; }
 
+/* The agent block's wells run WARM: Claude's coral mixed into white at the cool
+   well's exact depth (1.13:1 vs white, matching #eef2f6's 1.12:1), so the blocks
+   read as "addressed to Claude" at a glance without shouting. Measured in round
+   9's probe B: body ink 9.72:1, comments 5.74:1, strings 6.86:1, names 7.27:1 -
+   all AA or better on this ground. `~ *` again: these fences nest in <li> steps. */
+article h2.forclaude ~ * div.highlighter-rouge pre,
+article h2.forclaude ~ div.highlighter-rouge pre {
+  background: #fbefec;
+  border-color: #f5dcd3;
+}
+
 @media (max-width: 940px) { article h2.forclaude { margin-top: 44px; } }
