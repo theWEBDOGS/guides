@@ -9,7 +9,7 @@
 :root {
   --navy: #2f3e4e;   /* brand Dark Blue */
   --navy2: #3d5166;  /* derived lighter shade of Dark Blue (gradient partner) */
-  --navy-deep: #253241;  /* derived deeper Dark Blue - the fastpath card ground */
+  --navy-deep: #253241;  /* derived deeper Dark Blue - reserved dark-surface ground (currently unused) */
   --ink: #2f3e4e;    /* brand Dark Blue as text ink */
   --muted: #52606d;
   /* COLOR ROLES (blue-forward reskin, 2026-06-19):
@@ -210,19 +210,26 @@ article code {
   background: #eef2f6; border-radius: 5px; padding: 2px 6px;
 }
 
-/* fenced blocks (kramdown/rouge: div.highlighter-rouge > .highlight > pre) */
+/* fenced blocks (kramdown/rouge: div.highlighter-rouge > .highlight > pre)
+   Light ground (2026-08 revision): code is content, not chrome - the band and
+   footer are the page's only dark surfaces. The ground is the inline-code well
+   at block scale, so inline and block code speak one vocabulary. Square-cut
+   (round 8): the wells wear the ticket sheet's 2px corners - every code
+   surface on the site shares the one square vocabulary. */
 div.highlighter-rouge { position: relative; margin: 0 0 18px; }
 div.highlighter-rouge pre {
-  background: var(--navy); border-radius: 12px; padding: 20px 22px;
+  background: #eef2f6;            /* the inline-code ground, block scale */
+  border: 1px solid var(--line);  /* hairline edge - earns its keep on paper grounds */
+  border-radius: 2px; padding: 20px 22px;
   overflow-x: auto;
 }
 div.highlighter-rouge code {
-  background: none; padding: 0; color: #d9e2ec;
+  background: none; padding: 0; color: var(--ink);
   font-size: 13.5px; line-height: 1.65;
 }
-.highlight .c, .highlight .c1, .highlight .cm { color: #627d98; }
-.highlight .s, .highlight .s1, .highlight .s2, .highlight .sh { color: #8fd4f0; }
-.highlight .nv, .highlight .nb { color: #9fb3c8; }
+.highlight .c, .highlight .c1, .highlight .cm { color: var(--muted); }
+.highlight .s, .highlight .s1, .highlight .s2, .highlight .sh { color: #19587a; } /* the blockquote ink, reused */
+.highlight .nv, .highlight .nb { color: var(--navy2); }
 
 button.copy {
   position: absolute; top: 10px; right: 10px;
@@ -459,79 +466,190 @@ article h2 { scroll-margin-top: 26px; }
 .collection-intro { color: var(--muted); font-size: 18px; line-height: 1.5; max-width: 620px; margin: 0 0 30px; }
 @media (prefers-reduced-motion: reduce) { .collection-head h2 .arr { transition: none; } }
 
-/* ---------- fastpath: "paste this into Claude Code" bootstrap callout ---------- */
-/* One dark card drawn across three fixed siblings, so the guide source stays
-   plain markdown (heading + sentence + fence); only the heading carries
-   {: .fastpath }. Contract: h2.fastpath is immediately followed by ONE <p>
-   and ONE fenced block - insert nothing between them. */
+/* ---------- two-path entry: the ticket book (mono-blue, square-cut, round 8) ---------- */
+/* One sheet, two stubs, ONE accent: brand Blue. Weight alone carries the
+   hierarchy - stub 1's chip is FILLED (deep token - the lead), stub 2's is
+   OUTLINED (the follow) - and the 5px top bar is the home cards' resting bar,
+   run FULL-BLEED: it is the sheet's top edge, flush to the outer corners.
+   Navy retreats to text ink. Pink appears nowhere in the sheet except the
+   COPY buttons: the click, and only the click.
+   The sheet is square-cut and flat (2px corners, hairline, full-bleed 5px
+   bar, NO lift); the floor closes with a 2px rule in the perforation's ink -
+   the tear line's solid twin.
+   ONE perforation with punched notches separates the stubs. Six fixed
+   siblings, same source contract, no motion. Contract: each h2 (.fastpath /
+   .byhand) is immediately followed by ONE <p> and ONE fenced block - insert
+   nothing between them. */
 
 article h2.fastpath {
   margin: 42px 0 0;
-  padding: 22px 26px 0;
-  background: var(--navy-deep);
-  border-radius: 14px 14px 0 0;
-  color: #fff;
-  font-size: 15px;
-  letter-spacing: .1em;
+  padding: 28px 26px 0; /* 22 optical + the 6px bar - the home-card recipe */
+  background: #fff;
+  border: solid var(--line);
+  border-width: 0 1px; /* NO top hairline - the bar itself is the top edge */
+  border-radius: 2px 2px 0 0; /* square-cut sheet */
+  color: var(--navy);
+  font-size: 16px;
+  letter-spacing: .08em;
   text-transform: uppercase;
   display: flex;
   align-items: center;
-  gap: 11px;
+  gap: 12px;
   position: relative;
-  overflow: hidden;
 }
-/* the TOC's "you are here" pulse, borrowed: this is the live path */
-article h2.fastpath::before {
-  content: "";
-  flex: none;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--blue);
-  box-shadow: 0 0 0 4px rgba(5, 150, 213, .22);
-  animation: toc-pulse 2.2s ease-in-out infinite;
-}
-/* replaces the h2 underline bar: the card hover gradient, at rest - already on */
-article h2.fastpath::after {
+article h2.fastpath::after { /* the home cards' 5px bar, verbatim - but full-bleed:
+  -1px over each side hairline so it spans the sheet's OUTER width, no grey
+  above or beside it (abs offsets are padding-box-relative; the old inset bar
+  left a 1px sliver the square corners exposed) */
   content: "";
   position: absolute;
-  top: 0; left: 0; right: 0;
-  width: auto;
-  height: 5px;
+  top: 0; left: -1px; right: -1px;
+  width: auto; height: 6px; /* round 9: +1px - at 5px, half the bar's rows are
+  edge blends at screenshot scale and the blue read dull next to the GUIDES
+  chip; one extra row of solid #0596d5 restores the punch (thickness, not color) */
   margin: 0;
-  border-radius: 0;
-  background: linear-gradient(90deg, var(--blue), var(--blue-deep));
+  border-radius: 2px 2px 0 0; /* the sheet's own cut */
+  background: var(--blue);
 }
-article h2.fastpath + p {
+article h2.byhand {
   margin: 0;
-  padding: 10px 26px 16px;
-  background: var(--navy-deep);
-  color: #bcccdc; /* the hero-lede tint */
+  padding: 20px 26px 0;
+  background: #fff;
+  border: solid var(--line);
+  border-width: 0 1px;
+  border-top: 2px dashed #c3d2e0; /* THE perforation - one tear line between the stubs */
+  color: var(--navy);
+  font-size: 16px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+article h2.byhand::after { content: none; }
+/* path chips: the home cards' .kbd recipe. Weight alone is the code - stub 1
+   wears brand Blue FILLED, stub 2 brand Blue OUTLINED. The fill takes the deep
+   token: NO digit ink clears AA on #0596d5 itself (white 3.3:1, navy 3.3:1) -
+   the deep fill is the one blue a white digit survives (4.8:1). Buttons stay pink. */
+article h2.fastpath::before,
+article h2.byhand::before {
+  content: "1";
+  flex: none;
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2px;
+  border: 2px solid var(--blue-deep);
+  border-radius: 7px;
+  font: 700 14px/1 var(--brand-font);
+  background: var(--blue-deep);
+  color: #fff;
+}
+article h2.byhand::before {
+  content: "2";
+  background: #fff;
+  border-color: var(--blue);
+  color: var(--blue-deep); /* the only blue ink that clears AA on white (4.8:1) */
+}
+article h2.fastpath + p,
+article h2.byhand + p {
+  margin: 0;
+  padding: 8px 26px 16px;
+  background: #fff;
+  border: solid var(--line);
+  border-width: 0 1px;
+  color: var(--muted);
   font-size: 15.5px;
 }
-article h2.fastpath + p a { color: #8fd4f0; } /* if a link ever lands here: AA on the dark ground */
+article h2.fastpath + p a,
+article h2.byhand + p a { color: var(--accent-ink); }
 article h2.fastpath + p + div.highlighter-rouge {
-  margin: 0 0 40px;
-  padding: 0 20px 20px;
-  background: var(--navy-deep);
-  border-radius: 0 0 14px 14px;
+  margin: 0;
+  padding: 0 20px 24px;
+  background: #fff;
+  border: solid var(--line);
+  border-width: 0 1px;
+}
+/* punched notches riding the perforation's ends */
+article h2.fastpath + p + div.highlighter-rouge::before,
+article h2.fastpath + p + div.highlighter-rouge::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid #c3d2e0;
+}
+article h2.fastpath + p + div.highlighter-rouge::before { left: -9px; }
+article h2.fastpath + p + div.highlighter-rouge::after { right: -9px; }
+article h2.byhand + p + div.highlighter-rouge {
+  margin: 0 0 18px;
+  padding: 0 20px 26px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-top: 0;
+  border-bottom: 2px solid #c3d2e0; /* the floor rule: the perforation's ink, solid - closes the flat sheet */
+  border-radius: 0 0 2px 2px; /* flat: no lift shadow */
 }
 article h2.fastpath + p + div.highlighter-rouge pre {
-  padding: 44px 22px 20px; /* clear strip for the COPY button (the mobile treatment, promoted) */
-  border: 1px solid rgba(143, 212, 240, .18);
-  box-shadow: 0 0 16px rgba(5, 150, 213, .22); /* soft blue halo - matches the rail-fill glow */
-  white-space: pre-wrap;   /* show the whole prompt - no tail hidden behind a scrollbar */
-  overflow-wrap: anywhere; /* the long API path must break on phones */
+  padding: 44px 22px 20px; /* clear strip for the COPY button */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
-article h2.fastpath + p + div.highlighter-rouge button.copy { top: 10px; right: 30px; }
+article h2.fastpath + p + div.highlighter-rouge button.copy,
+article h2.byhand + p + div.highlighter-rouge button.copy { top: 10px; right: 30px; }
+
+/* PROBE C: the route stamp. The paste line is the one artifact on the page
+   ADDRESSED to an agent, so its well carries a printed addressee - a coral
+   spark + a muted Brandon label in the COPY strip's left corner, the form's
+   own "FOR OFFICE USE" corner. Claude coral appears at identity scale only
+   (one decorative glyph, label carries the text at AA); pink stays the only
+   click color, the wells stay one ground, the chips stay the hierarchy. */
+article h2.fastpath + p + div.highlighter-rouge pre::before {
+  content: "For Claude Code" / "";
+  position: absolute;
+  top: 18px; left: 47px;
+  font: 700 11px/1 var(--brand-font);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted); /* 5.74:1 on the well - AA */
+}
+article h2.fastpath + p + div.highlighter-rouge pre::after {
+  content: "\2731" / "";
+  position: absolute;
+  top: 16px; left: 30px;
+  font: 400 13px/1 var(--brand-font);
+  color: #d97757; /* Claude coral, literal - decorative; the label is the text */
+}
+@media (max-width: 940px) {
+  article h2.fastpath + p + div.highlighter-rouge pre::before { left: 41px; }
+  article h2.fastpath + p + div.highlighter-rouge pre::after { left: 24px; }
+}
+/* a lone fastpath (no byhand twin) closes its own sheet - pre-:has() browsers
+   only ever see the decided paired use, so nothing degrades today */
+article h2.fastpath + p + div.highlighter-rouge:not(:has(+ h2.byhand)) {
+  border-width: 0 1px 2px;
+  border-bottom-color: #c3d2e0; /* the floor rule, lone-sheet case */
+  border-radius: 0 0 2px 2px;
+  margin-bottom: 18px;
+}
+article h2.fastpath + p + div.highlighter-rouge:not(:has(+ h2.byhand))::before,
+article h2.fastpath + p + div.highlighter-rouge:not(:has(+ h2.byhand))::after { content: none; }
 
 @media (max-width: 940px) {
-  article h2.fastpath { padding: 18px 20px 0; font-size: 13.5px; letter-spacing: .08em; }
-  article h2.fastpath + p { padding: 8px 20px 14px; font-size: 14.5px; }
-  article h2.fastpath + p + div.highlighter-rouge { padding: 0 14px 14px; }
+  article h2.fastpath { padding: 24px 20px 0; }
+  article h2.fastpath,
+  article h2.byhand { font-size: 14px; letter-spacing: .06em; }
+  article h2.byhand { padding: 16px 20px 0; }
+  article h2.fastpath + p,
+  article h2.byhand + p { padding: 8px 20px 14px; font-size: 14.5px; }
+  article h2.fastpath + p + div.highlighter-rouge { padding: 0 14px 18px; }
+  article h2.byhand + p + div.highlighter-rouge { padding: 0 14px 20px; }
   article h2.fastpath + p + div.highlighter-rouge pre { padding: 44px 16px 16px; }
-  article h2.fastpath + p + div.highlighter-rouge button.copy { right: 24px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  article h2.fastpath::before { animation: none; }
+  article h2.fastpath + p + div.highlighter-rouge button.copy,
+  article h2.byhand + p + div.highlighter-rouge button.copy { right: 24px; }
 }
