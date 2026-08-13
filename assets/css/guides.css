@@ -477,14 +477,22 @@ article h2 { scroll-margin-top: 26px; }
    bar, NO lift); the floor closes with a 2px rule in the perforation's ink -
    the tear line's solid twin.
    ONE perforation with punched notches separates the stubs. Fixed siblings,
-   no motion. Contract (round 10): h2.fastpath is immediately followed by ONE
-   <p> and ONE fenced block; h2.byhand by ONE <p>, ONE fenced block, then the
-   follow-through - at most one plain <p> - and ONE closing <p> carrying
-   {: .byhand-end }, the floor anchor: the sheet closes on the marker, so the
-   whole follow-through lives inside the ticket. Insert nothing else between
-   the siblings; a second follow-through <p> needs one more adjacency step at
-   the walls rule; a MISSING marker leaves the sheet visibly open by design
-   (breakage you can see beats a silent fallback). */
+   no motion. Contract (round 11): h2.fastpath is immediately followed by ONE
+   <p> and ONE fenced block. h2.byhand OPENS A RUN: every <p>, every list and
+   every fenced block after it rides inside the walls, in any number and any
+   order, and the run CLOSES on the <p> carrying {: .byhand-end } - the floor
+   anchor. Past the marker a twin RESET rule hands the page back to normal
+   flow, so the walls and the reset are edited as a PAIR: whatever one sets,
+   the other returns. Nothing to extend when the copy grows - add paragraphs
+   and fences freely. A MISSING marker fails LOUD: the walls run on and swallow
+   the rest of the page (breakage you cannot miss beats a silent fallback).
+   EDITING TRAP (hit live 2026-08-13, under the round-10 chain): a line that
+   BEGINS with "- " inside one of these paragraphs becomes a kramdown list,
+   which splits the <p>. Under the chain that SEVERED it and the fence rendered
+   full-width outside the card; the run above covers <ul>/<ol>, so the same slip
+   now costs only an unintended bullet. Still rewrap so no line starts with a
+   hyphen, and verify structure by rendering the markdown (kramdown, GFM input)
+   and reading the emitted sibling sequence, never by eyeballing the source. */
 
 article h2.fastpath {
   margin: 42px 0 0;
@@ -591,18 +599,13 @@ article h2.fastpath + p + div.highlighter-rouge::after {
 }
 article h2.fastpath + p + div.highlighter-rouge::before { left: -9px; }
 article h2.fastpath + p + div.highlighter-rouge::after { right: -9px; }
-article h2.byhand + p + div.highlighter-rouge {
-  margin: 0;
-  padding: 0 20px 16px;
-  background: #fff;
-  border: solid var(--line);
-  border-width: 0 1px; /* walls only - the floor moved to p.byhand-end (round 10) */
-}
-/* the follow-through: the walls continue below stub 2's fence; the floor rides
-   the {: .byhand-end } marker paragraph. Zero or one plain <p> between fence
-   and marker compose as-is; a second needs one more adjacency step here. */
-article h2.byhand + p + div.highlighter-rouge + p:not(.byhand-end),
-article h2.byhand ~ p.byhand-end {
+/* THE WALLS - one rule for the whole by-hand run. However many paragraphs,
+   lists and fences the path grows, they all ride inside the sheet; no chain to
+   extend. */
+article h2.byhand ~ p,
+article h2.byhand ~ ul,
+article h2.byhand ~ ol,
+article h2.byhand ~ div.highlighter-rouge {
   margin: 0;
   padding: 0 26px 16px;
   background: #fff;
@@ -611,19 +614,44 @@ article h2.byhand ~ p.byhand-end {
   color: var(--muted);
   font-size: 15.5px;
 }
+article h2.byhand ~ div.highlighter-rouge { padding: 0 20px 16px; } /* wells sit 6px wider than the prose */
+article h2.byhand ~ ul,
+article h2.byhand ~ ol { padding-left: 50px; } /* 26 wall + the 24 list indent */
+article h2.byhand + p { padding-top: 8px; } /* the prereq keeps its lead-in gap under the heading */
+/* THE FLOOR rides the {: .byhand-end } marker - the run's last paragraph */
 article h2.byhand ~ p.byhand-end {
   margin: 0 0 18px;
   padding-bottom: 26px;
   border-bottom: 2px solid #c3d2e0; /* the floor rule: the perforation's ink, solid - closes the flat sheet */
   border-radius: 0 0 2px 2px; /* flat: no lift shadow */
 }
+/* THE RESET - the walls rule's twin: past the marker, the page is a page again.
+   Every property the walls rule sets is returned here. EDIT THEM AS A PAIR:
+   a property added above and forgotten here leaks down the whole document. */
+article p.byhand-end ~ p,
+article p.byhand-end ~ ul,
+article p.byhand-end ~ ol,
+article p.byhand-end ~ div.highlighter-rouge {
+  margin: 0 0 18px;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: inherit;
+  font-size: inherit;
+}
+article p.byhand-end ~ ul,
+article p.byhand-end ~ ol { padding-left: 24px; }
+/* (the COPY button's half of the reset lives beside the button rule below -
+   equal specificity means SOURCE ORDER decides, and the sheet's button rule
+   comes after this block) */
 article h2.fastpath + p + div.highlighter-rouge pre {
   padding: 44px 22px 20px; /* clear strip for the COPY button */
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
 article h2.fastpath + p + div.highlighter-rouge button.copy,
-article h2.byhand + p + div.highlighter-rouge button.copy { top: 10px; right: 30px; }
+article h2.byhand ~ div.highlighter-rouge button.copy { top: 10px; right: 30px; }
+article p.byhand-end ~ div.highlighter-rouge button.copy { top: 10px; right: 10px; } /* ...and the reset's half */
 
 /* PROBE C: the route stamp. The paste line is the one artifact on the page
    ADDRESSED to an agent, so its well carries a printed addressee - a coral
@@ -670,11 +698,70 @@ article h2.fastpath + p + div.highlighter-rouge:not(:has(+ h2.byhand))::after { 
   article h2.fastpath + p,
   article h2.byhand + p { padding: 8px 20px 14px; font-size: 14.5px; }
   article h2.fastpath + p + div.highlighter-rouge { padding: 0 14px 18px; }
-  article h2.byhand + p + div.highlighter-rouge { padding: 0 14px 14px; }
-  article h2.byhand + p + div.highlighter-rouge + p:not(.byhand-end),
-  article h2.byhand ~ p.byhand-end { padding: 0 20px 14px; font-size: 14.5px; }
+  article h2.byhand ~ p,
+  article h2.byhand ~ ul,
+  article h2.byhand ~ ol,
+  article h2.byhand ~ div.highlighter-rouge { padding: 0 20px 14px; font-size: 14.5px; }
+  article h2.byhand ~ div.highlighter-rouge { padding: 0 14px 14px; }
+  article h2.byhand ~ ul,
+  article h2.byhand ~ ol { padding-left: 44px; }
+  article h2.byhand + p { padding-top: 8px; }
   article h2.byhand ~ p.byhand-end { padding-bottom: 20px; }
+  article p.byhand-end ~ p,
+  article p.byhand-end ~ ul,
+  article p.byhand-end ~ ol,
+  article p.byhand-end ~ div.highlighter-rouge { padding: 0; font-size: inherit; }
+  article p.byhand-end ~ ul,
+  article p.byhand-end ~ ol { padding-left: 24px; }
   article h2.fastpath + p + div.highlighter-rouge pre { padding: 44px 16px 16px; }
   article h2.fastpath + p + div.highlighter-rouge button.copy,
-  article h2.byhand + p + div.highlighter-rouge button.copy { right: 24px; }
+  article h2.byhand ~ div.highlighter-rouge button.copy { right: 24px; }
+  article p.byhand-end ~ div.highlighter-rouge button.copy { right: 10px; }
 }
+
+
+/* ---------- the agent block: the page's LAST section, addressed to Claude ----------
+   Convention (David 2026-08-13, stack/README.md): the one section not written
+   TO a human goes last. Being last is what makes this rule safe - "h2.forclaude
+   ~" IS the rest of the page, so this treatment needs no end marker and no
+   reset twin (unlike the ticket's walls above). Add a section after it and that
+   section is absorbed: the CSS enforces the convention it depends on, visibly.
+   NOTE the selectors name their elements (p / ol / ul / div.highlighter-rouge)
+   instead of "*": they must out-specify the ticket's RESET rule above, which is
+   (0,1,3). A "~ *" version is (0,1,2) and silently loses on every <p>. */
+article h2.forclaude {
+  margin-top: 54px;
+  padding-top: 36px;
+  border-top: 2px dashed #d97757; /* the ticket's tear line at PAGE scale: in Claude's own coral, non-text at 3.12:1 */
+  position: relative;
+}
+article h2.forclaude::before { /* the route stamp, quoted from the fastpath well: the coral spark... */
+  content: "\2731" / "";
+  position: absolute;
+  top: 10px; left: 0;
+  font: 400 13px/1 var(--brand-font);
+  color: #d97757; /* Claude coral, literal - decorative; the label beside it carries the text */
+}
+article h2.forclaude::after { /* ...and its label. It REPLACES the blue underline bar, deliberately:
+  the bar marks a section written for the reader, and this one is not. */
+  content: "For Claude Code" / "";
+  position: absolute;
+  top: 12px; left: 17px;
+  display: block; width: auto; height: auto; margin: 0;
+  background: none; border-radius: 0;
+  font: 700 11px/1 var(--brand-font);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted); /* 6.46:1 on white - AA */
+}
+/* the quiet register: the one audience that reads this section cannot see, so
+   the section spends no visual weight on the audience that can. Still AA -
+   #52606d on white is 6.46:1 at 15.5px. */
+article h2.forclaude ~ p,
+article h2.forclaude ~ ol,
+article h2.forclaude ~ ul,
+article h2.forclaude ~ div.highlighter-rouge {
+  color: var(--muted);
+  font-size: 15.5px;
+}
+@media (max-width: 940px) { article h2.forclaude { margin-top: 44px; } }
