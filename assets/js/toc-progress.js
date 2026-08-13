@@ -74,20 +74,25 @@
     if (barNow) barNow.textContent = labelOf(items[idx === -1 ? 0 : idx]);
     if (barFill) barFill.style.width = (cur / (total - 1) * 100) + '%';
 
-    /* vertical rail fill — only when the trail is actually rendered */
-    if (fill && trail.getBoundingClientRect().height > 0) {
-      var h;
-      if (idx === -1) {
-        h = frac * nodeMid(items[0]); /* rail grows from the top toward node one */
-      } else {
+    /* vertical rail — only when the trail is actually rendered. Both ends are
+       pinned to node centres, which move as labels wrap, so they're measured
+       here rather than assumed in CSS: the rail must never run past node one
+       or the last node. The fill then travels between those same two points. */
+    var trailH = trail.getBoundingClientRect().height;
+    if (fill && trailH > 0) {
+      var start = nodeMid(items[0]);
+      var end = nodeMid(items[items.length - 1]);
+      trail.style.setProperty('--rail-start', start + 'px');
+      trail.style.setProperty('--rail-end', (trailH - end) + 'px');
+
+      var h = start; /* before section one, nothing is filled */
+      if (idx > -1) {
         h = nodeMid(items[idx]);
         if (idx < heads.length - 1) {
           h += frac * (nodeMid(items[idx + 1]) - nodeMid(items[idx]));
-        } else if (finished) {
-          h = nodeMid(items[idx]);
         }
       }
-      fill.style.height = Math.max(0, h) + 'px';
+      fill.style.height = Math.max(0, h - start) + 'px';
     }
 
     /* mobile strip slides in once the header band scrolls away */

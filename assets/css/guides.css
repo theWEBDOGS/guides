@@ -261,8 +261,13 @@ aside { font-size: 14px; }
 }
 
 .trail { position: relative; }
+/* the rail spans node-one's centre to the last node's centre — never past
+   either end. Those centres move with label wrapping (a two-line label pushes
+   its node ~17px further in), so toc-progress.js measures them and sets
+   --rail-start/--rail-end; the fallbacks are the single-line values. */
 .trail .rail, .trail .rail-fill {
-  position: absolute; left: 6px; top: 10px; bottom: 10px;
+  position: absolute; left: 6px;
+  top: var(--rail-start, 17.9px); bottom: var(--rail-end, 17.9px);
   width: 2px; border-radius: 1px; pointer-events: none;
 }
 .trail .rail { background: #ccd7e2; }
