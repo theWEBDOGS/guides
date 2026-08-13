@@ -476,10 +476,15 @@ article h2 { scroll-margin-top: 26px; }
    The sheet is square-cut and flat (2px corners, hairline, full-bleed 5px
    bar, NO lift); the floor closes with a 2px rule in the perforation's ink -
    the tear line's solid twin.
-   ONE perforation with punched notches separates the stubs. Six fixed
-   siblings, same source contract, no motion. Contract: each h2 (.fastpath /
-   .byhand) is immediately followed by ONE <p> and ONE fenced block - insert
-   nothing between them. */
+   ONE perforation with punched notches separates the stubs. Fixed siblings,
+   no motion. Contract (round 10): h2.fastpath is immediately followed by ONE
+   <p> and ONE fenced block; h2.byhand by ONE <p>, ONE fenced block, then the
+   follow-through - at most one plain <p> - and ONE closing <p> carrying
+   {: .byhand-end }, the floor anchor: the sheet closes on the marker, so the
+   whole follow-through lives inside the ticket. Insert nothing else between
+   the siblings; a second follow-through <p> needs one more adjacency step at
+   the walls rule; a MISSING marker leaves the sheet visibly open by design
+   (breakage you can see beats a silent fallback). */
 
 article h2.fastpath {
   margin: 42px 0 0;
@@ -587,11 +592,28 @@ article h2.fastpath + p + div.highlighter-rouge::after {
 article h2.fastpath + p + div.highlighter-rouge::before { left: -9px; }
 article h2.fastpath + p + div.highlighter-rouge::after { right: -9px; }
 article h2.byhand + p + div.highlighter-rouge {
-  margin: 0 0 18px;
-  padding: 0 20px 26px;
+  margin: 0;
+  padding: 0 20px 16px;
   background: #fff;
-  border: 1px solid var(--line);
-  border-top: 0;
+  border: solid var(--line);
+  border-width: 0 1px; /* walls only - the floor moved to p.byhand-end (round 10) */
+}
+/* the follow-through: the walls continue below stub 2's fence; the floor rides
+   the {: .byhand-end } marker paragraph. Zero or one plain <p> between fence
+   and marker compose as-is; a second needs one more adjacency step here. */
+article h2.byhand + p + div.highlighter-rouge + p:not(.byhand-end),
+article h2.byhand ~ p.byhand-end {
+  margin: 0;
+  padding: 0 26px 16px;
+  background: #fff;
+  border: solid var(--line);
+  border-width: 0 1px;
+  color: var(--muted);
+  font-size: 15.5px;
+}
+article h2.byhand ~ p.byhand-end {
+  margin: 0 0 18px;
+  padding-bottom: 26px;
   border-bottom: 2px solid #c3d2e0; /* the floor rule: the perforation's ink, solid - closes the flat sheet */
   border-radius: 0 0 2px 2px; /* flat: no lift shadow */
 }
@@ -648,7 +670,10 @@ article h2.fastpath + p + div.highlighter-rouge:not(:has(+ h2.byhand))::after { 
   article h2.fastpath + p,
   article h2.byhand + p { padding: 8px 20px 14px; font-size: 14.5px; }
   article h2.fastpath + p + div.highlighter-rouge { padding: 0 14px 18px; }
-  article h2.byhand + p + div.highlighter-rouge { padding: 0 14px 20px; }
+  article h2.byhand + p + div.highlighter-rouge { padding: 0 14px 14px; }
+  article h2.byhand + p + div.highlighter-rouge + p:not(.byhand-end),
+  article h2.byhand ~ p.byhand-end { padding: 0 20px 14px; font-size: 14.5px; }
+  article h2.byhand ~ p.byhand-end { padding-bottom: 20px; }
   article h2.fastpath + p + div.highlighter-rouge pre { padding: 44px 16px 16px; }
   article h2.fastpath + p + div.highlighter-rouge button.copy,
   article h2.byhand + p + div.highlighter-rouge button.copy { right: 24px; }
