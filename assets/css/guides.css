@@ -764,4 +764,15 @@ article h2.forclaude ~ div.highlighter-rouge {
   color: var(--muted);
   font-size: 15.5px;
 }
+/* No COPY buttons in the agent block. These blocks are addressed to Claude,
+   which reads this page as RAW markdown (the gh-api fetch) and never sees a
+   rendered button; offering one to a human contradicts the heading ("humans can
+   stop here"), and the one block a human might want - the settings JSON -
+   already carries a COPY button inside the install ticket above. display:none
+   also drops it from the accessibility tree. The selector uses `~ *` on
+   purpose: this section's fences sit INSIDE numbered <li> steps, so they are
+   descendants, not siblings - a `~ div.highlighter-rouge` rule silently
+   matches nothing (verified by rendering with the buttons injected). */
+article h2.forclaude ~ * button.copy { display: none; }
+
 @media (max-width: 940px) { article h2.forclaude { margin-top: 44px; } }
