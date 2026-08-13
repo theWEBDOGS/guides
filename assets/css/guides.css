@@ -471,13 +471,21 @@ article h2 { scroll-margin-top: 26px; }
 .collection-intro { color: var(--muted); font-size: 18px; line-height: 1.5; max-width: 620px; margin: 0 0 30px; }
 @media (prefers-reduced-motion: reduce) { .collection-head h2 .arr { transition: none; } }
 
-/* ---------- two-path entry: the ticket book (mono-blue, square-cut, round 8) ---------- */
-/* One sheet, two stubs, ONE accent: brand Blue. Weight alone carries the
-   hierarchy - stub 1's chip is FILLED (deep token - the lead), stub 2's is
-   OUTLINED (the follow) - and the 5px top bar is the home cards' resting bar,
-   run FULL-BLEED: it is the sheet's top edge, flush to the outer corners.
-   Navy retreats to text ink. Pink appears nowhere in the sheet except the
-   COPY buttons: the click, and only the click.
+/* ---------- two-path entry: the ticket book (square-cut, round 12) ---------- */
+/* One sheet, two stubs. BLUE IS THE CONTAINER, CORAL IS THE CORRESPONDENT:
+   brand Blue is WEBDOGS' paper - the sheet, its 5px top bar, both ordinals -
+   and Claude's coral appears only on content whose READER is Claude (the mark
+   after his name in stub 1's heading, the warm ground under the text you paste
+   into him). The bar stays blue on purpose: it is the SHEET's top edge, and the
+   sheet holds BOTH routes - a coral bar would claim the human path too, and
+   would hardcode one vendor into a reusable two-path component.
+   Weight alone still carries the ORDER - stub 1's chip is FILLED (deep token -
+   the lead), stub 2's is OUTLINED (the follow); the chips never change hue,
+   because they count, they do not address. Navy retreats to text ink. Pink
+   appears nowhere in the sheet except the COPY buttons: the click, and only the
+   click. Greys tear, corals address: the perforation and floor stay #c3d2e0
+   (a fold in one audience's paper) while h2.forclaude's dashed rule is coral
+   (the line where the audience CHANGES).
    The sheet is square-cut and flat (2px corners, hairline, full-bleed 5px
    bar, NO lift); the floor closes with a 2px rule in the perforation's ink -
    the tear line's solid twin.
@@ -501,10 +509,11 @@ article h2 { scroll-margin-top: 26px; }
 
 article h2.fastpath {
   margin: 42px 0 0;
-  padding: 27px 26px 0; /* 22 optical + the 5px bar - the home-card recipe */
+  padding: 22px 26px 0; /* 22 optical; the bar's 5px is now a real border above it */
   background: #fff;
-  border: solid var(--line);
-  border-width: 0 1px; /* NO top hairline - the bar itself is the top edge */
+  border-style: solid;
+  border-width: 5px 1px 0;               /* the home cards' 5px bar AS the sheet's top edge */
+  border-color: var(--blue) var(--line); /* top | sides */
   border-radius: 2px 2px 0 0; /* square-cut sheet */
   color: var(--navy);
   font-size: 16px;
@@ -515,19 +524,22 @@ article h2.fastpath {
   gap: 12px;
   position: relative;
 }
-article h2.fastpath::after { /* the home cards' 5px bar, verbatim - but full-bleed:
-  -1px over each side hairline so it spans the sheet's OUTER width, no grey
-  above or beside it (abs offsets are padding-box-relative; the old inset bar
-  left a 1px sliver the square corners exposed) */
-  content: "";
-  position: absolute;
-  top: 0; left: -1px; right: -1px;
-  width: auto; height: 5px; /* the home cards' 5px bar, quoted verbatim - round 9
-  briefly ran 6px against a screenshot-dullness read; reverted 2026-08-13 (David:
-  6 too heavy live) restoring the exact card quotation */
-  margin: 0;
-  border-radius: 2px 2px 0 0; /* the sheet's own cut */
-  background: var(--blue);
+/* THE ROUTE STAMP, at heading scale. ::after is the last flex item, so it trails
+   the words with the heading's own 12px gap - no positioning, and it lands one
+   word after "Claude Code": the vendor's colour attached to the vendor's NAME.
+   It is decoration only (alt "") - the heading TEXT is the meaning, at 9.4:1 -
+   but it still clears the 3:1 graphical floor on white (3.12:1). The width/
+   height/background/border-radius/margin resets are NOT optional: they undo
+   `article h2::after`, the generic 46x4 blue underline bar, which otherwise
+   paints here instead of the glyph. (Same reset h2.forclaude::after performs.) */
+article h2.fastpath::after {
+  content: "\2731" / "";
+  display: block; /* blockified by the flex container either way; stated to kill the generic bar's box */
+  flex: none;
+  width: auto; height: auto; margin: 0;
+  background: none; border-radius: 0;
+  font: 400 15px/1 var(--brand-font);
+  color: #d97757; /* Claude coral, literal - the one hue on this sheet that is not ours */
 }
 article h2.byhand {
   margin: 0;
@@ -544,7 +556,7 @@ article h2.byhand {
   align-items: center;
   gap: 12px;
 }
-article h2.byhand::after { content: none; }
+article h2.byhand::after { content: none; } /* no route stamp on stub 2: it is the human path */
 /* path chips: the home cards' .kbd recipe. Weight alone is the code - stub 1
    wears brand Blue FILLED, stub 2 brand Blue OUTLINED. The fill takes the deep
    token: NO digit ink clears AA on #0596d5 itself (white 3.3:1, navy 3.3:1) -
@@ -649,7 +661,20 @@ article p.byhand-end ~ ol { padding-left: 24px; }
 /* (the COPY button's half of the reset lives beside the button rule below -
    equal specificity means SOURCE ORDER decides, and the sheet's button rule
    comes after this block) */
+/* THE WARM WELL. One rule, page-wide: a warm well is a well whose READER is
+   Claude. This block's text is pasted INTO Claude; the agent block's is executed
+   BY Claude; everything a human runs - stub 2's settings JSON, the cloudflared
+   pair, the grep - stays cool. The same settings JSON therefore renders COOL in
+   stub 2 (the human merges it) and WARM in the agent block (Claude merges it):
+   the ground names the reader, not the content. #fbefec is Claude's coral mixed
+   into white at the cool well's exact depth (1.13:1 vs white, matching
+   #eef2f6's 1.12:1) - the ground changes temperature, never weight. Inks
+   measured on it: body 9.72:1, comments 5.74:1, strings 6.86:1, names 7.27:1 -
+   all AA. NEVER put pink TEXT on this ground (--accent-ink is 4.48:1 here, just
+   under AA); the COPY button is a white-on-pink FILL (5.05:1) and is safe. */
 article h2.fastpath + p + div.highlighter-rouge pre {
+  background: #fbefec;
+  border-color: #f5dcd3;
   padding: 44px 22px 20px; /* clear strip for the COPY button */
   white-space: pre-wrap;
   overflow-wrap: anywhere;
@@ -658,32 +683,15 @@ article h2.fastpath + p + div.highlighter-rouge button.copy,
 article h2.byhand ~ div.highlighter-rouge button.copy { top: 10px; right: 30px; }
 article p.byhand-end ~ div.highlighter-rouge button.copy { top: 10px; right: 10px; } /* ...and the reset's half */
 
-/* PROBE C: the route stamp. The paste line is the one artifact on the page
-   ADDRESSED to an agent, so its well carries a printed addressee - a coral
-   spark + a muted Brandon label in the COPY strip's left corner, the form's
-   own "FOR OFFICE USE" corner. Claude coral appears at identity scale only
-   (one decorative glyph, label carries the text at AA); pink stays the only
-   click color, the wells stay one ground, the chips stay the hierarchy. */
-article h2.fastpath + p + div.highlighter-rouge pre::before {
-  content: "For Claude Code" / "";
-  position: absolute;
-  top: 18px; left: 47px;
-  font: 700 11px/1 var(--brand-font);
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--muted); /* 5.74:1 on the well - AA */
-}
-article h2.fastpath + p + div.highlighter-rouge pre::after {
-  content: "\2731" / "";
-  position: absolute;
-  top: 16px; left: 30px;
-  font: 400 13px/1 var(--brand-font);
-  color: #d97757; /* Claude coral, literal - decorative; the label is the text */
-}
-@media (max-width: 940px) {
-  article h2.fastpath + p + div.highlighter-rouge pre::before { left: 41px; }
-  article h2.fastpath + p + div.highlighter-rouge pre::after { left: 24px; }
-}
+/* (Round 12 retired PROBE C - the well's printed addressee, a coral spark + a
+   "FOR CLAUDE CODE" label in the COPY strip. Two forcing reasons: (1) the well
+   went warm, and coral on #fbefec measures 2.77:1 - the spark washed out on its
+   own new ground; (2) the label duplicated the agent block's stamp, and a page
+   that carries the same stamp twice spends it. The addressee now rides the
+   heading - see h2.fastpath::after above - where the words "paste this into
+   Claude Code" carry the meaning at 16px/700/navy instead of an 11px muted
+   micro-label. The stamp survives in exactly ONE place on the page:
+   h2.forclaude, which has no heading text to carry it.) */
 /* a lone fastpath (no byhand twin) closes its own sheet - pre-:has() browsers
    only ever see the decided paired use, so nothing degrades today */
 article h2.fastpath + p + div.highlighter-rouge:not(:has(+ h2.byhand)) {
@@ -696,7 +704,8 @@ article h2.fastpath + p + div.highlighter-rouge:not(:has(+ h2.byhand))::before,
 article h2.fastpath + p + div.highlighter-rouge:not(:has(+ h2.byhand))::after { content: none; }
 
 @media (max-width: 940px) {
-  article h2.fastpath { padding: 23px 20px 0; }
+  article h2.fastpath { padding: 18px 20px 0; } /* 23 - the bar's 5px, now a real border */
+  article h2.fastpath::after { font-size: 13px; } /* the spark tracks the heading's 16->14px step */
   article h2.fastpath,
   article h2.byhand { font-size: 14px; letter-spacing: .06em; }
   article h2.byhand { padding: 16px 20px 0; }
@@ -780,11 +789,12 @@ article h2.forclaude ~ div.highlighter-rouge {
    matches nothing (verified by rendering with the buttons injected). */
 article h2.forclaude ~ * button.copy { display: none; }
 
-/* The agent block's wells run WARM: Claude's coral mixed into white at the cool
-   well's exact depth (1.13:1 vs white, matching #eef2f6's 1.12:1), so the blocks
-   read as "addressed to Claude" at a glance without shouting. Measured in round
-   9's probe B: body ink 9.72:1, comments 5.74:1, strings 6.86:1, names 7.27:1 -
-   all AA or better on this ground. `~ *` again: these fences nest in <li> steps. */
+/* The agent block's wells run WARM - the page's ONE warm-ground rule, stated in
+   full at the ticket book above: a warm well is a well whose READER is Claude.
+   #fbefec is Claude's coral mixed into white at the cool well's exact depth
+   (1.13:1 vs white, matching #eef2f6's 1.12:1). Measured in round 9's probe B:
+   body ink 9.72:1, comments 5.74:1, strings 6.86:1, names 7.27:1 - all AA or
+   better. `~ *` again: these fences nest in <li> steps. */
 article h2.forclaude ~ * div.highlighter-rouge pre,
 article h2.forclaude ~ div.highlighter-rouge pre {
   background: #fbefec;
