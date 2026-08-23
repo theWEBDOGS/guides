@@ -15,7 +15,7 @@
   var smooth = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     ? 'auto' : 'smooth';
 
-  /* Position-based jumping (NOT the trail's 35% reading-line — with short
+  /* Position-based jumping (NOT the trail's 35% reading-line - with short
      sections the next heading is already past that line after a jump, which
      made arrows skip sections). "Next" = first heading meaningfully below
      the viewport top (70px clears both scroll-margins: 26 desktop / 64
@@ -28,7 +28,7 @@
         return true;
       }
     }
-    return false; /* nothing below — let native scrolling take over */
+    return false; /* nothing below - let native scrolling take over */
   }
   function jumpPrev() {
     var target = null;
@@ -40,7 +40,7 @@
       window.scrollTo({ top: 0, behavior: smooth });
       return true;
     }
-    return false; /* already at the top — native behavior */
+    return false; /* already at the top - native behavior */
   }
 
   document.addEventListener('keydown', function (e) {

@@ -3,12 +3,12 @@
 
 MX records are the DNS entries that tell the world's mail servers where to
 deliver your domain's email. For Google Workspace this used to take five
-records — **since 2023 it takes one.**
+records - **since 2023 it takes one.**
 
 What you'll need: access to your domain's DNS settings (your registrar or
 DNS host).
 
-## The current record — one line
+## The current record - one line {#current-record}
 
 For any domain being set up today, Google's recommended MX configuration is
 a single record:
@@ -20,9 +20,9 @@ a single record:
 That's the whole table. Add it, remove any other MX records the domain has
 (old mail providers' records left behind will misroute your mail), and save.
 
-## Already on the legacy five records?
+## Already on the legacy five records? {#legacy-records}
 
-Domains set up before 2023 typically carry this set — **it still works, and
+Domains set up before 2023 typically carry this set - **it still works, and
 Google says no change is required** if your mail is flowing:
 
 | Name/Host | TTL | Type | Priority | Value |
@@ -34,39 +34,39 @@ Google says no change is required** if your mail is flowing:
 | Blank or `@` | 3600 | MX | 10 | `ALT4.ASPMX.L.GOOGLE.COM` |
 
 Keep it as a set: if you ever modernize, replace all five with the single
-`smtp.google.com` record in one edit — don't run a mix of both.
+`smtp.google.com` record in one edit - don't run a mix of both.
 
-## How priority works
+## How priority works {#priority}
 
 Mail is delivered to the server with the **lowest priority number** first
 ('1' beats '10'); if that server is unavailable, delivery falls through to
-the next. With the modern single record there's nothing to rank — set
+the next. With the modern single record there's nothing to rank - set
 priority `1` and move on. On the legacy set, `ASPMX.L.GOOGLE.COM` must hold
 the top spot. (Hosts express priority differently; if yours allows only one
 MX record or doesn't rank at all, use the single-record setup.)
 
-## Verify it
+## Verify it {#verify}
 
 DNS changes can take up to 48 hours to propagate, though it's usually much
 faster.
 
 1. Run your domain through [Google's MX checker](https://toolbox.googleapps.com/apps/checkmx/)
-   — it flags wrong values, stray records, and priority problems.
+   - it flags wrong values, stray records, and priority problems.
 2. Or from a terminal, substituting your domain:
 
 ```
 dig MX <your-domain> +short
 ```
 
-You should see either `1 smtp.google.com.` or the five `aspmx` records — and
+You should see either `1 smtp.google.com.` or the five `aspmx` records - and
 nothing else.
 
-## Fast path: on Cloudflare, import everything at once
+## Fast path: on Cloudflare, import everything at once {#cloudflare-import}
 
 If the domain's DNS is on Cloudflare, you can skip adding records one by one:
 **DNS → Records → Import and Export → Import DNS records** accepts a BIND
 zone file. The snippet below sets up the complete Google Workspace email DNS
-— routing *and* authentication — in one paste. **Replace both
+- routing *and* authentication - in one paste. **Replace both
 `<placeholders>` first** (and note TTL `1` means "Auto" to Cloudflare):
 
 ```
@@ -92,17 +92,17 @@ _dmarc 1 IN TXT "v=DMARC1; p=none"
 Three follow-ups after importing:
 
 1. **Delete any leftover MX records** from a previous provider.
-2. **Check for a pre-existing SPF record** — a domain may have only one
+2. **Check for a pre-existing SPF record** - a domain may have only one
    (two SPF records make SPF fail outright). If one exists, merge instead
    of importing a duplicate.
 3. The imported DMARC record starts in **monitoring mode (`p=none`)**, which
-   is safe to publish immediately — it enforces nothing. Before tightening
+   is safe to publish immediately - it enforces nothing. Before tightening
    the policy, finish DKIM and give the records ~48 hours, per the
    [SPF, DKIM, and DMARC guide](/spf-dkim-dmarc/).
 
-## While you're in DNS
+## While you're in DNS {#while-youre-in-dns}
 
 Email that *routes* correctly still needs to *authenticate* to stay out of
-spam folders — if you haven't yet, set up
+spam folders - if you haven't yet, set up
 [SPF, DKIM, and DMARC](/spf-dkim-dmarc/) while you're logged into your DNS
 host. It's the same kind of record and takes about half an hour.

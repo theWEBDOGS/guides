@@ -1,4 +1,4 @@
-# guides.webdogs.com — synced verbatim into theWEBDOGS/guides by
+# guides.webdogs.com - synced verbatim into theWEBDOGS/guides by
 # scripts/publish-guides.sh. Edit here (site/ in the private catalog repo),
 # never in the public repo.
 title: WEBDOGS Guides
@@ -12,7 +12,7 @@ plugins:
   - jekyll-sitemap
 
 # GitHub Pages enables these two by default, and both misfire on our raw .md
-# assets — the published guide twins (<slug>/<slug>.md) and the starter CLAUDE.md,
+# assets - the published guide twins (<slug>/<slug>.md) and the starter CLAUDE.md,
 # which are meant to be served verbatim, not rendered:
 #   - optional-front-matter would render each into a titleless pseudo-guide page;
 #   - relative-links would rewrite a [text](file.md) link to point at that .html.

@@ -12,7 +12,7 @@ layout: base
   </div>
 </div>
 <main class="home-main">
-  {%- comment -%} flat root guides (no collection) — client how-tos {%- endcomment -%}
+  {%- comment -%} flat root guides (no collection) - client how-tos {%- endcomment -%}
   {%- assign root = site.pages | where: "public", true | where_exp: "g", "g.collection == nil" | sort: "verified" | reverse -%}
   <div class="cards">
     {%- for g in root %}

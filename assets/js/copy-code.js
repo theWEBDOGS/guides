@@ -1,5 +1,5 @@
 // One-click copy on every fenced code block. The guides' Terminal steps are
-// written as "paste this whole block" — this button is that affordance.
+// written as "paste this whole block" - this button is that affordance.
 document.querySelectorAll('div.highlighter-rouge').forEach(function (block) {
   var code = block.querySelector('code');
   if (!code) return;

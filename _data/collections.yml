@@ -1,4 +1,4 @@
-# Collections on guides.webdogs.com — named groups of related guides.
+# Collections on guides.webdogs.com - named groups of related guides.
 # A guide joins a collection by carrying `collection: <slug>` front matter
 # (in its stack/<tool>/*-GUIDE.md source). Guides with no `collection` stay
 # flat at the site root. The publish script reads `name`/`description` here for
@@ -6,12 +6,12 @@
 # Add a collection = add a block here + set `collection:` on its guides.
 #
 # STATUS: dormant. Guides ship flat at the site root until a collection earns its
-# second node (DECISIONS 2026-06-19) — a collection of one is premature structure.
+# second node (DECISIONS 2026-06-19) - a collection of one is premature structure.
 # The machinery (pipeline + theme) and the claude-code block below are built and
 # ready: the collection activates the moment ≥2 guides set `collection: claude-code`.
 
 claude-code:
   name: "Claude Code"
   tagline: "How we configure and work with Claude Code"
-  description: "Craft notes distilled from our own CLAUDE.md — the conventions, verification habits, and workflows we use to get the most out of Claude Code."
+  description: "Craft notes distilled from our own CLAUDE.md - the conventions, verification habits, and workflows we use to get the most out of Claude Code."
   order: 1

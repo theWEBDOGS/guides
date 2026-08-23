@@ -8,25 +8,25 @@ those checks. Together they stop spoofing and keep your legitimate mail out of
 the spam folder.
 
 They're no longer optional: since 2024, **Gmail requires all three from anyone
-sending 5,000+ messages a day** — and authenticated mail lands better at any
+sending 5,000+ messages a day** - and authenticated mail lands better at any
 volume.
 
 What you'll need: access to your domain's **DNS settings**, and **super
 administrator** access to the Google Admin console. Each record is a TXT
 entry; changes can take up to 48 hours to propagate.
 
-## Check what you already have
+## Check what you already have {#check-existing}
 
 Before adding anything, see where you stand with
 [mail-tester's SPF/DKIM checker](https://www.mail-tester.com/spf-dkim-check).
-You'll need your DKIM selector to check it — for Google Workspace the default
+You'll need your DKIM selector to check it - for Google Workspace the default
 selector is **`google`**.
 
 Two outcomes: records exist (verify they match the values below), or they
-don't (set them up in the order on this page — SPF and DKIM first, DMARC
+don't (set them up in the order on this page - SPF and DKIM first, DMARC
 last).
 
-## SPF — authorize your senders
+## SPF - authorize your senders {#spf}
 
 [SPF (Sender Policy Framework)](https://knowledge.workspace.google.com/admin/security/set-up-spf)
 is a TXT record listing which mail servers may send as your domain. Receivers
@@ -42,10 +42,10 @@ Value: v=spf1 include:_spf.google.com ~all
 
 Reading it piece by piece:
 
-- **`v=spf1`** — the SPF version (only spf1 exists).
-- **`include:_spf.google.com`** — inherits all of Google's sending IPs, so
+- **`v=spf1`** - the SPF version (only spf1 exists).
+- **`include:_spf.google.com`** - inherits all of Google's sending IPs, so
   anything sent through Workspace passes.
-- **`~all`** — SoftFail everything else: mail from unauthorized servers gets
+- **`~all`** - SoftFail everything else: mail from unauthorized servers gets
   accepted but flagged.
 
 The qualifier on `all` controls how strict you are:
@@ -57,8 +57,8 @@ The qualifier on `all` controls how strict you are:
 | `~` | SoftFail | Host is NOT allowed to send | Accept & tag |
 | `?` | Neutral | No claim either way | Accept |
 
-**If anything else sends mail as your domain** — a CRM, a website contact
-form, a printer/scanner — it must be in the record too, or its mail will
+**If anything else sends mail as your domain** - a CRM, a website contact
+form, a printer/scanner - it must be in the record too, or its mail will
 fail. Add the sender's IP before the include:
 
 ```
@@ -68,17 +68,17 @@ v=spf1 ip4:7.7.7.7 include:_spf.google.com ~all
 Three gotchas worth knowing:
 
 - **One SPF record per domain.** Multiple SPF TXT records make SPF fail
-  outright — merge everything into a single record.
+  outright - merge everything into a single record.
 - **Stay under 10 lookups.** An SPF record can trigger at most 10 DNS
-  lookups (`include:` tags etc.) — more and it fails with some receivers.
+  lookups (`include:` tags etc.) - more and it fails with some receivers.
   That's the SPF standard, not a Google rule.
 - **Subdomains need their own records** if they send mail.
 
-## DKIM — sign your mail
+## DKIM - sign your mail {#dkim}
 
 [DKIM (DomainKeys Identified Mail)](https://knowledge.workspace.google.com/admin/security/set-up-dkim)
 adds a cryptographic signature to every outgoing message. Google signs with
-a private key; receivers verify against the public key you publish in DNS —
+a private key; receivers verify against the public key you publish in DNS -
 proof the message really came from your domain and wasn't altered.
 
 The record you'll end up publishing looks like:
@@ -89,13 +89,13 @@ Name:  google._domainkey
 Value: v=DKIM1; k=rsa; p=<your-public-key>
 ```
 
-(Your actual key comes from the Admin console — never copy one from an
+(Your actual key comes from the Admin console - never copy one from an
 example.)
 
-### Step 1 — Generate your key
+### Step 1 - Generate your key
 
 *Requires super administrator. Note: if Gmail was just turned on for your
-organization, the key isn't available until 24–72 hours later.*
+organization, the key isn't available until 24-72 hours later.*
 
 1. In the [Google Admin console](https://admin.google.com), go to
    **Apps → Google Workspace → Gmail**.
@@ -105,14 +105,14 @@ organization, the key isn't available until 24–72 hours later.*
    DNS host can't handle long TXT values), and click **Generate**.
 5. Copy the **DNS Host name (TXT record name)** and the **TXT record value**.
 
-### Step 2 — Publish the key in DNS
+### Step 2 - Publish the key in DNS
 
 1. Sign in to your domain's DNS management console.
 2. Add a TXT record: name = the **DNS Host name** from Step 1, value = the
    **TXT record value** from Step 1.
 3. Save.
 
-### Step 3 — Turn on signing
+### Step 3 - Turn on signing
 
 1. Back in **Apps → Google Workspace → Gmail → Authenticate email**, select
    the same domain.
@@ -120,10 +120,10 @@ organization, the key isn't available until 24–72 hours later.*
    **Authenticating email with DKIM**.
 
 The console may keep saying "You must update the DNS records for this
-domain" for up to 48 hours after you've done everything right — if the
+domain" for up to 48 hours after you've done everything right - if the
 record is published, you can ignore it.
 
-## DMARC — set the policy
+## DMARC - set the policy {#dmarc}
 
 [DMARC](https://knowledge.workspace.google.com/admin/security/set-up-dmarc)
 ties it together: it tells receivers what to *do* with mail that fails SPF
@@ -132,12 +132,12 @@ and DKIM, and sends you reports about who's sending as your domain.
 
 There are two routes, depending on the domain:
 
-### Route A — you control every sender (fresh or fully-managed setup)
+### Route A - you control every sender (fresh or fully-managed setup)
 
 If you just completed the SPF and DKIM steps above and **all** of this
 domain's mail goes through Google Workspace (no forgotten CRM, billing
 system, or website form sending as the domain), you can enforce immediately
-— anything failing the checks *is* spoofed. This is the record WEBDOGS
+- anything failing the checks *is* spoofed. This is the record WEBDOGS
 publishes on the domains it manages:
 
 ```
@@ -149,11 +149,11 @@ Value: v=DMARC1; p=reject; pct=100
 (`pct=100` is technically the default, but stating it makes the intent
 unambiguous.)
 
-### Route B — the domain has history
+### Route B - the domain has history
 
 If the domain has years of accumulated services that might send as it,
-enforcing immediately can bounce legitimate mail. Start in monitoring mode —
-Google's recommendation — and ramp up. This minimal record is safe to paste
+enforcing immediately can bounce legitimate mail. Start in monitoring mode -
+Google's recommendation - and ramp up. This minimal record is safe to paste
 exactly as written:
 
 ```
@@ -162,20 +162,20 @@ Name:  _dmarc
 Value: v=DMARC1; p=none
 ```
 
-It blocks nothing and satisfies receivers that check for a DMARC record —
+It blocks nothing and satisfies receivers that check for a DMARC record -
 but it's blind. The whole point of monitoring mode is the *reports*, which
 you turn on next.
 
-### Turn on reporting — once the address is real
+### Turn on reporting - once the address is real
 
-Reporting is what makes monitoring mode mean anything — and it's worth adding
+Reporting is what makes monitoring mode mean anything - and it's worth adding
 on Route A too (even at `p=reject`, reports are how you catch a false
 positive). Reports sent to a mailbox that doesn't exist just bounce: the record
 looks configured, but you're monitoring nothing. Set up the destination
-**first** — one of:
+**first** - one of:
 
 - a **free DMARC report service** (Cloudflare DMARC Management and
-  Postmark's DMARC digests both are) — recommended, because the raw reports
+  Postmark's DMARC digests both are) - recommended, because the raw reports
   are gzipped XML from every major receiver, daily, and a service turns them
   into something a human can read; or
 - a **dedicated mailbox or group** on your domain (in Google Workspace, a
@@ -188,7 +188,7 @@ v=DMARC1; p=none; rua=mailto:<the-address-you-just-set-up>
 ```
 
 One subtlety: if reports go to a *different domain* than the one you're
-monitoring, that domain has to publish a small authorization record — report
+monitoring, that domain has to publish a small authorization record - report
 services set this up for you.
 
 The full tag set:
@@ -207,19 +207,19 @@ The full tag set:
 As the reports come back clean, tighten the policy until you arrive at
 Route A's destination:
 
-1. **`p=none`** — nothing is blocked; you just get reports. *(start here)*
-2. **`p=quarantine; pct=5`** — 5% of failing mail goes to spam; raise `pct`
+1. **`p=none`** - nothing is blocked; you just get reports. *(start here)*
+2. **`p=quarantine; pct=5`** - 5% of failing mail goes to spam; raise `pct`
    gradually.
-3. **`p=reject`** — failing mail is refused outright. *(the destination)*
+3. **`p=reject`** - failing mail is refused outright. *(the destination)*
 
-## Verify it all works
+## Verify it all works {#verify}
 
 After DNS has had time to propagate (up to 48 hours):
 
 1. Re-run the [mail-tester checker](https://www.mail-tester.com/spf-dkim-check)
-   — SPF and DKIM (selector `google`) should both pass.
+   - SPF and DKIM (selector `google`) should both pass.
 2. Send yourself a test message to any Gmail address, open it, and use
-   **Show original** — the Authentication-Results summary should show
+   **Show original** - the Authentication-Results summary should show
    `SPF: PASS`, `DKIM: PASS`, and `DMARC: PASS`.
 3. Watch the DMARC reports arrive at your `rua=` address, and tighten the
    policy when they look clean.

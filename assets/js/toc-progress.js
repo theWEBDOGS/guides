@@ -2,8 +2,8 @@
    Desktop: fills the sidebar rail to the live reading position, checks off
    finished sections, rings the current one, ticks the "n / total" counter.
    Mobile (<940px, styled in CSS): the same nav renders as a fixed top strip
-   that slides in after the header band — current section + counter + a
-   horizontal gradient progress bar — and expands to the full trail on tap.
+   that slides in after the header band - current section + counter + a
+   horizontal gradient progress bar - and expands to the full trail on tap.
    Above the first section, node one shows as where you're headed.
    Reading line = 35% down the viewport. No deps. */
 (function () {
@@ -74,7 +74,7 @@
     if (barNow) barNow.textContent = labelOf(items[idx === -1 ? 0 : idx]);
     if (barFill) barFill.style.width = (cur / (total - 1) * 100) + '%';
 
-    /* vertical rail — only when the trail is actually rendered. Both ends are
+    /* vertical rail - only when the trail is actually rendered. Both ends are
        pinned to node centres, which move as labels wrap, so they're measured
        here rather than assumed in CSS: the rail must never run past node one
        or the last node. The fill then travels between those same two points. */
@@ -106,7 +106,7 @@
     bar.addEventListener('click', function () {
       var open = toc.classList.toggle('open');
       bar.setAttribute('aria-expanded', open ? 'true' : 'false');
-      if (open) update(); /* trail just became visible — size its fill */
+      if (open) update(); /* trail just became visible - size its fill */
     });
     toc.addEventListener('click', function (e) {
       if (e.target.closest('.toc-item') || e.target.closest('.toc-appendix a')) {

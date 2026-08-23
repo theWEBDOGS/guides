@@ -1,8 +1,8 @@
-/* guides.webdogs.com — "Bold & branded" theme (mockup 2, David-picked
+/* guides.webdogs.com - "Bold & branded" theme (mockup 2, David-picked
    2026-06-10). Branded 2026-06-10 from the WEBDOGS Brand Guide (Drive:
    Marketing/WEBDOGS Brand Guide.md): Dark Blue #2f3e4e, Blue #0596d5,
    Pink #ed008c, Green #09A100; Brandon Grotesque bold via the company's
-   Adobe Fonts kit (use.typekit.net/cmq1upi — same kit webdogs.com loads).
+   Adobe Fonts kit (use.typekit.net/cmq1upi - same kit webdogs.com loads).
    Note: brand Light Grey Blue #7b95a2 fails WCAG AA for body text on white,
    so --muted stays neutral. */
 
@@ -13,19 +13,19 @@
   --ink: #2f3e4e;    /* brand Dark Blue as text ink */
   --muted: #52606d;
   /* COLOR ROLES (blue-forward reskin, 2026-06-19):
-     - Pink (--accent / --accent-ink) = INTERACTIVE ONLY — text links and genuine
+     - Pink (--accent / --accent-ink) = INTERACTIVE ONLY - text links and genuine
        clickable affordances (article links, read-more, copy button, all-guides).
        --accent-ink is the AA-safe text tint (5.0:1 on white); --accent is the
        full-saturation hue reserved for clickable fills (buttons, chips).
-     - Blue (--blue) = the DECORATIVE BRAND ACCENT — every non-text graphic accent:
+     - Blue (--blue) = the DECORATIVE BRAND ACCENT - every non-text graphic accent:
        H2 underline bar, H3 tick, card top-bars, TOC rail/nodes/active ring,
        selection, focus rings. NEVER used for text: #0596d5 is only ~3:1 on white
        (fails WCAG AA), so it stays on bars, ticks, rails, and fills only.
      - Navy (--navy / --ink) = all heading and body text. */
-  --accent: #ed008c;     /* brand Pink — interactive fills (buttons, the guides chip) */
-  --accent-ink: #d6007e; /* brand Pink for TEXT on white — 5.0:1 AA — links only */
-  --blue: #0596d5;       /* brand Blue — the decorative graphic accent (non-text) */
-  --blue-deep: #0479ad;  /* derived darker Blue — heavier accent partner for gradients/glow */
+  --accent: #ed008c;     /* brand Pink - interactive fills (buttons, the guides chip) */
+  --accent-ink: #d6007e; /* brand Pink for TEXT on white - 5.0:1 AA - links only */
+  --blue: #0596d5;       /* brand Blue - the decorative graphic accent (non-text) */
+  --blue-deep: #0479ad;  /* derived darker Blue - heavier accent partner for gradients/glow */
   --paper: #f5f7fa;
   --line: #d9e2ec;
   --brand-font: "brandon-grotesque", -apple-system, BlinkMacSystemFont,
@@ -34,7 +34,7 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* keyboard focus — brand-colored, visible on every surface (critique 2026-06-11) */
+/* keyboard focus - brand-colored, visible on every surface (critique 2026-06-11) */
 :focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
 .hero a:focus-visible, .band a:focus-visible, .site-footer a:focus-visible,
 button.copy:focus-visible, .toc-bar:focus-visible { outline-color: #8fd4f0; }
@@ -49,7 +49,7 @@ body {
 }
 body.home { background: var(--paper); }
 
-.blocklogo { height: 34px; width: auto; flex: none; fill: #fff; } /* WEBDOGS text-block logo — same size on every page */
+.blocklogo { height: 34px; width: auto; flex: none; fill: #fff; } /* WEBDOGS text-block logo - same size on every page */
 .brandlink { display: flex; align-items: center; color: inherit; text-decoration: none; }
 .guides-tag {
   display: inline-flex; align-items: center; height: 34px;
@@ -74,7 +74,7 @@ body.home { background: var(--paper); }
 }
 .hero-in { max-width: 1100px; margin: 0 auto; padding: 30px 32px 56px; position: relative; }
 .brandrow { display: flex; align-items: center; gap: 12px; }
-.hero .brandrow { margin-bottom: 34px; } /* matches .band — hero and band render the same height */
+.hero .brandrow { margin-bottom: 34px; } /* matches .band - hero and band render the same height */
 
 .hero h1 {
   font-family: var(--brand-font);
@@ -82,12 +82,12 @@ body.home { background: var(--paper); }
   font-weight: 700; max-width: 640px;
 }
 .hero h1 .u {
-  text-decoration: underline var(--blue) 4px; text-underline-offset: 7px; /* baseline-anchored — the old inset shadow drew at Brandon's deep inline-box bottom, ~17px below the words */
+  text-decoration: underline var(--blue) 4px; text-underline-offset: 7px; /* baseline-anchored - the old inset shadow drew at Brandon's deep inline-box bottom, ~17px below the words */
 }
 .hero .lede { color: #bcccdc; font-size: 20px; margin-top: 18px; max-width: 560px; }
 
 .home-main { max-width: 1100px; margin: -26px auto 0; padding: 0 32px 90px; position: relative; }
-.cards { display: grid; gap: 22px; grid-template-columns: repeat(auto-fill, minmax(min(440px, 100%), 1fr)); } /* min(,100%) — the floor can never overflow a phone */
+.cards { display: grid; gap: 22px; grid-template-columns: repeat(auto-fill, minmax(min(440px, 100%), 1fr)); } /* min(,100%) - the floor can never overflow a phone */
 .card {
   display: flex; flex-direction: column; text-decoration: none; color: inherit;
   background: #fff; border-radius: 14px; padding: 27px 28px 26px; /* 22 optical + the 5px bar now inside the padding box */
@@ -104,14 +104,14 @@ body.home { background: var(--paper); }
   background: linear-gradient(90deg, var(--blue), var(--blue-deep));
   opacity: 0; transition: opacity .32s cubic-bezier(.22, .8, .26, 1);
 }
-/* hover response is the gradient bar + arrow only — the card itself holds still */
+/* hover response is the gradient bar + arrow only - the card itself holds still */
 .card:hover::after { opacity: 1; }
 .card .kbd {
   display: inline-flex; align-items: center; justify-content: center;
   width: 26px; height: 26px; flex: none;
-  margin-right: 12px; /* margin, not flex gap — survives anonymous text items and old WebKit */
+  margin-right: 12px; /* margin, not flex gap - survives anonymous text items and old WebKit */
   padding-top: 2px;   /* Brandon digits sit high; recenters optically */
-  border: 2px solid #c3d2e0; border-radius: 7px; /* var(--line) was ~1.2:1 on white — invisible affordance */
+  border: 2px solid #c3d2e0; border-radius: 7px; /* var(--line) was ~1.2:1 on white - invisible affordance */
   font: 700 14px/1 var(--brand-font); color: var(--muted);
 }
 .card h2 { font-family: var(--brand-font); font-size: 24px; line-height: 1.25; color: var(--navy); font-weight: 700; letter-spacing: -.01em; }
@@ -122,7 +122,7 @@ body.home { background: var(--paper); }
 }
 .card .arr {
   display: inline-block; margin-left: 6px;
-  transition: transform .4s cubic-bezier(.34, 1.56, .64, 1); /* back-out: overshoots and settles — the spring */
+  transition: transform .4s cubic-bezier(.34, 1.56, .64, 1); /* back-out: overshoots and settles - the spring */
 }
 .card:hover .arr { transform: translateX(4px); }
 
@@ -137,11 +137,11 @@ body.home { background: var(--paper); }
   position: absolute; right: -40px; top: -50px;
   width: 340px; height: 340px;
   fill: rgba(255, 255, 255, .05);
-  transform: rotate(18deg); /* identical to .hero .bigpaw — shorter band just crops the same image sooner */
+  transform: rotate(18deg); /* identical to .hero .bigpaw - shorter band just crops the same image sooner */
 }
 .band-in { position: relative; }
 .band-in { max-width: 1100px; margin: 0 auto; padding: 30px 32px 45px; } /* band = hero - 26px (the hub card overlap): visible navy edge matches across pages */
-.band .brandrow { margin-bottom: 34px; } /* same gap as the hero — unified rhythm */
+.band .brandrow { margin-bottom: 34px; } /* same gap as the hero - unified rhythm */
 .band h1 {
   font-family: var(--brand-font);
   font-size: 40px; line-height: 1.15; letter-spacing: -.02em; /* unified with .hero h1 */
@@ -261,7 +261,7 @@ aside { font-size: 14px; }
 }
 
 .trail { position: relative; }
-/* the rail spans node-one's centre to the last node's centre — never past
+/* the rail spans node-one's centre to the last node's centre - never past
    either end. Those centres move with label wrapping (a two-line label pushes
    its node ~17px further in), so toc-progress.js measures them and sets
    --rail-start/--rail-end; the fallbacks are the single-line values. */
@@ -380,7 +380,7 @@ article h2 { scroll-margin-top: 26px; }
 .more .card { padding: 18px 24px 22px; }
 .more .card h2 { font-size: 18px; }
 
-/* ---------- footer (logo + colophon only — no CTA, by decision) ---------- */
+/* ---------- footer (logo + colophon only - no CTA, by decision) ---------- */
 
 .site-footer { background: var(--navy); }
 .footer-in {
@@ -455,7 +455,7 @@ article h2 { scroll-margin-top: 26px; }
   .card { padding: 20px 22px 24px; }
 }
 
-/* collections — a named group of guides on the home page + its own landing.
+/* collections - a named group of guides on the home page + its own landing.
    Reuses .band (landing header), .cards/.card (grid), .more (back link). */
 .collection-group { margin-top: 54px; }
 .collection-head { margin-bottom: 22px; }

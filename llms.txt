@@ -1,13 +1,13 @@
 # WEBDOGS Guides
 
-> Shared knowledge from the WEBDOGS team — step-by-step setup guides,
+> Shared knowledge from the WEBDOGS team - step-by-step setup guides,
 > self-contained and safe to follow exactly as written. Each link below
 > is the guide as plain Markdown (the HTML version lives at the same
 > path without the /<name>.md suffix).
 
 ## Guides
 
-- [Configure Your CLAUDE.md](https://guides.webdogs.com/configure-your-claude-md/configure-your-claude-md.md): A battle-tested starter CLAUDE.md — the verification habits, naming, and git defaults that make Claude Code reliable. Drop it in on any machine; about 5 minutes. (last verified 2026-06-19)
+- [Configure Your CLAUDE.md](https://guides.webdogs.com/configure-your-claude-md/configure-your-claude-md.md): A battle-tested starter CLAUDE.md - the verification habits, naming, and git defaults that make Claude Code reliable. Drop it in on any machine; about 5 minutes. (last verified 2026-06-19)
 - [Create a Google Maps API Key](https://guides.webdogs.com/google-maps-api-key/google-maps-api-key.md): Create, restrict, and share a Maps key under your own Google account. About 15 minutes. (last verified 2026-06-11)
 - [Set Up Google Workspace MX Records](https://guides.webdogs.com/workspace-mx-records/workspace-mx-records.md): The current single-record setup, plus the legacy five-record set. About 5 minutes. (last verified 2026-06-11)
 - [Set Up SPF, DKIM, and DMARC for Google Workspace](https://guides.webdogs.com/spf-dkim-dmarc/spf-dkim-dmarc.md): Current record values and a staged DMARC rollout for Google Workspace domains. About 30 minutes. (last verified 2026-06-11)
