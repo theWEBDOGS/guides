@@ -43,7 +43,9 @@ of the file.
 *Brand fidelity* - render product names with their real spelling (`GitHub`, `npm`,
 `macOS`); it's basic credibility. *Stop and replan* - blocked twice on the same
 thing, surface it instead of trying a third variation; looping on a broken approach
-is the classic agent failure.
+is the classic agent failure. *Build the smallest thing that does the job* - every
+setting, option or switch is more to review, misconfigure and support, so add one
+only when the feature can't exist without it; simplicity is part of security.
 
 ### Verification - the heart of the file
 Three habits that kill "it looks done" bugs: (1) **name the check before you start**

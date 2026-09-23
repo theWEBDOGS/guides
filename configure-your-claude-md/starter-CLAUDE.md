@@ -15,6 +15,10 @@
   stylizations; don't "correct" them.
 - **Stop and replan.** Blocked twice on the same issue? Surface the blocker
   instead of thrashing on a third attempt.
+- **Build the smallest thing that does the job.** Simplicity is part of security
+  and maintainability: every setting, option, flag or switch is more to review,
+  misconfigure and support. Add one only when the feature cannot exist without it;
+  a feature that needs a switch probably does not belong.
 
 ## Verification
 - **Name the check before you start; run it after; report honestly.** For
